@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fuel_tracker/Screens/Avg_Prices/AvgPrices.dart';
 import 'package:fuel_tracker/Screens/Petrol_map/PetrolMap.dart';
 
 void main() {
@@ -32,10 +33,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
     PetrolMap(),
-    Text(
-      'Index 1: Avg fuel prices',
-      style: optionStyle,
-    ),
+    AvgPrices(),
     Text(
       'Index 2: ToDo',
       style: optionStyle,
