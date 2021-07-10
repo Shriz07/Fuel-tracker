@@ -52,89 +52,36 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            label: 'Stacje',
-            backgroundColor: Colors.red,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.attach_money),
-            label: 'Średnie ceny',
-            backgroundColor: Colors.green,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.attachment),
-            label: 'ToDo',
-            backgroundColor: Colors.purple,
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: <Color>[Colors.green, Colors.green])),
+        child: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              backgroundColor: Colors.red,
+              icon: Icon(Icons.map),
+              label: 'Stacje',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.attach_money),
+              label: 'Średnie ceny',
+              backgroundColor: Colors.green,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.attachment),
+              label: 'ToDo',
+              backgroundColor: Colors.purple,
+            ),
+          ],
+          backgroundColor: Colors.transparent,
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.blue[300],
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }
 }
-
-
-/*class _MyAppState extends State<MyApp> {
-  Position? _currentPosition;
-  var geolocator = Geolocator();
-
-  final Map<String, Marker> _markers = {};
-
-  Future<void> _onMapCreated(GoogleMapController controller) async {
-    var position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best);
-    _currentPosition = position;
-
-    var latlng = LatLng(position.latitude, position.longitude);
-
-    var cameraPosition = CameraPosition(target: latlng, zoom: 12);
-
-    await controller
-        .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-
-    final petrolStations = await locations.getPetrolStations(
-        position.latitude, position.longitude);
-    setState(() {
-      _markers.clear();
-      for (final station in petrolStations.results) {
-        print(station.name);
-        final marker = Marker(
-          markerId: MarkerId(station.name),
-          position: LatLng(
-              station.geometry.location.lat, station.geometry.location.lng),
-          infoWindow: InfoWindow(
-            title: station.name,
-          ),
-        );
-        _markers[station.name] = marker;
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Nearby petrol stations'),
-          backgroundColor: Colors.green[700],
-        ),
-        body: GoogleMap(
-          myLocationButtonEnabled: true,
-          myLocationEnabled: true,
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: const LatLng(0, 0),
-            zoom: 12,
-          ),
-          markers: _markers.values.toSet(),
-        ),
-      ),
-    );
-  }
-}*/
