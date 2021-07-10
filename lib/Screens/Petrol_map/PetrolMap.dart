@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fuel_tracker/main.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'locations.dart' as locations;
@@ -11,9 +10,18 @@ class PetrolMap extends StatefulWidget {
 
 class _MyAppState extends State<PetrolMap> {
   Position? _currentPosition;
+  late BitmapDescriptor myIcon;
   var geolocator = Geolocator();
 
   final Map<String, Marker> _markers = {};
+
+  @override
+  void initState() {
+    super.initState();
+    BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5),
+            'assets/petrol-marker.png')
+        .then((value) => myIcon = value);
+  }
 
   Future<void> _onMapCreated(GoogleMapController controller) async {
     var position = await Geolocator.getCurrentPosition(
@@ -35,6 +43,7 @@ class _MyAppState extends State<PetrolMap> {
       for (final station in petrolStations.results) {
         print(station.name);
         final marker = Marker(
+          icon: myIcon,
           markerId: MarkerId(station.name),
           position: LatLng(
               station.geometry.location.lat, station.geometry.location.lng),
@@ -52,8 +61,14 @@ class _MyAppState extends State<PetrolMap> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Nearby petrol stations'),
-          backgroundColor: Colors.green[700],
+          title: const Text('Najbliższe stacje benzynowe'),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: <Color>[Colors.green, Colors.lightGreen])),
+          ),
         ),
         body: GoogleMap(
           myLocationButtonEnabled: true,
