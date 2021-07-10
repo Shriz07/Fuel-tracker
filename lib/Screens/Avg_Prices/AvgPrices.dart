@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fuel_tracker/Screens/Avg_Prices/Price.dart';
+import 'package:fuel_tracker/Screens/Avg_Prices/Region.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
 
@@ -18,85 +18,217 @@ class AvgPrices extends StatefulWidget {
 
 //TODO add response 200 handling https://medium.com/flutter-community/parsing-html-in-dart-with-html-package-cd43c29cc460
 class _MyAppState extends State<AvgPrices> {
-  var prices = [];
+  List<Region> regions = [];
 
-  Future<void> getPrices() async {
-    var response = await http.Client()
-        .get(Uri.parse('https://www.autocentrum.pl/paliwa/ceny-paliw/'));
+  String removeSigns(String text) {
+    text = text.replaceAll(' ', '');
+    text = text.replaceAll('\n', '');
+    return text;
+  }
 
-    var document = parse(response.body);
+  Future<List> getPrices() async {
+    if (regions.isEmpty) {
+      var response = await http.Client()
+          .get(Uri.parse('https://www.autocentrum.pl/paliwa/ceny-paliw/'));
 
-    var table = document.getElementsByClassName('petrols-table');
-    var tbody = table.first.getElementsByTagName('td');
+      var document = parse(response.body);
 
-    //List<Price> prices;
-    for (var i = 0; i < tbody.length;) {
-      var region = tbody[i++].text;
-      region = region.replaceAll(' ', '');
+      var table = document.getElementsByClassName('petrols-table');
+      var tbody = table.first.getElementsByTagName('td');
 
-      for (var j = 0; j < 5; j++) {
-        var price = tbody[i++].text;
-        price = price.replaceAll(' ', '');
-        price = price.replaceAll('\n', '');
-        var petrol = Price(price: price, type: fuel_types[j], region: region);
-        prices.add(petrol);
+      for (var i = 0; i < tbody.length;) {
+        var name = removeSigns(tbody[i++].text);
+
+        var price95 = removeSigns(tbody[i++].text);
+        var price98 = removeSigns(tbody[i++].text);
+        var priceON = removeSigns(tbody[i++].text);
+        var priceONplus = removeSigns(tbody[i++].text);
+        var priceLPG = removeSigns(tbody[i++].text);
+
+        var petrol = Region(
+            name: name,
+            price95: price95,
+            price98: price98,
+            priceON: priceON,
+            priceONplus: priceONplus,
+            priceLPG: priceLPG);
+
+        regions.add(petrol);
       }
     }
-
-    prices.forEach((element) {
-      print(element.region);
-    });
+    return regions;
   }
+
+  bool _isAscending = true;
+  int _currentSortColumn = 0;
 
   @override
   Widget build(BuildContext context) {
-    getPrices();
+    return FutureBuilder<List>(
+        future: getPrices(),
+        builder: (context, AsyncSnapshot<List> snapshot) {
+          if (snapshot.data != null) {
+            return getTableContent();
+          } else {
+            return CircularProgressIndicator();
+          }
+        });
+  }
+
+  Padding getTableContent() {
     return Padding(
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.only(top: 30.0),
       child: ConstrainedBox(
         constraints:
             BoxConstraints.expand(width: MediaQuery.of(context).size.width),
-        child: DataTable(
-          columnSpacing: 0,
-          columns: const <DataColumn>[
-            DataColumn(
-              label: Text(
-                'Województwo',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              ),
-            ),
-            DataColumn(
-              label: Text(
-                '95',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              ),
-            ),
-            DataColumn(
-              label: Text(
-                '98',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              ),
-            ),
-            DataColumn(
-              label: Text(
-                'ON',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              ),
-            ),
-            DataColumn(
-              label: Text(
-                'ON+',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              ),
-            ),
-            DataColumn(
-              label: Text(
-                'LPG',
-                style: TextStyle(fontStyle: FontStyle.italic),
-              ),
-            ),
-          ],
-          rows: const <DataRow>[],
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: DataTable(
+            sortAscending: _isAscending,
+            sortColumnIndex: _currentSortColumn,
+            columnSpacing: 0,
+            horizontalMargin: 15,
+            columns: <DataColumn>[
+              DataColumn(
+                  label: Text(
+                    'Województwo',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                  onSort: (columnIndex, _) {
+                    setState(() {
+                      if (_isAscending == true) {
+                        _isAscending = false;
+                        _currentSortColumn = columnIndex;
+                        regions.sort((priceA, priceB) =>
+                            priceB.name.compareTo(priceA.name));
+                      } else {
+                        _isAscending = true;
+                        _currentSortColumn = columnIndex;
+                        regions.sort((priceA, priceB) =>
+                            priceA.name.compareTo(priceB.name));
+                      }
+                    });
+                  }),
+              DataColumn(
+                  label: Expanded(
+                      child: Image(
+                    image: AssetImage('assets/petrol95.png'),
+                  )),
+                  onSort: (columnIndex, _) {
+                    setState(() {
+                      if (_isAscending == true) {
+                        _isAscending = false;
+                        _currentSortColumn = columnIndex;
+                        regions.sort((priceA, priceB) =>
+                            priceB.price95.compareTo(priceA.price95));
+                      } else {
+                        _isAscending = true;
+                        _currentSortColumn = columnIndex;
+                        regions.sort((priceA, priceB) =>
+                            priceA.price95.compareTo(priceB.price95));
+                      }
+                    });
+                  }),
+              DataColumn(
+                  label: Expanded(
+                    child: Image(
+                      image: AssetImage('assets/petrol98.png'),
+                    ),
+                  ),
+                  onSort: (columnIndex, _) {
+                    setState(() {
+                      if (_isAscending == true) {
+                        _isAscending = false;
+                        _currentSortColumn = columnIndex;
+                        regions.sort((priceA, priceB) =>
+                            priceB.price98.compareTo(priceA.price98));
+                      } else {
+                        _isAscending = true;
+                        _currentSortColumn = columnIndex;
+                        regions.sort((priceA, priceB) =>
+                            priceA.price98.compareTo(priceB.price98));
+                      }
+                    });
+                  }),
+              DataColumn(
+                  label: Expanded(
+                    child: Image(
+                      image: AssetImage('assets/petrolON.png'),
+                    ),
+                  ),
+                  onSort: (columnIndex, _) {
+                    setState(() {
+                      if (_isAscending == true) {
+                        _isAscending = false;
+                        _currentSortColumn = columnIndex;
+                        regions.sort((priceA, priceB) =>
+                            priceB.priceON.compareTo(priceA.priceON));
+                      } else {
+                        _isAscending = true;
+                        _currentSortColumn = columnIndex;
+                        regions.sort((priceA, priceB) =>
+                            priceA.priceON.compareTo(priceB.priceON));
+                      }
+                    });
+                  }),
+              DataColumn(
+                  label: Expanded(
+                    child: Image(
+                      image: AssetImage('assets/petrolONplus.png'),
+                    ),
+                  ),
+                  onSort: (columnIndex, _) {
+                    setState(() {
+                      if (_isAscending == true) {
+                        _isAscending = false;
+                        _currentSortColumn = columnIndex;
+                        regions.sort((priceA, priceB) =>
+                            priceB.priceONplus.compareTo(priceA.priceONplus));
+                      } else {
+                        _isAscending = true;
+                        _currentSortColumn = columnIndex;
+                        regions.sort((priceA, priceB) =>
+                            priceA.priceONplus.compareTo(priceB.priceONplus));
+                      }
+                    });
+                  }),
+              DataColumn(
+                  label: Expanded(
+                    child: Image(
+                      image: AssetImage('assets/petrolLPG.png'),
+                    ),
+                  ),
+                  onSort: (columnIndex, _) {
+                    setState(() {
+                      if (_isAscending == true) {
+                        _isAscending = false;
+                        _currentSortColumn = columnIndex;
+                        regions.sort((priceA, priceB) =>
+                            priceB.priceLPG.compareTo(priceA.priceLPG));
+                      } else {
+                        _isAscending = true;
+                        _currentSortColumn = columnIndex;
+                        regions.sort((priceA, priceB) =>
+                            priceA.priceLPG.compareTo(priceB.priceLPG));
+                      }
+                    });
+                  }),
+            ],
+            rows: regions
+                .map(
+                  ((element) => DataRow(
+                        cells: <DataCell>[
+                          DataCell(Text(element.name)),
+                          DataCell(Text(element.price95)),
+                          DataCell(Text(element.price98)),
+                          DataCell(Text(element.priceON)),
+                          DataCell(Text(element.priceONplus)),
+                          DataCell(Text(element.priceLPG)),
+                        ],
+                      )),
+                )
+                .toList(),
+          ),
         ),
       ),
     );
