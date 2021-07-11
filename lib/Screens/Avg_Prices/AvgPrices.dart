@@ -23,6 +23,7 @@ class _MyAppState extends State<AvgPrices> {
   String removeSigns(String text) {
     text = text.replaceAll(' ', '');
     text = text.replaceAll('\n', '');
+    text = text.replaceAll('-', 'b.d.');
     return text;
   }
 
@@ -77,7 +78,7 @@ class _MyAppState extends State<AvgPrices> {
 
   Padding getTableContent() {
     return Padding(
-      padding: EdgeInsets.only(top: 30.0),
+      padding: EdgeInsets.only(top: 24.0),
       child: ConstrainedBox(
         constraints:
             BoxConstraints.expand(width: MediaQuery.of(context).size.width),
@@ -88,6 +89,8 @@ class _MyAppState extends State<AvgPrices> {
             sortColumnIndex: _currentSortColumn,
             columnSpacing: 0,
             horizontalMargin: 15,
+            headingRowColor:
+                MaterialStateColor.resolveWith((states) => Colors.green),
             columns: <DataColumn>[
               DataColumn(
                   label: Text(
@@ -217,13 +220,31 @@ class _MyAppState extends State<AvgPrices> {
             rows: regions
                 .map(
                   ((element) => DataRow(
+                        color: MaterialStateColor.resolveWith((states) {
+                          return regions.indexOf(element) % 2 == 0
+                              ? Colors.grey
+                              : Colors.white;
+                        }),
                         cells: <DataCell>[
-                          DataCell(Text(element.name)),
-                          DataCell(Text(element.price95)),
-                          DataCell(Text(element.price98)),
-                          DataCell(Text(element.priceON)),
-                          DataCell(Text(element.priceONplus)),
-                          DataCell(Text(element.priceLPG)),
+                          DataCell(
+                            Text(element.name, textAlign: TextAlign.center),
+                          ),
+                          DataCell(
+                            Text(element.price95, textAlign: TextAlign.center),
+                          ),
+                          DataCell(
+                            Text(element.price98, textAlign: TextAlign.center),
+                          ),
+                          DataCell(
+                            Text(element.priceON, textAlign: TextAlign.center),
+                          ),
+                          DataCell(
+                            Text(element.priceONplus,
+                                textAlign: TextAlign.center),
+                          ),
+                          DataCell(
+                            Text(element.priceLPG, textAlign: TextAlign.center),
+                          ),
                         ],
                       )),
                 )

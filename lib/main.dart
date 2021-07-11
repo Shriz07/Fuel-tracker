@@ -55,13 +55,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: <Color>[Colors.green, Colors.green])),
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: <Color>[Colors.green, Colors.lightGreen])),
         child: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              backgroundColor: Colors.red,
+              backgroundColor: Colors.white,
               icon: Icon(Icons.map),
               label: 'Stacje',
             ),
@@ -79,6 +79,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           backgroundColor: Colors.transparent,
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.blue[300],
+          unselectedItemColor: Colors.white,
           onTap: _onItemTapped,
         ),
       ),

@@ -66,7 +66,7 @@ class _MyAppState extends State<PetrolMap> {
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
+                    end: Alignment(0.0, 2),
                     colors: <Color>[Colors.green, Colors.lightGreen])),
           ),
         ),
