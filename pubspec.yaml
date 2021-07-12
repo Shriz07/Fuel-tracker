@@ -28,6 +28,9 @@ dependencies:
   http: ^0.13.3
   json_serializable: ^4.1.3
   html: ^0.15.0
+  provider: ^5.0.0-nullsafety.1
+  firebase_core: ^1.3.0
+  firebase_auth: ^2.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -52,6 +55,7 @@ flutter:
     - assets/petrolONplus.png
     - assets/petrolLPG.png
     - assets/petrol-marker.png
+    - assets/login-background.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
