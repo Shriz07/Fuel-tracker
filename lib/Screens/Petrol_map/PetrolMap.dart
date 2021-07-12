@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:provider/provider.dart';
 import 'locations.dart' as locations;
 
 class PetrolMap extends StatefulWidget {
@@ -58,10 +60,16 @@ class _MyAppState extends State<PetrolMap> {
 
   @override
   Widget build(BuildContext context) {
+    final loginProvider = Provider.of<AuthServices>(context);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Najbliższe stacje benzynowe'),
+          actions: [
+            IconButton(
+                onPressed: () async => await loginProvider.logout(),
+                icon: Icon(Icons.exit_to_app)),
+          ],
           flexibleSpace: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
