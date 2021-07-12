@@ -63,17 +63,25 @@ class _LoginState extends State<Register> {
                       ),
                     ),
                     SizedBox(height: 40),
-                    Text(
-                      'Witaj',
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Stwórz konto aby kontynuować',
-                      style: TextStyle(fontSize: 14, color: Colors.white),
+                    Material(
+                      color: Colors.grey.withOpacity(0.8),
+                      elevation: 10,
+                      shadowColor: Colors.grey,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Text(
+                              'Stwórz konto aby kontynuować',
+                              style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(height: 30),
                     TextFormField(
@@ -87,8 +95,8 @@ class _LoginState extends State<Register> {
                         prefixIcon: Icon(Icons.mail),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
-                          borderSide:
-                              const BorderSide(color: Colors.green, width: 2.0),
+                          borderSide: const BorderSide(
+                              color: Colors.lightGreen, width: 3.0),
                         ),
                         border: const OutlineInputBorder(),
                       ),
@@ -106,8 +114,8 @@ class _LoginState extends State<Register> {
                         prefixIcon: Icon(Icons.vpn_key),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
-                          borderSide:
-                              const BorderSide(color: Colors.green, width: 2.0),
+                          borderSide: const BorderSide(
+                              color: Colors.lightGreen, width: 2.0),
                         ),
                         border: const OutlineInputBorder(),
                       ),
@@ -144,23 +152,28 @@ class _LoginState extends State<Register> {
                             ),
                     ),
                     SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Posiadasz już konto?',
-                          style: TextStyle(fontSize: 17, color: Colors.white),
-                        ),
-                        SizedBox(width: 5),
-                        TextButton(
-                          onPressed: () => widget.toggleScreen(),
-                          child: Text(
-                            'Zaloguj',
-                            style: TextStyle(
-                                fontSize: 17, fontWeight: FontWeight.bold),
+                    Material(
+                      color: Colors.grey.withOpacity(0.8),
+                      elevation: 10,
+                      shadowColor: Colors.grey,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Posiadasz już konto?',
+                            style: TextStyle(fontSize: 17, color: Colors.white),
                           ),
-                        )
-                      ],
+                          SizedBox(width: 5),
+                          TextButton(
+                            onPressed: () => widget.toggleScreen(),
+                            child: Text(
+                              'Zaloguj',
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.bold),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(height: 20),
                     if (loginProvider.errorMessage != '')

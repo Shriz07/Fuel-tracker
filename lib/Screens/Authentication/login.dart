@@ -61,33 +61,22 @@ class _LoginState extends State<Login> {
                             color: Colors.white),
                       ),
                     ),
-                    SizedBox(height: 40),
-                    Text(
-                      'Witaj ponownie',
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Zaloguj aby kontynuować',
-                      style: TextStyle(fontSize: 14, color: Colors.white),
-                    ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 80),
                     TextFormField(
                       controller: _emailController,
                       validator: (val) =>
                           val!.isNotEmpty ? null : 'Podaj adres Email',
                       decoration: InputDecoration(
+                        errorStyle:
+                            TextStyle(color: Colors.yellow, fontSize: 15),
                         filled: true,
                         fillColor: Colors.amberAccent,
                         hintText: 'Email',
                         prefixIcon: Icon(Icons.mail),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
-                          borderSide:
-                              const BorderSide(color: Colors.green, width: 2.0),
+                          borderSide: const BorderSide(
+                              color: Colors.lightGreen, width: 3.0),
                         ),
                         border: const OutlineInputBorder(),
                       ),
@@ -99,14 +88,16 @@ class _LoginState extends State<Login> {
                           ? 'Podaj przynajmniej 6 znaków'
                           : null,
                       decoration: InputDecoration(
+                        errorStyle:
+                            TextStyle(color: Colors.yellow, fontSize: 15),
                         filled: true,
                         fillColor: Colors.amberAccent,
                         hintText: 'Hasło',
                         prefixIcon: Icon(Icons.vpn_key),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
-                          borderSide:
-                              const BorderSide(color: Colors.green, width: 2.0),
+                          borderSide: const BorderSide(
+                              color: Colors.lightGreen, width: 3.0),
                         ),
                         border: const OutlineInputBorder(),
                       ),
@@ -146,25 +137,30 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Nie posiadasz konta?',
-                          style: TextStyle(fontSize: 17, color: Colors.white),
-                        ),
-                        SizedBox(width: 5),
-                        TextButton(
-                          onPressed: () => widget.toggleScreen!(),
-                          child: Text(
-                            'Stwórz konto',
-                            style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).primaryColor),
+                    Material(
+                      color: Colors.grey.withOpacity(0.8),
+                      elevation: 10,
+                      shadowColor: Colors.grey,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Nie posiadasz konta?',
+                            style: TextStyle(fontSize: 17, color: Colors.white),
                           ),
-                        )
-                      ],
+                          SizedBox(width: 5),
+                          TextButton(
+                            onPressed: () => widget.toggleScreen!(),
+                            child: Text(
+                              'Stwórz konto',
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).primaryColor),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(height: 20),
                     if (loginProvider.errorMessage != '')
