@@ -9,34 +9,44 @@ part 'locations.g.dart';
 @JsonSerializable()
 class Locations {
   Locations({
-    required this.results,
+    required this.stations,
   });
 
   factory Locations.fromJson(Map<String, dynamic> json) =>
       _$LocationsFromJson(json);
   Map<String, dynamic> toJson() => _$LocationsToJson(this);
 
-  final List<Result> results;
+  final List<Station> stations;
 }
 
 @JsonSerializable()
-class Result {
-  Result({
+class Station {
+  Station({
     required this.geometry,
     required this.name,
     //required this.priceLevel,
-    //required this.rating,
+    required this.rating,
     required this.vicinity,
+    required this.place_id,
+    required this.price95,
+    required this.price98,
+    required this.priceON,
+    required this.priceLPG,
   });
 
-  factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
+  factory Station.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
   Map<String, dynamic> toJson() => _$ResultToJson(this);
 
   Geometry geometry;
   String name;
   //String priceLevel;
-  //double rating;
+  double rating;
   String vicinity;
+  String place_id;
+  String price95;
+  String price98;
+  String priceON;
+  String priceLPG;
 }
 
 @JsonSerializable()
