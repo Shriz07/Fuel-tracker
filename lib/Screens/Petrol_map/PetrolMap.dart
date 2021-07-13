@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fuel_tracker/Screens/Petrol_map/locations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
+import 'package:fuel_tracker/services/firestore_services/firestoreDB.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class _MyAppState extends State<PetrolMap> {
   late TextEditingController _petrol98Controller;
   late TextEditingController _petrolONController;
   late TextEditingController _petrolLPGController;
+  FirestoreDB _db = new FirestoreDB();
 
   final Map<String, Marker> _markers = {};
 
@@ -115,8 +117,9 @@ class _MyAppState extends State<PetrolMap> {
     );
   }
 
-  void _showDialog(Station station) {
-    showDialog(
+  void _showDialog(Station station) async {
+    await _db.getStation(station);
+    await showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) {
@@ -133,14 +136,39 @@ class _MyAppState extends State<PetrolMap> {
                       key: _formkey,
                       child: Column(
                         children: <Widget>[
-                          SizedBox(height: 30),
-                          Title(
-                            color: Colors.black,
-                            child: Text(
-                              station.name,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 17),
-                            ),
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.arrow_back_ios,
+                                    color: Colors.lightGreen,
+                                    size: 30,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Title(
+                                  color: Colors.black,
+                                  child: Text(
+                                    station.name,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            station.vicinity,
+                            style: TextStyle(fontSize: 16),
                           ),
                           SizedBox(height: 15),
                           RatingBarIndicator(
@@ -162,11 +190,12 @@ class _MyAppState extends State<PetrolMap> {
                                 SizedBox(width: 15),
                                 Flexible(
                                   child: TextFormField(
+                                    keyboardType: TextInputType.number,
                                     controller: _petrol95Controller,
                                     decoration: InputDecoration(
                                       filled: true,
                                       fillColor: Colors.amberAccent,
-                                      hintText: 'Aktualna cena',
+                                      hintText: station.price95,
                                       prefixIcon: Icon(Icons.money),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
@@ -193,11 +222,12 @@ class _MyAppState extends State<PetrolMap> {
                                 SizedBox(width: 15),
                                 Flexible(
                                   child: TextFormField(
+                                    keyboardType: TextInputType.number,
                                     controller: _petrol98Controller,
                                     decoration: InputDecoration(
                                       filled: true,
                                       fillColor: Colors.amberAccent,
-                                      hintText: 'Aktualna cena',
+                                      hintText: station.price98,
                                       prefixIcon: Icon(Icons.money),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
@@ -224,11 +254,12 @@ class _MyAppState extends State<PetrolMap> {
                                 SizedBox(width: 15),
                                 Flexible(
                                   child: TextFormField(
+                                    keyboardType: TextInputType.number,
                                     controller: _petrolONController,
                                     decoration: InputDecoration(
                                       filled: true,
                                       fillColor: Colors.amberAccent,
-                                      hintText: 'Aktualna cena',
+                                      hintText: station.priceON,
                                       prefixIcon: Icon(Icons.money),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
@@ -255,11 +286,12 @@ class _MyAppState extends State<PetrolMap> {
                                 SizedBox(width: 15),
                                 Flexible(
                                   child: TextFormField(
+                                    keyboardType: TextInputType.number,
                                     controller: _petrolLPGController,
                                     decoration: InputDecoration(
                                       filled: true,
                                       fillColor: Colors.amberAccent,
-                                      hintText: 'Aktualna cena',
+                                      hintText: station.priceLPG,
                                       prefixIcon: Icon(Icons.money),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
@@ -278,17 +310,29 @@ class _MyAppState extends State<PetrolMap> {
                           Center(
                             child: MaterialButton(
                               onPressed: () {
+                                var dataChanged = false;
                                 if (_petrol95Controller.text != '') {
-                                  print(_petrol95Controller.text);
+                                  station.price95 = _petrol95Controller.text;
+                                  _petrol95Controller.text = '';
+                                  dataChanged = true;
                                 }
                                 if (_petrol98Controller.text != '') {
-                                  print(_petrol98Controller.text);
+                                  station.price98 = _petrol98Controller.text;
+                                  _petrol98Controller.text = '';
+                                  dataChanged = true;
                                 }
                                 if (_petrolONController.text != '') {
-                                  print(_petrolONController.text);
+                                  station.priceON = _petrolONController.text;
+                                  _petrolONController.text = '';
+                                  dataChanged = true;
                                 }
                                 if (_petrolLPGController.text != '') {
-                                  print(_petrolLPGController.text);
+                                  station.priceLPG = _petrolLPGController.text;
+                                  _petrolLPGController.text = '';
+                                  dataChanged = true;
+                                }
+                                if (dataChanged) {
+                                  _db.addStation(station);
                                 }
                                 Navigator.pop(context);
                               },
@@ -306,24 +350,6 @@ class _MyAppState extends State<PetrolMap> {
                             ),
                           ),
                           SizedBox(height: 15),
-                          Center(
-                            child: MaterialButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              height: 50,
-                              color: Colors.lightGreen,
-                              textColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Text(
-                                'Cofnij',
-                                style: TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          )
                         ],
                       ),
                     ),
