@@ -20,7 +20,13 @@ class AvgPrices extends StatefulWidget {
 class _MyAppState extends State<AvgPrices> {
   List<Region> regions = [];
 
-  String removeSigns(String text) {
+  String removeSingsFromRregion(String text) {
+    text = text.replaceAll(' ', '');
+    text = text.replaceAll('\n', '');
+    return text;
+  }
+
+  String removeSingsFromPrice(String text) {
     text = text.replaceAll(' ', '');
     text = text.replaceAll('\n', '');
     text = text.replaceAll('-', 'b.d.');
@@ -38,13 +44,13 @@ class _MyAppState extends State<AvgPrices> {
       var tbody = table.first.getElementsByTagName('td');
 
       for (var i = 0; i < tbody.length;) {
-        var name = removeSigns(tbody[i++].text);
+        var name = removeSingsFromRregion(tbody[i++].text);
 
-        var price95 = removeSigns(tbody[i++].text);
-        var price98 = removeSigns(tbody[i++].text);
-        var priceON = removeSigns(tbody[i++].text);
-        var priceONplus = removeSigns(tbody[i++].text);
-        var priceLPG = removeSigns(tbody[i++].text);
+        var price95 = removeSingsFromPrice(tbody[i++].text);
+        var price98 = removeSingsFromPrice(tbody[i++].text);
+        var priceON = removeSingsFromPrice(tbody[i++].text);
+        var priceONplus = removeSingsFromPrice(tbody[i++].text);
+        var priceLPG = removeSingsFromPrice(tbody[i++].text);
 
         var petrol = Region(
             name: name,
@@ -222,8 +228,8 @@ class _MyAppState extends State<AvgPrices> {
                   ((element) => DataRow(
                         color: MaterialStateColor.resolveWith((states) {
                           return regions.indexOf(element) % 2 == 0
-                              ? Colors.grey
-                              : Colors.white;
+                              ? Colors.amberAccent
+                              : Colors.lightGreen;
                         }),
                         cells: <DataCell>[
                           DataCell(
