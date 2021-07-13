@@ -28,8 +28,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
-    PetrolMap(),
     AvgPrices(),
+    PetrolMap(),
     Text(
       'Index 2: ToDo',
       style: optionStyle,
@@ -51,7 +51,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
+                begin: Alignment(0.0, 2),
                 end: Alignment.topCenter,
                 colors: <Color>[Colors.green, Colors.lightGreen])),
         child: BottomNavigationBar(
