@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
 
@@ -47,6 +49,26 @@ class Station {
   String price98;
   String priceON;
   String priceLPG;
+
+  Map<String, dynamic> toMap() => {
+        'place_id': place_id,
+        'lat': geometry.location.lat,
+        'lng': geometry.location.lng,
+        'name': name,
+        'rating': rating,
+        'vicinity': vicinity,
+        'price95': price95,
+        'price98': price98,
+        'priceON': priceON,
+        'priceLPG': priceLPG
+      };
+
+  void setData(DocumentSnapshot<Object?> snapshot) {
+    price95 = snapshot['price95'];
+    price98 = snapshot['price98'];
+    priceON = snapshot['priceON'];
+    priceLPG = snapshot['priceLPG'];
+  }
 }
 
 @JsonSerializable()
