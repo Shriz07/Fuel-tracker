@@ -108,7 +108,7 @@ class _MyAppState extends State<AvgPrices> {
         .map(
           ((element) => DataRow(
                 color: MaterialStateColor.resolveWith((states) {
-                  return regions.indexOf(element) % 2 == 0 ? Colors.amberAccent : Colors.lightGreen;
+                  return regions.indexOf(element) % 2 == 0 ? Colors.white : Color(0xFFD6D6D6);
                 }),
                 cells: <DataCell>[
                   DataCell(
