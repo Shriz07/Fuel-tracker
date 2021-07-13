@@ -16,6 +16,7 @@ class PetrolMap extends StatefulWidget {
 class _MyAppState extends State<PetrolMap> {
   Position? _currentPosition;
   late BitmapDescriptor myIcon;
+  late BitmapDescriptor dropIcon;
   var geolocator = Geolocator();
   final _formkey = GlobalKey<FormState>();
   late TextEditingController _petrol95Controller;
@@ -36,6 +37,9 @@ class _MyAppState extends State<PetrolMap> {
     BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5),
             'assets/petrol-marker.png')
         .then((value) => myIcon = value);
+    BitmapDescriptor.fromAssetImage(
+            ImageConfiguration(devicePixelRatio: 2.5), 'assets/drop.png')
+        .then((value) => dropIcon = value);
   }
 
   @override
@@ -196,7 +200,10 @@ class _MyAppState extends State<PetrolMap> {
                                       filled: true,
                                       fillColor: Colors.amberAccent,
                                       hintText: station.price95,
-                                      prefixIcon: Icon(Icons.money),
+                                      prefixIcon: Padding(
+                                          padding: const EdgeInsets.all(8),
+                                          child:
+                                              Image.asset('assets/drop.png')),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
                                         borderSide: const BorderSide(
@@ -228,7 +235,10 @@ class _MyAppState extends State<PetrolMap> {
                                       filled: true,
                                       fillColor: Colors.amberAccent,
                                       hintText: station.price98,
-                                      prefixIcon: Icon(Icons.money),
+                                      prefixIcon: Padding(
+                                          padding: const EdgeInsets.all(8),
+                                          child:
+                                              Image.asset('assets/drop.png')),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
                                         borderSide: const BorderSide(
@@ -260,7 +270,10 @@ class _MyAppState extends State<PetrolMap> {
                                       filled: true,
                                       fillColor: Colors.amberAccent,
                                       hintText: station.priceON,
-                                      prefixIcon: Icon(Icons.money),
+                                      prefixIcon: Padding(
+                                          padding: const EdgeInsets.all(8),
+                                          child:
+                                              Image.asset('assets/drop.png')),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
                                         borderSide: const BorderSide(
@@ -292,7 +305,10 @@ class _MyAppState extends State<PetrolMap> {
                                       filled: true,
                                       fillColor: Colors.amberAccent,
                                       hintText: station.priceLPG,
-                                      prefixIcon: Icon(Icons.money),
+                                      prefixIcon: Padding(
+                                          padding: const EdgeInsets.all(8),
+                                          child:
+                                              Image.asset('assets/drop.png')),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
                                         borderSide: const BorderSide(
