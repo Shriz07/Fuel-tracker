@@ -58,6 +58,7 @@ flutter:
     - assets/petrolLPG.png
     - assets/petrol-marker.png
     - assets/login-background.png
+    - assets/drop.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
