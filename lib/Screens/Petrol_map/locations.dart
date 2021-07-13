@@ -34,6 +34,7 @@ class Station {
     required this.price98,
     required this.priceON,
     required this.priceLPG,
+    required this.updateTimestamp,
   });
 
   factory Station.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
@@ -49,6 +50,7 @@ class Station {
   String price98;
   String priceON;
   String priceLPG;
+  Timestamp updateTimestamp;
 
   Map<String, dynamic> toMap() => {
         'place_id': place_id,
@@ -60,7 +62,8 @@ class Station {
         'price95': price95,
         'price98': price98,
         'priceON': priceON,
-        'priceLPG': priceLPG
+        'priceLPG': priceLPG,
+        'updateTimestamp': Timestamp.now(),
       };
 
   void setData(DocumentSnapshot<Object?> snapshot) {
@@ -68,6 +71,7 @@ class Station {
     price98 = snapshot['price98'];
     priceON = snapshot['priceON'];
     priceLPG = snapshot['priceLPG'];
+    updateTimestamp = snapshot['updateTimestamp'];
   }
 }
 

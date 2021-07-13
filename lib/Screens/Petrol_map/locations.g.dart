@@ -29,6 +29,7 @@ Station _$ResultFromJson(Map<String, dynamic> json) {
     price98: 'b.d.',
     priceON: 'b.d.',
     priceLPG: 'b.d.',
+    updateTimestamp: Timestamp.fromMicrosecondsSinceEpoch(1594658992000),
   );
 }
 
@@ -42,6 +43,7 @@ Map<String, dynamic> _$ResultToJson(Station instance) => <String, dynamic>{
       'price96': instance.price98,
       'priceON': instance.priceON,
       'priceLPG': instance.priceLPG,
+      'updateTimestamp': instance.updateTimestamp,
     };
 
 Geometry _$GeometryFromJson(Map<String, dynamic> json) {
