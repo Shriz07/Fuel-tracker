@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/Avg_Prices/AvgPrices.dart';
+import 'package:fuel_tracker/Screens/Calculator/calculator.dart';
 import 'package:fuel_tracker/Screens/Petrol_map/PetrolMap.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -25,15 +26,11 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
-  static TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
     AvgPrices(),
     PetrolMap(),
-    Text(
-      'Index 2: ToDo',
-      style: optionStyle,
-    ),
+    Calculator(),
   ];
 
   void _onItemTapped(int index) {
@@ -49,32 +46,28 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment(0.0, 2),
-                end: Alignment.topCenter,
-                colors: <Color>[Colors.green, Colors.lightGreen])),
+        decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment(0.0, 2), end: Alignment.topCenter, colors: <Color>[Colors.green, Colors.lightGreen])),
         child: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
-              icon: Icon(Icons.map),
-              label: 'Stacje',
-            ),
-            BottomNavigationBarItem(
               icon: Icon(Icons.attach_money),
               label: 'Średnie ceny',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.map),
+              label: 'Stacje',
               backgroundColor: Colors.green,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.attachment),
-              label: 'ToDo',
+              icon: Icon(Icons.calculate),
+              label: 'Kalkulator',
               backgroundColor: Colors.purple,
             ),
           ],
           backgroundColor: Colors.transparent,
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.blue[300],
+          selectedItemColor: Colors.amberAccent,
           unselectedItemColor: Colors.white,
           onTap: _onItemTapped,
         ),
