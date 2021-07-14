@@ -63,9 +63,9 @@ class _MyAppState extends State<Calculator> {
                     SizedBox(height: 30),
                     displayApplyButton(),
                     SizedBox(height: 40),
-                    showResult == true ? displayCalculatedResult('Całkowity koszt przejazdu', totalCost.toStringAsFixed(2) + ' zł') : Container(),
+                    displayCalculatedResult('Całkowity koszt przejazdu', totalCost.toStringAsFixed(2) + ' zł'),
                     SizedBox(height: 20),
-                    showResult == true ? displayCalculatedResult('Koszt przejazdu 100km', hundredCost.toStringAsFixed(2) + ' zł') : Container(),
+                    displayCalculatedResult('Koszt przejazdu 100km', hundredCost.toStringAsFixed(2) + ' zł'),
                   ],
                 ),
               ),
@@ -77,36 +77,40 @@ class _MyAppState extends State<Calculator> {
   }
 
   Widget displayCalculatedResult(String resultTitle, String result) {
-    return Center(
-      child: Column(children: [
-        Text(
-          resultTitle,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 15),
-        Container(
-          width: 200,
-          decoration: BoxDecoration(
-            color: Colors.amber,
-            border: Border.all(
-              color: Colors.lightGreen,
-              width: 3.0,
-            ),
-            borderRadius: BorderRadius.all(
-              Radius.circular(15),
-            ),
+    return AnimatedOpacity(
+      opacity: showResult ? 1.0 : 0.0,
+      duration: Duration(milliseconds: 500),
+      child: Center(
+        child: Column(children: [
+          Text(
+            resultTitle,
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                result,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          SizedBox(height: 15),
+          Container(
+            width: 200,
+            decoration: BoxDecoration(
+              color: Colors.amber,
+              border: Border.all(
+                color: Colors.lightGreen,
+                width: 3.0,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(15),
+              ),
+            ),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  result,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 
