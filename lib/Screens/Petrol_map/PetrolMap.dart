@@ -279,22 +279,22 @@ class _MyAppState extends State<PetrolMap> {
 
   void updatePrices(Station station) {
     var dataChanged = false;
-    if (_petrol95Controller.text != '') {
+    if (validatePrice(_petrol95Controller.text, '95')) {
       station.price95 = _petrol95Controller.text;
       _petrol95Controller.text = '';
       dataChanged = true;
     }
-    if (_petrol98Controller.text != '') {
+    if (validatePrice(_petrol98Controller.text, '98')) {
       station.price98 = _petrol98Controller.text;
       _petrol98Controller.text = '';
       dataChanged = true;
     }
-    if (_petrolONController.text != '') {
+    if (validatePrice(_petrolONController.text, 'ON')) {
       station.priceON = _petrolONController.text;
       _petrolONController.text = '';
       dataChanged = true;
     }
-    if (_petrolLPGController.text != '') {
+    if (validatePrice(_petrolLPGController.text, 'LPG')) {
       station.priceLPG = _petrolLPGController.text;
       _petrolLPGController.text = '';
       dataChanged = true;
@@ -302,5 +302,25 @@ class _MyAppState extends State<PetrolMap> {
     if (dataChanged) {
       _db.addStation(station);
     }
+  }
+
+  bool validatePrice(String price, String fuelType) {
+    if (price == '') return false;
+
+    var doublePrice;
+    try {
+      doublePrice = double.parse(price);
+    } catch (e) {
+      return false;
+    }
+
+    if (fuelType == '95' || fuelType == '98' || fuelType == 'ON') {
+      if (doublePrice < 4 || doublePrice > 7) return false;
+    }
+    if (fuelType == 'LPG') {
+      if (doublePrice < 1 || doublePrice > 4) return false;
+    }
+
+    return true;
   }
 }
