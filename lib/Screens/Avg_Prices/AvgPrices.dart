@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/Avg_Prices/Region.dart';
+import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
+import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
+import 'package:provider/provider.dart';
 
 final List<String> fuel_types = [
   '95',
@@ -64,40 +67,50 @@ class _MyAppState extends State<AvgPrices> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List>(
-        future: getPrices(),
-        builder: (context, AsyncSnapshot<List> snapshot) {
-          if (snapshot.data != null) {
-            return getTableContent();
-          } else {
-            return CircularProgressIndicator();
-          }
-        });
+    final loginProvider = Provider.of<AuthServices>(context);
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Średnie ceny paliw'),
+        actions: [
+          IconButton(onPressed: () async => await loginProvider.logout(), icon: Icon(Icons.exit_to_app)),
+        ],
+        flexibleSpace: Container(
+          decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Colors.green, Colors.lightGreen])),
+        ),
+      ),
+      drawer: MyDrawer(loginProvider),
+      body: FutureBuilder<List>(
+          future: getPrices(),
+          builder: (context, AsyncSnapshot<List> snapshot) {
+            if (snapshot.data != null) {
+              return getTableContent();
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          }),
+    );
   }
 
-  Padding getTableContent() {
-    return Padding(
-      padding: EdgeInsets.only(top: 24.0),
-      child: ConstrainedBox(
-        constraints: BoxConstraints.expand(width: MediaQuery.of(context).size.width),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: DataTable(
-            sortAscending: _isAscending,
-            sortColumnIndex: _currentSortColumn,
-            columnSpacing: 0,
-            horizontalMargin: 15,
-            headingRowColor: MaterialStateColor.resolveWith((states) => Colors.green),
-            columns: <DataColumn>[
-              displayRegionNameHeader(),
-              displayPetrolHeader('assets/petrol95.png', '95'),
-              displayPetrolHeader('assets/petrol98.png', '98'),
-              displayPetrolHeader('assets/petrolON.png', 'ON'),
-              displayPetrolHeader('assets/petrolONplus.png', 'ONplus'),
-              displayPetrolHeader('assets/petrolLPG.png', 'LPG'),
-            ],
-            rows: getRowsWithPrices(),
-          ),
+  Widget getTableContent() {
+    return ConstrainedBox(
+      constraints: BoxConstraints.expand(width: MediaQuery.of(context).size.width),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: DataTable(
+          sortAscending: _isAscending,
+          sortColumnIndex: _currentSortColumn,
+          columnSpacing: 0,
+          horizontalMargin: 15,
+          headingRowColor: MaterialStateColor.resolveWith((states) => Colors.amberAccent),
+          columns: <DataColumn>[
+            displayRegionNameHeader(),
+            displayPetrolHeader('assets/petrol95.png', '95'),
+            displayPetrolHeader('assets/petrol98.png', '98'),
+            displayPetrolHeader('assets/petrolON.png', 'ON'),
+            displayPetrolHeader('assets/petrolONplus.png', 'ONplus'),
+            displayPetrolHeader('assets/petrolLPG.png', 'LPG'),
+          ],
+          rows: getRowsWithPrices(),
         ),
       ),
     );
@@ -162,14 +175,15 @@ class _MyAppState extends State<AvgPrices> {
 
   DataColumn displayPetrolHeader(String assetImage, String fuelType) {
     return DataColumn(
-        label: Expanded(
-          child: Image(
-            image: AssetImage(assetImage),
-          ),
+      label: Expanded(
+        child: Image(
+          image: AssetImage(assetImage),
         ),
-        onSort: (columnIndex, _) {
-          if (fuelType == 'LPG') {
-            setState(() {
+      ),
+      onSort: (columnIndex, _) {
+        if (fuelType == 'LPG') {
+          setState(
+            () {
               if (_isAscending == true) {
                 _isAscending = false;
                 _currentSortColumn = columnIndex;
@@ -179,9 +193,11 @@ class _MyAppState extends State<AvgPrices> {
                 _currentSortColumn = columnIndex;
                 regions.sort((priceA, priceB) => priceA.priceLPG.compareTo(priceB.priceLPG));
               }
-            });
-          } else if (fuelType == '95') {
-            setState(() {
+            },
+          );
+        } else if (fuelType == '95') {
+          setState(
+            () {
               if (_isAscending == true) {
                 _isAscending = false;
                 _currentSortColumn = columnIndex;
@@ -191,9 +207,11 @@ class _MyAppState extends State<AvgPrices> {
                 _currentSortColumn = columnIndex;
                 regions.sort((priceA, priceB) => priceA.price95.compareTo(priceB.price95));
               }
-            });
-          } else if (fuelType == '98') {
-            setState(() {
+            },
+          );
+        } else if (fuelType == '98') {
+          setState(
+            () {
               if (_isAscending == true) {
                 _isAscending = false;
                 _currentSortColumn = columnIndex;
@@ -203,9 +221,11 @@ class _MyAppState extends State<AvgPrices> {
                 _currentSortColumn = columnIndex;
                 regions.sort((priceA, priceB) => priceA.price98.compareTo(priceB.price98));
               }
-            });
-          } else if (fuelType == 'ON') {
-            setState(() {
+            },
+          );
+        } else if (fuelType == 'ON') {
+          setState(
+            () {
               if (_isAscending == true) {
                 _isAscending = false;
                 _currentSortColumn = columnIndex;
@@ -215,9 +235,11 @@ class _MyAppState extends State<AvgPrices> {
                 _currentSortColumn = columnIndex;
                 regions.sort((priceA, priceB) => priceA.priceON.compareTo(priceB.priceON));
               }
-            });
-          } else if (fuelType == 'ONplus') {
-            setState(() {
+            },
+          );
+        } else if (fuelType == 'ONplus') {
+          setState(
+            () {
               if (_isAscending == true) {
                 _isAscending = false;
                 _currentSortColumn = columnIndex;
@@ -227,8 +249,10 @@ class _MyAppState extends State<AvgPrices> {
                 _currentSortColumn = columnIndex;
                 regions.sort((priceA, priceB) => priceA.priceONplus.compareTo(priceB.priceONplus));
               }
-            });
-          }
-        });
+            },
+          );
+        }
+      },
+    );
   }
 }
