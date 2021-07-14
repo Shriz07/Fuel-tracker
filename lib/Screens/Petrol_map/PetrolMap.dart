@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -296,10 +297,9 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
       child: MaterialButton(
         onPressed: () {
           updatePrices(station);
-          Navigator.pop(currContext);
         },
         height: 50,
-        color: Colors.lightGreen,
+        color: Theme.of(context).primaryColor,
         textColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
@@ -315,23 +315,30 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
   void updatePrices(Station station) {
     var dataChanged = false;
     if (validatePrice(_petrol95Controller.text, '95')) {
-      station.price95 = _petrol95Controller.text;
+      var stringPriceFixed = double.parse(_petrol95Controller.text).toStringAsFixed(2);
+      station.price95 = stringPriceFixed;
       dataChanged = true;
     }
     if (validatePrice(_petrol98Controller.text, '98')) {
-      station.price98 = _petrol98Controller.text;
+      var stringPriceFixed = double.parse(_petrol98Controller.text).toStringAsFixed(2);
+      station.price98 = stringPriceFixed;
       dataChanged = true;
     }
     if (validatePrice(_petrolONController.text, 'ON')) {
-      station.priceON = _petrolONController.text;
+      var stringPriceFixed = double.parse(_petrolONController.text).toStringAsFixed(2);
+      station.priceON = stringPriceFixed;
       dataChanged = true;
     }
     if (validatePrice(_petrolLPGController.text, 'LPG')) {
-      station.priceLPG = _petrolLPGController.text;
+      var stringPriceFixed = double.parse(_petrolLPGController.text).toStringAsFixed(2);
+      station.priceLPG = stringPriceFixed;
       dataChanged = true;
     }
     if (dataChanged) {
       _db.addStation(station);
+      Navigator.of(context).pop();
+    } else {
+      showDialog(context: context, builder: (BuildContext context) => _buildPopupDialog(context));
     }
     _petrol95Controller.text = '';
     _petrol98Controller.text = '';
@@ -357,5 +364,33 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     }
 
     return true;
+  }
+
+  double roundDouble(double val, int places) {
+    var mod = pow(10.0, places);
+    return ((val * mod).round().toDouble() / mod);
+  }
+
+  Widget _buildPopupDialog(BuildContext context) {
+    return AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      title: const Text('Ostrzeżenie'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text('Niepoprawny zakres ceny. Ceny powinny być w realnym zakresie'),
+        ],
+      ),
+      actions: <Widget>[
+        MaterialButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          textColor: Theme.of(context).primaryColor,
+          child: const Text('Zamknij'),
+        ),
+      ],
+    );
   }
 }
