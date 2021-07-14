@@ -4,14 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:fuel_tracker/Screens/Petrol_map/locations.dart';
 
 class FirestoreDB extends ChangeNotifier {
-  final CollectionReference _stationsCollectionReference =
-      FirebaseFirestore.instance.collection('stations');
+  final CollectionReference _stationsCollectionReference = FirebaseFirestore.instance.collection('stations');
 
   Future addStation(Station station) async {
     try {
-      return await _stationsCollectionReference
-          .doc(station.place_id)
-          .set(station.toMap());
+      return await _stationsCollectionReference.doc(station.place_id).set(station.toMap());
     } catch (e) {
       print(e.toString());
       if (e is PlatformException) return e.message;
@@ -21,10 +18,7 @@ class FirestoreDB extends ChangeNotifier {
 
   Future getStation(Station station) async {
     try {
-      await _stationsCollectionReference
-          .doc(station.place_id)
-          .get()
-          .then((snapshot) => station.setData(snapshot));
+      await _stationsCollectionReference.doc(station.place_id).get().then((snapshot) => station.setData(snapshot));
     } catch (e) {
       print(e.toString());
       if (e is PlatformException) return e.message;

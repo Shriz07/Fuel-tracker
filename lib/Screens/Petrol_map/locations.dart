@@ -14,8 +14,7 @@ class Locations {
     required this.stations,
   });
 
-  factory Locations.fromJson(Map<String, dynamic> json) =>
-      _$LocationsFromJson(json);
+  factory Locations.fromJson(Map<String, dynamic> json) => _$LocationsFromJson(json);
   Map<String, dynamic> toJson() => _$LocationsToJson(this);
 
   final List<Station> stations;
@@ -81,8 +80,7 @@ class Geometry {
     required this.location,
   });
 
-  factory Geometry.fromJson(Map<String, dynamic> json) =>
-      _$GeometryFromJson(json);
+  factory Geometry.fromJson(Map<String, dynamic> json) => _$GeometryFromJson(json);
   Map<String, dynamic> toJson() => _$GeometryToJson(this);
 
   Location location;
@@ -95,8 +93,7 @@ class Location {
     required this.lng,
   });
 
-  factory Location.fromJson(Map<String, dynamic> json) =>
-      _$LocationFromJson(json);
+  factory Location.fromJson(Map<String, dynamic> json) => _$LocationFromJson(json);
   Map<String, dynamic> toJson() => _$LocationToJson(this);
 
   double lat;
@@ -104,12 +101,11 @@ class Location {
 }
 
 Future<Locations> getPetrolStations(double lat, double lng) async {
-  var petrolLocationsURL =
-      'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' +
-          lat.toString() +
-          ',' +
-          lng.toString() +
-          '&opennow&radius=15000&type=gas_station&key=AIzaSyA9G5AZzH5uPhA-p5K1jU7J98bwveQe0XI';
+  var petrolLocationsURL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' +
+      lat.toString() +
+      ',' +
+      lng.toString() +
+      '&opennow&radius=15000&type=gas_station&key=AIzaSyA9G5AZzH5uPhA-p5K1jU7J98bwveQe0XI';
 
   final response = await http.get(Uri.parse(petrolLocationsURL));
   if (response.statusCode == 200) {
