@@ -236,6 +236,7 @@ class _MyAppState extends State<PetrolMap> {
 
   Widget ratingBarIndicator(double rating) {
     return RatingBarIndicator(
+      itemSize: 30.0,
       rating: rating,
       itemCount: 5,
       direction: Axis.horizontal,
