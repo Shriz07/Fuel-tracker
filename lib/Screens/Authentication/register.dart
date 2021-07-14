@@ -52,16 +52,11 @@ class _LoginState extends State<Register> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 50),
+                    SizedBox(height: 30),
                     Center(
-                      child: Text(
-                        'Fuel tracker',
-                        style: TextStyle(
-                            fontSize: 50,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ),
+                        child: Image(
+                      image: AssetImage('assets/logo.png'),
+                    )),
                     SizedBox(height: 40),
                     Material(
                       color: Colors.grey.withOpacity(0.8),
@@ -74,10 +69,7 @@ class _LoginState extends State<Register> {
                             padding: const EdgeInsets.all(15.0),
                             child: Text(
                               'Stwórz konto aby kontynuować',
-                              style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+                              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
                             ),
                           ),
                         ],
@@ -86,70 +78,55 @@ class _LoginState extends State<Register> {
                     SizedBox(height: 30),
                     TextFormField(
                       controller: _emailController,
-                      validator: (val) =>
-                          val!.isNotEmpty ? null : 'Podaj poprawny adres Email',
+                      validator: (val) => val!.isNotEmpty ? null : 'Podaj poprawny adres Email',
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Colors.amberAccent,
                         hintText: 'Email',
                         prefixIcon: Icon(Icons.mail),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(
-                              color: Colors.lightGreen, width: 3.0),
-                        ),
                         border: const OutlineInputBorder(),
                       ),
                     ),
                     SizedBox(height: 30),
                     TextFormField(
                       controller: _passwordController,
-                      validator: (val) => val!.length < 6
-                          ? 'Podaj przynajmniej 6 znaków'
-                          : null,
+                      validator: (val) => val!.length < 6 ? 'Podaj przynajmniej 6 znaków' : null,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Colors.amberAccent,
                         hintText: 'Hasło',
                         prefixIcon: Icon(Icons.vpn_key),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(
-                              color: Colors.lightGreen, width: 2.0),
-                        ),
                         border: const OutlineInputBorder(),
                       ),
                     ),
                     SizedBox(height: 30),
-                    MaterialButton(
-                      onPressed: () async {
-                        if (_formkey.currentState!.validate()) {
-                          await loginProvider.register(
-                            _emailController.text.trim(),
-                            _passwordController.text.trim(),
-                          );
-                        }
-                      },
-                      height: 70,
-                      minWidth:
-                          loginProvider.isLoading ? null : double.infinity,
-                      color: Theme.of(context).primaryColor,
-                      textColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: loginProvider.isLoading
-                          ? CircularProgressIndicator(
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(Colors.white),
-                            )
-                          : Text(
-                              'Stwórz konto',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                    Center(
+                      child: MaterialButton(
+                        onPressed: () async {
+                          if (_formkey.currentState!.validate()) {
+                            await loginProvider.register(
+                              _emailController.text.trim(),
+                              _passwordController.text.trim(),
+                            );
+                          }
+                        },
+                        height: 70,
+                        minWidth: loginProvider.isLoading ? null : double.infinity,
+                        color: Theme.of(context).primaryColor,
+                        textColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: loginProvider.isLoading
+                            ? CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                              )
+                            : Text(
+                                'Stwórz konto',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
+                      ),
                     ),
                     SizedBox(height: 20),
                     Material(
@@ -168,8 +145,7 @@ class _LoginState extends State<Register> {
                             onPressed: () => widget.toggleScreen(),
                             child: Text(
                               'Zaloguj',
-                              style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                             ),
                           )
                         ],
@@ -178,8 +154,7 @@ class _LoginState extends State<Register> {
                     SizedBox(height: 20),
                     if (loginProvider.errorMessage != '')
                       Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                         color: Colors.amberAccent,
                         child: ListTile(
                           title: Text(loginProvider.errorMessage),

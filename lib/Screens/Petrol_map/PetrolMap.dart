@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
 import 'package:fuel_tracker/Screens/Petrol_map/locations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
+import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
 import 'package:fuel_tracker/services/firestore_services/firestoreDB.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -15,7 +20,8 @@ class PetrolMap extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<PetrolMap> {
+class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
+  final Completer<GoogleMapController> _controller = Completer();
   Position? _currentPosition;
   late BitmapDescriptor myIcon;
   late BitmapDescriptor dropIcon;
@@ -25,13 +31,18 @@ class _MyAppState extends State<PetrolMap> {
   late TextEditingController _petrol98Controller;
   late TextEditingController _petrolONController;
   late TextEditingController _petrolLPGController;
-  FirestoreDB _db = new FirestoreDB();
+  final FirestoreDB _db = FirestoreDB();
+  String _darkMapStyle = '';
+  String _lightMapStyle = '';
+  bool isDark = false;
 
   final Map<String, Marker> _markers = {};
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance!.addObserver(this);
+    _loadMapStyles();
     _petrol95Controller = TextEditingController();
     _petrol98Controller = TextEditingController();
     _petrolONController = TextEditingController();
@@ -42,6 +53,7 @@ class _MyAppState extends State<PetrolMap> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance!.removeObserver(this);
     _petrol95Controller.dispose();
     _petrol98Controller.dispose();
     _petrolONController.dispose();
@@ -49,7 +61,24 @@ class _MyAppState extends State<PetrolMap> {
     super.dispose();
   }
 
+  Future _setMapStyle() async {
+    final controller = await _controller.future;
+
+    if (isDark == true) {
+      await controller.setMapStyle(_darkMapStyle);
+    } else {
+      await controller.setMapStyle(_lightMapStyle);
+    }
+  }
+
+  Future _loadMapStyles() async {
+    _darkMapStyle = await rootBundle.loadString('assets/map_styles/map_dark.json');
+    _lightMapStyle = await rootBundle.loadString('assets/map_styles/map_light.json');
+  }
+
   Future<void> _onMapCreated(GoogleMapController controller) async {
+    _controller.complete(controller);
+    await _setMapStyle();
     var position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
     _currentPosition = position;
 
@@ -64,7 +93,6 @@ class _MyAppState extends State<PetrolMap> {
     setState(() {
       _markers.clear();
       for (final station in petrolStations.stations) {
-        print(station.name);
         final marker = Marker(
           onTap: () {
             _showDialog(station);
@@ -83,28 +111,39 @@ class _MyAppState extends State<PetrolMap> {
 
   @override
   Widget build(BuildContext context) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
     final loginProvider = Provider.of<AuthServices>(context);
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Najbliższe stacje benzynowe'),
-          actions: [
-            IconButton(onPressed: () async => await loginProvider.logout(), icon: Icon(Icons.exit_to_app)),
-          ],
-          flexibleSpace: Container(
-            decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Colors.green, Colors.lightGreen])),
-          ),
+    isDark = themeChange.darkTheme;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Najbliższe stacje'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  themeChange.darkTheme = !themeChange.darkTheme;
+                  isDark = themeChange.darkTheme;
+                  _setMapStyle();
+                });
+              },
+              icon: Icon(Icons.dark_mode_outlined)),
+        ],
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient:
+                  LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
         ),
-        body: GoogleMap(
-          myLocationButtonEnabled: true,
-          myLocationEnabled: true,
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: const LatLng(0, 0),
-            zoom: 12,
-          ),
-          markers: _markers.values.toSet(),
+      ),
+      drawer: MyDrawer(loginProvider),
+      body: GoogleMap(
+        myLocationButtonEnabled: true,
+        myLocationEnabled: true,
+        onMapCreated: _onMapCreated,
+        initialCameraPosition: CameraPosition(
+          target: const LatLng(51.7592, 19.4560),
+          zoom: 4,
         ),
+        markers: _markers.values.toSet(),
       ),
     );
   }
@@ -172,13 +211,8 @@ class _MyAppState extends State<PetrolMap> {
               controller: textController,
               decoration: InputDecoration(
                 filled: true,
-                fillColor: Colors.amberAccent,
                 hintText: price,
                 prefixIcon: Padding(padding: const EdgeInsets.all(8), child: Image.asset('assets/drop.png')),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.lightGreen, width: 3.0),
-                ),
                 border: const OutlineInputBorder(),
               ),
             ),
@@ -282,27 +316,27 @@ class _MyAppState extends State<PetrolMap> {
     var dataChanged = false;
     if (validatePrice(_petrol95Controller.text, '95')) {
       station.price95 = _petrol95Controller.text;
-      _petrol95Controller.text = '';
       dataChanged = true;
     }
     if (validatePrice(_petrol98Controller.text, '98')) {
       station.price98 = _petrol98Controller.text;
-      _petrol98Controller.text = '';
       dataChanged = true;
     }
     if (validatePrice(_petrolONController.text, 'ON')) {
       station.priceON = _petrolONController.text;
-      _petrolONController.text = '';
       dataChanged = true;
     }
     if (validatePrice(_petrolLPGController.text, 'LPG')) {
       station.priceLPG = _petrolLPGController.text;
-      _petrolLPGController.text = '';
       dataChanged = true;
     }
     if (dataChanged) {
       _db.addStation(station);
     }
+    _petrol95Controller.text = '';
+    _petrol98Controller.text = '';
+    _petrolONController.text = '';
+    _petrolLPGController.text = '';
   }
 
   bool validatePrice(String price, String fuelType) {

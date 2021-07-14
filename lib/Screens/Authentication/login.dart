@@ -63,13 +63,8 @@ class _LoginState extends State<Login> {
                       decoration: InputDecoration(
                         errorStyle: TextStyle(color: Colors.yellow, fontSize: 15),
                         filled: true,
-                        fillColor: Colors.amberAccent,
                         hintText: 'Email',
                         prefixIcon: Icon(Icons.mail),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(color: Colors.lightGreen, width: 3.0),
-                        ),
                         border: const OutlineInputBorder(),
                       ),
                     ),
@@ -80,13 +75,8 @@ class _LoginState extends State<Login> {
                       decoration: InputDecoration(
                         errorStyle: TextStyle(color: Colors.yellow, fontSize: 15),
                         filled: true,
-                        fillColor: Colors.amberAccent,
                         hintText: 'Hasło',
                         prefixIcon: Icon(Icons.vpn_key),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: const BorderSide(color: Colors.lightGreen, width: 3.0),
-                        ),
                         border: const OutlineInputBorder(),
                       ),
                     ),

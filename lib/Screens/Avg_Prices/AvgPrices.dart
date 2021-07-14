@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/Avg_Prices/Region.dart';
 import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
+import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
 import 'package:provider/provider.dart';
@@ -67,15 +68,22 @@ class _MyAppState extends State<AvgPrices> {
 
   @override
   Widget build(BuildContext context) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
     final loginProvider = Provider.of<AuthServices>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Średnie ceny paliw'),
         actions: [
-          IconButton(onPressed: () async => await loginProvider.logout(), icon: Icon(Icons.exit_to_app)),
+          IconButton(
+              onPressed: () {
+                themeChange.darkTheme = !themeChange.darkTheme;
+              },
+              icon: Icon(Icons.dark_mode_outlined)),
         ],
         flexibleSpace: Container(
-          decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Colors.green, Colors.lightGreen])),
+          decoration: BoxDecoration(
+              gradient:
+                  LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
         ),
       ),
       drawer: MyDrawer(loginProvider),
@@ -101,7 +109,6 @@ class _MyAppState extends State<AvgPrices> {
           sortColumnIndex: _currentSortColumn,
           columnSpacing: 0,
           horizontalMargin: 15,
-          headingRowColor: MaterialStateColor.resolveWith((states) => Colors.amberAccent),
           columns: <DataColumn>[
             displayRegionNameHeader(),
             displayPetrolHeader('assets/petrol95.png', '95'),
@@ -121,7 +128,7 @@ class _MyAppState extends State<AvgPrices> {
         .map(
           ((element) => DataRow(
                 color: MaterialStateColor.resolveWith((states) {
-                  return regions.indexOf(element) % 2 == 0 ? Colors.white : Color(0xFFD6D6D6);
+                  return regions.indexOf(element) % 2 == 0 ? Theme.of(context).splashColor : Theme.of(context).primaryColorDark;
                 }),
                 cells: <DataCell>[
                   DataCell(

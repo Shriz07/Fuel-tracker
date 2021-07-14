@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/About/about.dart';
 import 'package:fuel_tracker/Screens/Some_screen/testScreen.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
+import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
+import 'package:provider/provider.dart';
 
 class MyDrawer extends StatelessWidget {
   MyDrawer(this.loginProvider);
@@ -10,34 +12,30 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          Container(
-            height: 100,
-            child: DrawerHeader(
-              decoration: BoxDecoration(gradient: LinearGradient(colors: <Color>[Colors.green, Colors.lightGreen])),
-              child: Text(
-                'Dodatkowe funkcje',
-                style: TextStyle(color: Colors.white, fontSize: 17),
+      child: Container(
+        color: Theme.of(context).splashColor,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            Container(
+              height: 90,
+              child: DrawerHeader(
+                decoration: BoxDecoration(gradient: LinearGradient(colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
+                child: Text(
+                  'Dodatkowe funkcje',
+                  style: TextStyle(color: Colors.white, fontSize: 17),
+                ),
               ),
             ),
-          ),
-          CustomListTile(Icons.question_answer, 'Item 1', () {
-            TestScreen();
-          }),
-          CustomListTile(Icons.question_answer, 'Item 2', () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => TestScreen()));
-          }),
-          CustomListTile(Icons.question_answer, 'Item 3', () {}),
-          CustomListTile(Icons.settings, 'Ustawienia', () {}),
-          CustomListTile(Icons.info, 'O aplikacji', () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => AboutScreen()));
-          }),
-          CustomListTile(Icons.logout, 'Wyloguj', () {
-            loginProvider.logout();
-          }),
-        ],
+            CustomListTile(Icons.settings, 'Ustawienia', () {}),
+            CustomListTile(Icons.info, 'O aplikacji', () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => AboutScreen()));
+            }),
+            CustomListTile(Icons.logout, 'Wyloguj', () {
+              loginProvider.logout();
+            }),
+          ],
+        ),
       ),
     );
   }

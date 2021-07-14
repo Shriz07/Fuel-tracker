@@ -7,7 +7,9 @@ class AboutScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('O aplikacji'),
         flexibleSpace: Container(
-          decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Colors.green, Colors.lightGreen])),
+          decoration: BoxDecoration(
+              gradient:
+                  LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
         ),
       ),
       body: Container(

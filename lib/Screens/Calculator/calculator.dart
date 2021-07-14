@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
+import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
 import 'package:provider/provider.dart';
 
 class Calculator extends StatefulWidget {
@@ -35,16 +37,25 @@ class _MyAppState extends State<Calculator> {
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<AuthServices>(context);
+    final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: const Text('Kalkulator kosztów'),
         actions: [
-          IconButton(onPressed: () async => await loginProvider.logout(), icon: Icon(Icons.exit_to_app)),
+          IconButton(
+              onPressed: () {
+                themeChange.darkTheme = !themeChange.darkTheme;
+              },
+              icon: Icon(Icons.dark_mode_outlined)),
         ],
         flexibleSpace: Container(
-          decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Colors.green, Colors.lightGreen])),
+          decoration: BoxDecoration(
+              gradient:
+                  LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
         ),
       ),
+      drawer: MyDrawer(loginProvider),
       body: Container(
         child: SafeArea(
           child: SingleChildScrollView(
@@ -90,7 +101,7 @@ class _MyAppState extends State<Calculator> {
           Container(
             width: 200,
             decoration: BoxDecoration(
-              color: Colors.amber,
+              //color: Colors.amber,
               border: Border.all(
                 color: Colors.lightGreen,
                 width: 3.0,
@@ -134,7 +145,7 @@ class _MyAppState extends State<Calculator> {
           }
         },
         height: 50,
-        color: Colors.lightGreen,
+        color: Theme.of(context).primaryColor,
         textColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
@@ -165,23 +176,10 @@ class _MyAppState extends State<Calculator> {
               controller: inputController,
               validator: (val) => val!.isNotEmpty ? null : 'Podaj poprawną wartość',
               decoration: InputDecoration(
-                errorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.green, width: 3.0),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.blueAccent, width: 3.0),
-                ),
                 errorStyle: TextStyle(color: Colors.lightGreen, fontSize: 15),
                 filled: true,
-                fillColor: Colors.amberAccent,
                 labelText: labelText,
                 prefixIcon: icon,
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.lightGreen, width: 3.0),
-                ),
                 border: const OutlineInputBorder(),
               ),
             ),
