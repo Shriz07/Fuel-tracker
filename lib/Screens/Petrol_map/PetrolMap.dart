@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
 import 'package:fuel_tracker/Screens/Petrol_map/locations.dart';
+import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
 import 'package:fuel_tracker/services/firestore_services/firestoreDB.dart';
@@ -113,12 +114,13 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    var t = AppLocalizations.of(context);
     final themeChange = Provider.of<DarkThemeProvider>(context);
     final loginProvider = Provider.of<AuthServices>(context);
     isDark = themeChange.darkTheme;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Najbliższe stacje'),
+        title: Text(t!.petrolMapTitle),
         actions: [
           IconButton(
               onPressed: () {
@@ -281,19 +283,21 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
   }
 
   Widget lastUpdateText(Station station) {
+    var t = AppLocalizations.of(context);
     var dateTime1 = DateTime.now();
     var dateTime2 = DateTime.fromMicrosecondsSinceEpoch(station.updateTimestamp.microsecondsSinceEpoch);
     var differenceBetweenDates = dateTime1.difference(dateTime2).inDays;
     return Center(
       child: differenceBetweenDates > 10000
-          ? Text('Ostatnia aktualizacja: Nigdy')
+          ? Text(t!.petrolMapLastUpdateNever)
           : Text(
-              'Ostatnia aktualizacja: ' + timeAgo.format(station.updateTimestamp.toDate(), locale: 'pl'),
+              t!.petrolMapLastUpdate + timeAgo.format(station.updateTimestamp.toDate(), locale: 'pl'),
             ),
     );
   }
 
   Widget saveButton(Station station, BuildContext currContext) {
+    var t = AppLocalizations.of(context);
     return Center(
       child: MaterialButton(
         onPressed: () {
@@ -306,7 +310,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
           borderRadius: BorderRadius.circular(30),
         ),
         child: Text(
-          'Zapisz',
+          t!.petrolMapSave,
           style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
         ),
       ),
@@ -376,14 +380,15 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
   }
 
   Widget _buildPopupDialog(BuildContext context) {
+    var t = AppLocalizations.of(context);
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-      title: const Text('Ostrzeżenie'),
+      title: Text(t!.petrolMapWarningTitle),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Niepoprawny zakres ceny. Ceny powinny być w realnym zakresie'),
+          Text(t.petrolMapWarningMessage),
         ],
       ),
       actions: <Widget>[
@@ -392,7 +397,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
             Navigator.of(context).pop();
           },
           textColor: Theme.of(context).primaryColor,
-          child: const Text('Zamknij'),
+          child: Text(t.petrolMapWarningClose),
         ),
       ],
     );

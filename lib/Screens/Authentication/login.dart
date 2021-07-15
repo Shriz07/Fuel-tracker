@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:provider/provider.dart';
 
@@ -33,6 +34,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<AuthServices>(context);
+    var t = AppLocalizations.of(context);
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -59,11 +61,11 @@ class _LoginState extends State<Login> {
                     SizedBox(height: 40),
                     TextFormField(
                       controller: _emailController,
-                      validator: (val) => val!.isNotEmpty ? null : 'Podaj adres Email',
+                      validator: (val) => val!.isNotEmpty ? null : t!.loginEmailValidatorMessage,
                       decoration: InputDecoration(
                         errorStyle: TextStyle(color: Colors.yellow, fontSize: 15),
                         filled: true,
-                        hintText: 'Email',
+                        hintText: t!.loginEmailHint,
                         prefixIcon: Icon(Icons.mail),
                         border: const OutlineInputBorder(),
                       ),
@@ -71,11 +73,11 @@ class _LoginState extends State<Login> {
                     SizedBox(height: 30),
                     TextFormField(
                       controller: _passwordController,
-                      validator: (val) => val!.length < 6 ? 'Podaj przynajmniej 6 znaków' : null,
+                      validator: (val) => val!.length < 6 ? t.loginPasswordValidatorMessage : null,
                       decoration: InputDecoration(
                         errorStyle: TextStyle(color: Colors.yellow, fontSize: 15),
                         filled: true,
-                        hintText: 'Hasło',
+                        hintText: t.loginPasswordHint,
                         prefixIcon: Icon(Icons.vpn_key),
                         border: const OutlineInputBorder(),
                       ),
@@ -105,7 +107,7 @@ class _LoginState extends State<Login> {
                                 backgroundColor: Colors.white,
                               )
                             : Text(
-                                'Zaloguj',
+                                t.loginButtonApply,
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -122,14 +124,14 @@ class _LoginState extends State<Login> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Nie posiadasz konta?',
+                            t.loginNoAccountMessage,
                             style: TextStyle(fontSize: 17, color: Colors.white),
                           ),
                           SizedBox(width: 5),
                           TextButton(
                             onPressed: () => widget.toggleScreen!(),
                             child: Text(
-                              'Stwórz konto',
+                              t.loginNoAccountButton,
                               style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor),
                             ),
                           )

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/Avg_Prices/Region.dart';
 import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
+import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
 import 'package:http/http.dart' as http;
@@ -70,9 +71,10 @@ class _MyAppState extends State<AvgPrices> {
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
     final loginProvider = Provider.of<AuthServices>(context);
+    var t = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Średnie ceny paliw'),
+        title: Text(t!.avgPricesTitle),
         actions: [
           IconButton(
               onPressed: () {
@@ -160,6 +162,7 @@ class _MyAppState extends State<AvgPrices> {
   }
 
   DataColumn displayRegionNameHeader() {
+    var t = AppLocalizations.of(context);
     return DataColumn(
         label: Text(
           'Województwo',

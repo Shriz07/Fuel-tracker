@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
+import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
 import 'package:provider/provider.dart';
@@ -38,10 +39,11 @@ class _MyAppState extends State<Calculator> {
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<AuthServices>(context);
     final themeChange = Provider.of<DarkThemeProvider>(context);
+    var t = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        title: const Text('Kalkulator kosztów'),
+        title: Text(t!.calculatorTitle),
         actions: [
           IconButton(
               onPressed: () {
@@ -66,17 +68,18 @@ class _MyAppState extends State<Calculator> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: 30),
-                    displayInputForm('Odległość', _distanceController, '(km)', Icon(Icons.add_road)),
+                    displayInputForm(t.calculatorInput1Title, _distanceController, t.calculatorInput1Hint, Icon(Icons.add_road)),
                     SizedBox(height: 15),
-                    displayInputForm('Cena', _priceController, '(zł/l)', Icon(Icons.attach_money)),
+                    displayInputForm(t.calculatorInput2Title, _priceController, t.calculatorInput2Hint, Icon(Icons.attach_money)),
                     SizedBox(height: 15),
-                    displayInputForm('Średnie spalanie', _consumptionController, '(l/100km)', Padding(padding: const EdgeInsets.all(14), child: Image.asset('assets/drop.png'))),
+                    displayInputForm(
+                        t.calculatorInput3Title, _consumptionController, t.calculatorInput3Hint, Padding(padding: const EdgeInsets.all(14), child: Image.asset('assets/drop.png'))),
                     SizedBox(height: 30),
                     displayApplyButton(),
                     SizedBox(height: 40),
-                    displayCalculatedResult('Całkowity koszt przejazdu', totalCost.toStringAsFixed(2) + ' zł'),
+                    displayCalculatedResult(t.calculatorResult1Title, totalCost.toStringAsFixed(2) + ' zł'),
                     SizedBox(height: 20),
-                    displayCalculatedResult('Koszt przejazdu 100km', hundredCost.toStringAsFixed(2) + ' zł'),
+                    displayCalculatedResult(t.calculatorResult2Title, hundredCost.toStringAsFixed(2) + ' zł'),
                   ],
                 ),
               ),
@@ -101,7 +104,6 @@ class _MyAppState extends State<Calculator> {
           Container(
             width: 200,
             decoration: BoxDecoration(
-              //color: Colors.amber,
               border: Border.all(
                 color: Colors.lightGreen,
                 width: 3.0,
@@ -126,6 +128,7 @@ class _MyAppState extends State<Calculator> {
   }
 
   Widget displayApplyButton() {
+    var t = AppLocalizations.of(context);
     return Center(
       child: MaterialButton(
         onPressed: () async {
@@ -151,7 +154,7 @@ class _MyAppState extends State<Calculator> {
           borderRadius: BorderRadius.circular(30),
         ),
         child: Text(
-          'Oblicz koszt',
+          t!.calculatorApplyButtonTitle,
           style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
         ),
       ),
@@ -159,6 +162,7 @@ class _MyAppState extends State<Calculator> {
   }
 
   Widget displayInputForm(String inputName, TextEditingController inputController, String labelText, Widget? icon) {
+    var t = AppLocalizations.of(context);
     return SizedBox(
       height: 60,
       child: Row(
@@ -174,7 +178,7 @@ class _MyAppState extends State<Calculator> {
             child: TextFormField(
               keyboardType: TextInputType.number,
               controller: inputController,
-              validator: (val) => val!.isNotEmpty ? null : 'Podaj poprawną wartość',
+              validator: (val) => val!.isNotEmpty ? null : t!.calculatorValidatorMessage,
               decoration: InputDecoration(
                 errorStyle: TextStyle(color: Colors.lightGreen, fontSize: 15),
                 filled: true,

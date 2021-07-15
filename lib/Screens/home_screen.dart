@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/Avg_Prices/AvgPrices.dart';
 import 'package:fuel_tracker/Screens/Calculator/calculator.dart';
 import 'package:fuel_tracker/Screens/Petrol_map/PetrolMap.dart';
+import 'package:fuel_tracker/l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class _MyStatefulWidgetState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var t = AppLocalizations.of(context);
     return Scaffold(
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -34,18 +36,18 @@ class _MyStatefulWidgetState extends State<HomeScreen> {
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment(0.0, 2), end: Alignment.topCenter, colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
         child: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.attach_money),
-              label: 'Średnie ceny',
+              label: t!.navbar1Item,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.map),
-              label: 'Stacje',
+              label: t.navbar2Item,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.calculate),
-              label: 'Kalkulator',
+              label: t.navbar3Item,
             ),
           ],
           backgroundColor: Colors.transparent,

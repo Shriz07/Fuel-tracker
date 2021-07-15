@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +34,7 @@ class _LoginState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<AuthServices>(context);
-
+    var t = AppLocalizations.of(context);
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -68,7 +69,7 @@ class _LoginState extends State<Register> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Text(
-                              'Stwórz konto aby kontynuować',
+                              t!.registerTitle,
                               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
                             ),
                           ),
@@ -78,10 +79,10 @@ class _LoginState extends State<Register> {
                     SizedBox(height: 30),
                     TextFormField(
                       controller: _emailController,
-                      validator: (val) => val!.isNotEmpty ? null : 'Podaj poprawny adres Email',
+                      validator: (val) => val!.isNotEmpty ? null : t.registerEmailValidatorMessage,
                       decoration: InputDecoration(
                         filled: true,
-                        hintText: 'Email',
+                        hintText: t.registerEmailHint,
                         prefixIcon: Icon(Icons.mail),
                         border: const OutlineInputBorder(),
                       ),
@@ -89,10 +90,10 @@ class _LoginState extends State<Register> {
                     SizedBox(height: 30),
                     TextFormField(
                       controller: _passwordController,
-                      validator: (val) => val!.length < 6 ? 'Podaj przynajmniej 6 znaków' : null,
+                      validator: (val) => val!.length < 6 ? t.registerPasswordValidatorMessage : null,
                       decoration: InputDecoration(
                         filled: true,
-                        hintText: 'Hasło',
+                        hintText: t.registerPasswordHint,
                         prefixIcon: Icon(Icons.vpn_key),
                         border: const OutlineInputBorder(),
                       ),
@@ -120,7 +121,7 @@ class _LoginState extends State<Register> {
                                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                               )
                             : Text(
-                                'Stwórz konto',
+                                t.registerButtonApply,
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -137,14 +138,14 @@ class _LoginState extends State<Register> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Posiadasz już konto?',
+                            t.registerAlreadyMessage,
                             style: TextStyle(fontSize: 17, color: Colors.white),
                           ),
                           SizedBox(width: 5),
                           TextButton(
                             onPressed: () => widget.toggleScreen(),
                             child: Text(
-                              'Zaloguj',
+                              t.registerAlreadyButton,
                               style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                             ),
                           )
