@@ -1,0 +1,45 @@
+{
+    "avgPricesTitle": "Średnie ceny paliw",
+    "avgPricesTableTitle": "Województwo",
+
+    "petrolMapTitle": "Najbliższe stacje",
+    "petrolMapLastUpdateNever": "Ostatnia aktualizacja: Nigdy",
+    "petrolMapLastUpdate": "Ostatnia aktualizacja: ",
+    "petrolMapSave": "Zapisz",
+    "petrolMapWarningTitle": "Ostrzeżenie",
+    "petrolMapWarningMessage": "Niepoprawny zakres ceny. Ceny powinny być w realnym zakresie",
+    "petrolMapWarningClose": "Zamknij",
+
+    "calculatorTitle": "Kalkulator kosztów",
+    "calculatorInput1Title": "Odległość",
+    "calculatorInput1Hint": "(km)",
+    "calculatorInput2Title": "Cena",
+    "calculatorInput2Hint": "(zł/l)",
+    "calculatorInput3Title": "Średnie spalanie",
+    "calculatorInput3Hint": "(l/100km)",
+    "calculatorResult1Title": "Całkowity koszt przejazdu",
+    "calculatorResult2Title": "Koszt przejazdu 100km",
+    "calculatorApplyButtonTitle": "Oblicz koszt",
+    "calculatorValidatorMessage": "Podaj poprawną wartość",
+
+    "loginEmailValidatorMessage": "Podaj adres Email",
+    "loginEmailHint": "Email",
+    "loginPasswordValidatorMessage": "Podaj przynajmniej 6 znaków",
+    "loginPasswordHint": "Hasło",
+    "loginButtonApply": "Zaloguj",
+    "loginNoAccountMessage": "Nie posiadasz konta?",
+    "loginNoAccountButton": "Stwórz konto",
+
+    "registerTitle": "Stwórz konto aby kontynuować",
+    "registerEmailValidatorMessage": "Podaj poprawny adres Email",
+    "registerEmailHint": "Email",
+    "registerPasswordValidatorMessage": "Podaj przynajmniej 6 znaków",
+    "registerPasswordHint": "Hasło",
+    "registerButtonApply": "Stwórz konto",
+    "registerAlreadyMessage": "Posiadasz już konto?",
+    "registerAlreadyButton": "Zaloguj",
+
+    "navbar1Item": "Średnie ceny",
+    "navbar2Item": "Stacje",
+    "navbar3Item": "Kalkulator"
+}

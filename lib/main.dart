@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/wrapper.dart';
+import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
 import 'package:fuel_tracker/services/dark_mode/themeData.dart';
@@ -53,6 +54,8 @@ class _MyAppState extends State<MyApp> {
               child: Consumer<DarkThemeProvider>(
                 builder: (BuildContext context, value, Widget? child) {
                   return MaterialApp(
+                    localizationsDelegates: AppLocalizations.localizationsDelegates,
+                    supportedLocales: AppLocalizations.supportedLocales,
                     debugShowCheckedModeBanner: false,
                     theme: Styles.themeData(themeChangeProvider.darkTheme, context),
                     home: Wrapper(),

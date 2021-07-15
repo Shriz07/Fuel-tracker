@@ -1,0 +1,45 @@
+{
+    "avgPricesTitle": "Avarage fuel prices",
+    "avgPricesTableTitle": "Voivodeship",
+
+    "petrolMapTitle": "Nearest stations",
+    "petrolMapLastUpdateNever": "Last update: Never",
+    "petrolMapLastUpdate": "Last update: ",
+    "petrolMapSave": "Save",
+    "petrolMapWarningTitle": "Warning",
+    "petrolMapWarningMessage": "Invalid price range. Please provide real data.",
+    "petrolMapWarningClose": "Close",
+
+    "calculatorTitle": "Trip calculator",
+    "calculatorInput1Title": "Distance",
+    "calculatorInput1Hint": "(km)",
+    "calculatorInput2Title": "Price",
+    "calculatorInput2Hint": "(zł/l)",
+    "calculatorInput3Title": "Avg consumption",
+    "calculatorInput3Hint": "(l/100km)",
+    "calculatorResult1Title": "Total cost of the trip",
+    "calculatorResult2Title": "Cost per 100km",
+    "calculatorApplyButtonTitle": "Calculate",
+    "calculatorValidatorMessage": "Enter valid value",
+
+    "loginEmailValidatorMessage": "Enter Email address",
+    "loginEmailHint": "Email",
+    "loginPasswordValidatorMessage": "Enter at least 6 signs",
+    "loginPasswordHint": "Password",
+    "loginButtonApply": "Login",
+    "loginNoAccountMessage": "Don't have an account?",
+    "loginNoAccountButton": "Create here",
+
+    "registerTitle": "Create an account to continue",
+    "registerEmailValidatorMessage": "Enter valid Email address",
+    "registerEmailHint": "Email",
+    "registerPasswordValidatorMessage": "Enter at least 6 signs",
+    "registerPasswordHint": "Password",
+    "registerButtonApply": "Create account",
+    "registerAlreadyMessage": "Already registered?",
+    "registerAlreadyButton": "Login here",
+
+    "navbar1Item": "Avg prices",
+    "navbar2Item": "Stations",
+    "navbar3Item": "Calculator"
+}
