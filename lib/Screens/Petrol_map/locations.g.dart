@@ -8,9 +8,7 @@ part of 'locations.dart';
 
 Locations _$LocationsFromJson(Map<String, dynamic> json) {
   return Locations(
-    stations: (json['results'] as List<dynamic>)
-        .map((e) => Station.fromJson(e as Map<String, dynamic>))
-        .toList(),
+    stations: (json['results'] as List<dynamic>).map((e) => Station.fromJson(e as Map<String, dynamic>)).toList(),
   );
 }
 
@@ -30,6 +28,7 @@ Station _$ResultFromJson(Map<String, dynamic> json) {
     priceON: 'b.d.',
     priceLPG: 'b.d.',
     updateTimestamp: Timestamp.fromMicrosecondsSinceEpoch(1594658992000),
+    updateUserID: 'none',
   );
 }
 
@@ -44,6 +43,7 @@ Map<String, dynamic> _$ResultToJson(Station instance) => <String, dynamic>{
       'priceON': instance.priceON,
       'priceLPG': instance.priceLPG,
       'updateTimestamp': instance.updateTimestamp,
+      'updateUserID': instance.updateUserID,
     };
 
 Geometry _$GeometryFromJson(Map<String, dynamic> json) {

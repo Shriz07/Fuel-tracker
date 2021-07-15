@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -23,6 +23,7 @@ class PetrolMap extends StatefulWidget {
 
 class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
   final Completer<GoogleMapController> _controller = Completer();
+  final FirebaseAuth auth = FirebaseAuth.instance;
   Position? _currentPosition;
   late BitmapDescriptor myIcon;
   late BitmapDescriptor dropIcon;
@@ -313,6 +314,8 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
   }
 
   void updatePrices(Station station) {
+    final user = auth.currentUser;
+    final uid = user!.uid;
     var dataChanged = false;
     if (validatePrice(_petrol95Controller.text, '95')) {
       var stringPriceFixed = double.parse(_petrol95Controller.text).toStringAsFixed(2);
@@ -335,6 +338,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
       dataChanged = true;
     }
     if (dataChanged) {
+      station.updateUserID = uid;
       _db.addStation(station);
       Navigator.of(context).pop();
     } else {
