@@ -25,7 +25,6 @@ class PetrolMap extends StatefulWidget {
 class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
   final Completer<GoogleMapController> _controller = Completer();
   final FirebaseAuth auth = FirebaseAuth.instance;
-  Position? _currentPosition;
   late BitmapDescriptor myIcon;
   late BitmapDescriptor dropIcon;
   var geolocator = Geolocator();
@@ -83,7 +82,6 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     _controller.complete(controller);
     await _setMapStyle();
     var position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
-    _currentPosition = position;
 
     var latlng = LatLng(position.latitude, position.longitude);
 
@@ -172,19 +170,20 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
                     child: Column(
                       children: <Widget>[
                         displayTitle(station.name, context),
+                        SizedBox(height: 10),
                         displayStationAddress(station.vicinity),
-                        SizedBox(height: 15),
+                        SizedBox(height: 10),
                         ratingBarIndicator(station.rating),
                         SizedBox(height: 10),
                         lastUpdateText(station),
                         SizedBox(height: 10),
-                        petrolInputField('assets/petrol95.png', station.price95, _petrol95Controller),
+                        PetrolInputField('assets/petrol95.png', station.price95, _petrol95Controller),
                         SizedBox(height: 15),
-                        petrolInputField('assets/petrol98.png', station.price98, _petrol98Controller),
+                        PetrolInputField('assets/petrol98.png', station.price98, _petrol98Controller),
                         SizedBox(height: 15),
-                        petrolInputField('assets/petrolON.png', station.priceON, _petrolONController),
+                        PetrolInputField('assets/petrolON.png', station.priceON, _petrolONController),
                         SizedBox(height: 15),
-                        petrolInputField('assets/petrolLPG.png', station.priceLPG, _petrolLPGController),
+                        PetrolInputField('assets/petrolLPG.png', station.priceLPG, _petrolLPGController),
                         SizedBox(height: 30),
                         saveButton(station, context),
                       ],
@@ -199,44 +198,15 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     );
   }
 
-  Widget petrolInputField(String imageAsset, String price, TextEditingController textController) {
-    return SizedBox(
-      height: 50,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image(
-            image: AssetImage(imageAsset),
-          ),
-          SizedBox(width: 15),
-          Flexible(
-            child: TextFormField(
-              keyboardType: TextInputType.number,
-              controller: textController,
-              decoration: InputDecoration(
-                filled: true,
-                hintText: price,
-                prefixIcon: Padding(padding: const EdgeInsets.all(8), child: Image.asset('assets/drop.png')),
-                border: const OutlineInputBorder(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget displayTitle(String title, BuildContext currContext) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: goBackButton(currContext),
-        ),
-        Align(
-          alignment: Alignment.center,
-          child: displayStationName(title),
+    return Row(
+      children: <Widget>[
+        goBackButton(currContext),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(right: 32),
+            child: displayStationName(title),
+          ),
         ),
       ],
     );
@@ -247,6 +217,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
       color: Colors.black,
       child: Text(
         name,
+        textAlign: TextAlign.center,
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
       ),
     );
@@ -346,7 +317,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
       _db.addStation(station);
       Navigator.of(context).pop();
     } else {
-      showDialog(context: context, builder: (BuildContext context) => _buildPopupDialog(context));
+      showDialog(context: context, builder: (BuildContext context) => PopupDialog());
     }
     _petrol95Controller.text = '';
     _petrol98Controller.text = '';
@@ -378,8 +349,47 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     var mod = pow(10.0, places);
     return ((val * mod).round().toDouble() / mod);
   }
+}
 
-  Widget _buildPopupDialog(BuildContext context) {
+class PetrolInputField extends StatelessWidget {
+  PetrolInputField(this.imageAsset, this.price, this.textController);
+
+  final String imageAsset;
+  final String price;
+  final TextEditingController textController;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 50,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image(
+            image: AssetImage(imageAsset),
+          ),
+          SizedBox(width: 15),
+          Flexible(
+            child: TextFormField(
+              keyboardType: TextInputType.number,
+              controller: textController,
+              decoration: InputDecoration(
+                filled: true,
+                hintText: price,
+                prefixIcon: Padding(padding: const EdgeInsets.all(8), child: Image.asset('assets/drop.png')),
+                border: const OutlineInputBorder(),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PopupDialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     var t = AppLocalizations.of(context);
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
