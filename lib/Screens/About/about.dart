@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fuel_tracker/l10n/app_localizations.dart';
 
 class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var t = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('O aplikacji'),
@@ -33,9 +35,9 @@ class AboutScreen extends StatelessWidget {
                     image: AssetImage('assets/logo.png'),
                   )),
                   SizedBox(height: 40),
-                  CustomTextBox('Wersja', 'v0.5'),
+                  CustomTextBox(t!.aboutVersion, 'v0.5'),
                   SizedBox(height: 20),
-                  CustomTextBox('Autor', 'Adam Mąkiewicz'),
+                  CustomTextBox(t.aboutAuthor, 'Adam Mąkiewicz'),
                 ],
               ),
             ),

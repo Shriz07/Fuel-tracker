@@ -132,4 +132,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get drawerLogout => 'Logout';
+
+  @override
+  String get aboutVersion => 'Version';
+
+  @override
+  String get aboutAuthor => 'Author';
 }

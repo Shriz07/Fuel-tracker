@@ -46,5 +46,8 @@
     "drawerTitle": "Dodatkowe funkcje",
     "drawerSettings": "Ustawienia",
     "drawerAbout": "O aplikacji",
-    "drawerLogout": "Wyloguj"
+    "drawerLogout": "Wyloguj",
+
+    "aboutVersion": "Wersja",
+    "aboutAuthor": "Autor"
 }

@@ -132,4 +132,10 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get drawerLogout => 'Wyloguj';
+
+  @override
+  String get aboutVersion => 'Wersja';
+
+  @override
+  String get aboutAuthor => 'Autor';
 }

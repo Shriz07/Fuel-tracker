@@ -46,5 +46,8 @@
     "drawerTitle": "Additional functions",
     "drawerSettings": "Settings",
     "drawerAbout": "About app",
-    "drawerLogout": "Logout"
+    "drawerLogout": "Logout",
+
+    "aboutVersion": "Version",
+    "aboutAuthor": "Author"
 }
