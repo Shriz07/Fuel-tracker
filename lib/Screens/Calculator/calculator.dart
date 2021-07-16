@@ -68,61 +68,32 @@ class _MyAppState extends State<Calculator> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: 30),
-                    displayInputForm(t.calculatorInput1Title, _distanceController, t.calculatorInput1Hint, Icon(Icons.add_road)),
+                    InputForm(t.calculatorInput1Title, _distanceController, t.calculatorInput1Hint, Icon(Icons.add_road)),
                     SizedBox(height: 15),
-                    displayInputForm(t.calculatorInput2Title, _priceController, t.calculatorInput2Hint, Icon(Icons.attach_money)),
+                    InputForm(t.calculatorInput2Title, _priceController, t.calculatorInput2Hint, Icon(Icons.attach_money)),
                     SizedBox(height: 15),
-                    displayInputForm(
+                    InputForm(
                         t.calculatorInput3Title, _consumptionController, t.calculatorInput3Hint, Padding(padding: const EdgeInsets.all(14), child: Image.asset('assets/drop.png'))),
                     SizedBox(height: 30),
                     displayApplyButton(),
                     SizedBox(height: 40),
-                    displayCalculatedResult(t.calculatorResult1Title, totalCost.toStringAsFixed(2) + ' zł'),
+                    AnimatedOpacity(
+                      opacity: showResult ? 1.0 : 0.0,
+                      duration: Duration(milliseconds: 500),
+                      child: CalculatedResultBox(t.calculatorResult1Title, totalCost.toStringAsFixed(2) + ' zł'),
+                    ),
                     SizedBox(height: 20),
-                    displayCalculatedResult(t.calculatorResult2Title, hundredCost.toStringAsFixed(2) + ' zł'),
+                    AnimatedOpacity(
+                      opacity: showResult ? 1.0 : 0.0,
+                      duration: Duration(milliseconds: 500),
+                      child: CalculatedResultBox(t.calculatorResult2Title, hundredCost.toStringAsFixed(2) + ' zł'),
+                    ),
                   ],
                 ),
               ),
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget displayCalculatedResult(String resultTitle, String result) {
-    return AnimatedOpacity(
-      opacity: showResult ? 1.0 : 0.0,
-      duration: Duration(milliseconds: 500),
-      child: Center(
-        child: Column(children: [
-          Text(
-            resultTitle,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 15),
-          Container(
-            width: 200,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.lightGreen,
-                width: 3.0,
-              ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(15),
-              ),
-            ),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  result,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
-        ]),
       ),
     );
   }
@@ -160,8 +131,59 @@ class _MyAppState extends State<Calculator> {
       ),
     );
   }
+}
 
-  Widget displayInputForm(String inputName, TextEditingController inputController, String labelText, Widget? icon) {
+class CalculatedResultBox extends StatelessWidget {
+  CalculatedResultBox(this.resultTitle, this.result);
+
+  final String resultTitle;
+  final String result;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(children: [
+        Text(
+          resultTitle,
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(height: 15),
+        Container(
+          width: 200,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.lightGreen,
+              width: 3.0,
+            ),
+            borderRadius: BorderRadius.all(
+              Radius.circular(15),
+            ),
+          ),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                result,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
+class InputForm extends StatelessWidget {
+  InputForm(this.inputName, this.inputController, this.labelText, this.icon);
+
+  final String inputName;
+  final TextEditingController inputController;
+  final String labelText;
+  final Widget icon;
+
+  @override
+  Widget build(BuildContext context) {
     var t = AppLocalizations.of(context);
     return SizedBox(
       height: 60,
