@@ -35,9 +35,10 @@ class Styles {
       primaryColorDark: isDarkTheme ? Colors.blueGrey : Color(0xFFD6D6D6),
       secondaryHeaderColor: isDarkTheme ? Colors.blue : Colors.green,
       backgroundColor: isDarkTheme ? Color.fromRGBO(31, 31, 31, 1.0) : Colors.white, //Background
-      indicatorColor: isDarkTheme ? Color(0xff0E1D36) : Color(0xffCBDCF8),
+      indicatorColor: isDarkTheme ? Colors.blueAccent : Colors.amberAccent,
       buttonColor: isDarkTheme ? Color(0xff3B3B3B) : Color(0xffF1F5FB),
       hintColor: isDarkTheme ? Color(0xff280C0B) : Color(0xFF8C7622),
+      errorColor: isDarkTheme ? Colors.white : Colors.black,
       highlightColor: isDarkTheme ? Color(0xff372901) : Colors.purple,
       hoverColor: isDarkTheme ? Color(0xff3A3A3B) : Color(0xff4285F4),
       focusColor: isDarkTheme ? Color(0xff0B2512) : Colors.purple,

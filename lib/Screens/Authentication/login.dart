@@ -142,9 +142,12 @@ class _LoginState extends State<Login> {
                     if (loginProvider.errorMessage != '')
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        color: Colors.amberAccent,
+                        color: Theme.of(context).indicatorColor,
                         child: ListTile(
-                          title: Text(loginProvider.errorMessage),
+                          title: Text(
+                            loginProvider.errorMessage,
+                            style: TextStyle(color: Theme.of(context).errorColor),
+                          ),
                           leading: Icon(Icons.error),
                           trailing: IconButton(
                             icon: Icon(Icons.close),
