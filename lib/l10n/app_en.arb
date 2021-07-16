@@ -41,5 +41,10 @@
 
     "navbar1Item": "Avg prices",
     "navbar2Item": "Stations",
-    "navbar3Item": "Calculator"
+    "navbar3Item": "Calculator",
+
+    "drawerTitle": "Additional functions",
+    "drawerSettings": "Settings",
+    "drawerAbout": "About app",
+    "drawerLogout": "Logout"
 }

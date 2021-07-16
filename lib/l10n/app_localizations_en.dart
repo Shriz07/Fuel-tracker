@@ -120,4 +120,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get navbar3Item => 'Calculator';
+
+  @override
+  String get drawerTitle => 'Additional functions';
+
+  @override
+  String get drawerSettings => 'Settings';
+
+  @override
+  String get drawerAbout => 'About app';
+
+  @override
+  String get drawerLogout => 'Logout';
 }

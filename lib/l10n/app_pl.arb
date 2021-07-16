@@ -41,5 +41,10 @@
 
     "navbar1Item": "Średnie ceny",
     "navbar2Item": "Stacje",
-    "navbar3Item": "Kalkulator"
+    "navbar3Item": "Kalkulator",
+
+    "drawerTitle": "Dodatkowe funkcje",
+    "drawerSettings": "Ustawienia",
+    "drawerAbout": "O aplikacji",
+    "drawerLogout": "Wyloguj"
 }

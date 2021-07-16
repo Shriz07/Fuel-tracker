@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/About/about.dart';
 import 'package:fuel_tracker/Screens/Some_screen/testScreen.dart';
+import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,7 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var t = AppLocalizations.of(context);
     return Drawer(
       child: Container(
         color: Theme.of(context).splashColor,
@@ -22,16 +24,16 @@ class MyDrawer extends StatelessWidget {
               child: DrawerHeader(
                 decoration: BoxDecoration(gradient: LinearGradient(colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
                 child: Text(
-                  'Dodatkowe funkcje',
+                  t!.drawerTitle,
                   style: TextStyle(color: Colors.white, fontSize: 17),
                 ),
               ),
             ),
-            CustomListTile(Icons.settings, 'Ustawienia', () {}),
-            CustomListTile(Icons.info, 'O aplikacji', () {
+            CustomListTile(Icons.settings, t.drawerSettings, () {}),
+            CustomListTile(Icons.info, t.drawerAbout, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => AboutScreen()));
             }),
-            CustomListTile(Icons.logout, 'Wyloguj', () {
+            CustomListTile(Icons.logout, t.drawerLogout, () {
               loginProvider.logout();
             }),
           ],
