@@ -39,16 +39,30 @@ class _CarNotificationsState extends State<CarNotifications> {
                 padding: const EdgeInsets.all(15.0),
                 child: Column(
                   children: <Widget>[
+                    SizedBox(height: 10),
                     Center(
-                        child: Tooltip(
-                      textStyle: TextStyle(fontSize: 15, color: Theme.of(context).errorColor),
-                      padding: const EdgeInsets.all(8.0),
-                      message: 'Ustaw przypomnienia dla zdarzeń takich jak ubezpieczenie, czy przegląd okresowy, a otrzymasz powiadomienie 5 dni przed wyznaczoną datą.',
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          gradient: LinearGradient(
-                              begin: Alignment(0.0, 2), end: Alignment.topCenter, colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
-                    )),
+                      child: Tooltip(
+                        showDuration: Duration(seconds: 5),
+                        textStyle: TextStyle(fontSize: 15, color: Theme.of(context).errorColor),
+                        padding: const EdgeInsets.all(8.0),
+                        message: 'Ustaw przypomnienia dla zdarzeń takich jak ubezpieczenie, czy przegląd okresowy, a otrzymasz powiadomienie 5 dni przed wyznaczoną datą.',
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            gradient: LinearGradient(
+                                begin: Alignment(0.0, 2), end: Alignment.topCenter, colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'Hold for more information',
+                              style: TextStyle(fontSize: 17),
+                            ),
+                            SizedBox(width: 5),
+                            Icon(Icons.info),
+                          ],
+                        ),
+                      ),
+                    ),
                     SizedBox(height: 30),
                     notificationDate(context, 'Koniec ubezpieczenia', insuranceDate, 'insurance'),
                     SizedBox(height: 15),
