@@ -27,10 +27,11 @@ class _CarNotificationsState extends State<CarNotifications> {
 
   @override
   Widget build(BuildContext context) {
+    var t = AppLocalizations.of(context);
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
-          title: Text('Porzypomnienia'),
+          title: Text(t!.notificationsTitle),
         ),
         body: Container(
           child: SafeArea(
@@ -45,7 +46,7 @@ class _CarNotificationsState extends State<CarNotifications> {
                         showDuration: Duration(seconds: 5),
                         textStyle: TextStyle(fontSize: 15, color: Theme.of(context).errorColor),
                         padding: const EdgeInsets.all(8.0),
-                        message: 'Ustaw przypomnienia dla zdarzeń takich jak ubezpieczenie, czy przegląd okresowy, a otrzymasz powiadomienie 5 dni przed wyznaczoną datą.',
+                        message: t.notificationsHint,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             gradient: LinearGradient(
@@ -54,7 +55,7 @@ class _CarNotificationsState extends State<CarNotifications> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              'Hold for more information',
+                              t.notificationsHeader,
                               style: TextStyle(fontSize: 17),
                             ),
                             SizedBox(width: 5),
@@ -64,13 +65,13 @@ class _CarNotificationsState extends State<CarNotifications> {
                       ),
                     ),
                     SizedBox(height: 30),
-                    notificationDate(context, 'Koniec ubezpieczenia', insuranceDate, 'insurance'),
+                    notificationDate(context, t.notification1Title, insuranceDate, 'insurance'),
                     SizedBox(height: 15),
-                    applyButton('insurance'),
+                    applyButton(t.notification1Title, t.notification1Message),
                     SizedBox(height: 30),
-                    notificationDate(context, 'Przegląd okresowy', technicalInspectionDate, 'technical'),
+                    notificationDate(context, t.notification2Title, technicalInspectionDate, 'technical'),
                     SizedBox(height: 15),
-                    applyButton('technical'),
+                    applyButton(t.notification2Title, t.notification2Message),
                     SizedBox(height: 30),
                   ],
                 ),
@@ -119,14 +120,15 @@ class _CarNotificationsState extends State<CarNotifications> {
     );
   }
 
-  Widget applyButton(String dataType) {
+  Widget applyButton(String notificationTitle, String notificationMessage) {
+    var t = AppLocalizations.of(context);
     return Center(
       child: MaterialButton(
         onPressed: () async {
-          if (dataType == 'insurance') {
-            scheduleAlarm(insuranceDate, dataType);
-          } else if (dataType == 'technical') {
-            scheduleAlarm(technicalInspectionDate, dataType);
+          if (notificationMessage == t!.notification1Message) {
+            scheduleAlarm(insuranceDate, notificationTitle, notificationMessage);
+          } else if (notificationMessage == t.notification2Message) {
+            scheduleAlarm(technicalInspectionDate, notificationTitle, notificationMessage);
           }
         },
         height: 50,
@@ -136,14 +138,14 @@ class _CarNotificationsState extends State<CarNotifications> {
           borderRadius: BorderRadius.circular(30),
         ),
         child: Text(
-          'Ustaw powiadomienie',
+          t!.notificationsApplyButton,
           style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
         ),
       ),
     );
   }
 
-  void scheduleAlarm(DateTime date, String dataType) async {
+  void scheduleAlarm(DateTime date, String notificationTitle, String notificationMessage) async {
     date = date.subtract(Duration(days: 5));
     date = date.add(Duration(hours: 9));
 
@@ -156,11 +158,6 @@ class _CarNotificationsState extends State<CarNotifications> {
     );
     var iOSPlatformChannelSpecificts = IOSNotificationDetails(presentAlert: true, presentBadge: true, presentSound: false);
     var platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecificts);
-    if (dataType == 'insurance') {
-      await flutterLocalNotificationsPlugin.schedule(0, 'Porzypomnienie', 'Za 5 dni kończy się ubezpieczenie.', date, platformChannelSpecifics);
-    } else if (dataType == 'technical') {
-      await flutterLocalNotificationsPlugin.schedule(
-          0, 'Porzypomnienie', 'Za 5 dni kończy sie data ważności okresowego przęglądu twojego samochodu.', date, platformChannelSpecifics);
-    }
+    await flutterLocalNotificationsPlugin.schedule(0, notificationTitle, notificationMessage, date, platformChannelSpecifics);
   }
 }

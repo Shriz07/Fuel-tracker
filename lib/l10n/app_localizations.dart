@@ -357,6 +357,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Author'**
   String get aboutAuthor;
+
+  /// No description provided for @notificationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders'**
+  String get notificationsTitle;
+
+  /// No description provided for @notificationsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Set reminders for events such as insurance or periodic technical inspection and you will receive a notification 5 days vefore the shceduled date.'**
+  String get notificationsHint;
+
+  /// No description provided for @notificationsHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold for more information.'**
+  String get notificationsHeader;
+
+  /// No description provided for @notification1Name.
+  ///
+  /// In en, this message translates to:
+  /// **'End of insurance'**
+  String get notification1Name;
+
+  /// No description provided for @notification2Name.
+  ///
+  /// In en, this message translates to:
+  /// **'Technical inspection'**
+  String get notification2Name;
+
+  /// No description provided for @notificationsApplyButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Set reminder'**
+  String get notificationsApplyButton;
+
+  /// No description provided for @notification1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder'**
+  String get notification1Title;
+
+  /// No description provided for @notification1Message.
+  ///
+  /// In en, this message translates to:
+  /// **'Insurance for your car ends in 5 days.'**
+  String get notification1Message;
+
+  /// No description provided for @notification2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder'**
+  String get notification2Title;
+
+  /// No description provided for @notification2Message.
+  ///
+  /// In en, this message translates to:
+  /// **'Technical inspection for your car will expire in 5 days.'**
+  String get notification2Message;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -138,4 +138,34 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get aboutAuthor => 'Autor';
+
+  @override
+  String get notificationsTitle => 'Przypomnienia';
+
+  @override
+  String get notificationsHint => 'Ustaw przypomnienia dla zdarzeń takich jak ubezpieczenie, czy przegląd okresowy, a otrzymasz powiadomienie 5 dni przed wyznaczoną datą.';
+
+  @override
+  String get notificationsHeader => 'Przytrzymaj po więcej informacji';
+
+  @override
+  String get notification1Name => 'Koniec ubezpieczenia';
+
+  @override
+  String get notification2Name => 'Przegląd okresowy';
+
+  @override
+  String get notificationsApplyButton => 'Ustaw Porzypomnienie';
+
+  @override
+  String get notification1Title => 'Przypomnienie';
+
+  @override
+  String get notification1Message => 'Za 5 dni kończy się ubezpieczenie twojego samochodu.';
+
+  @override
+  String get notification2Title => 'Przypomnienie';
+
+  @override
+  String get notification2Message => 'Za 5 dni kończy sie data ważności okresowego przęglądu twojego samochodu.';
 }

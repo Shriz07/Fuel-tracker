@@ -49,5 +49,16 @@
     "drawerLogout": "Logout",
 
     "aboutVersion": "Version",
-    "aboutAuthor": "Author"
+    "aboutAuthor": "Author",
+
+    "notificationsTitle": "Reminders",
+    "notificationsHint": "Set reminders for events such as insurance or periodic technical inspection and you will receive a notification 5 days vefore the shceduled date.",
+    "notificationsHeader": "Hold for more information.",
+    "notification1Name": "End of insurance",
+    "notification2Name": "Technical inspection",
+    "notificationsApplyButton": "Set reminder",
+    "notification1Title": "Reminder",
+    "notification1Message": "Insurance for your car ends in 5 days.",
+    "notification2Title": "Reminder",
+    "notification2Message": "Technical inspection for your car will expire in 5 days."
 }

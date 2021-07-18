@@ -49,5 +49,17 @@
     "drawerLogout": "Wyloguj",
 
     "aboutVersion": "Wersja",
-    "aboutAuthor": "Autor"
+    "aboutAuthor": "Autor",
+
+    "notificationsTitle": "Przypomnienia",
+    "notificationsHint": "Ustaw przypomnienia dla zdarzeń takich jak ubezpieczenie, czy przegląd okresowy, a otrzymasz powiadomienie 5 dni przed wyznaczoną datą.",
+    "notificationsHeader": "Przytrzymaj po więcej informacji",
+    "notification1Name": "Koniec ubezpieczenia",
+    "notification2Name": "Przegląd okresowy",
+    "notificationsApplyButton": "Ustaw Porzypomnienie",
+    "notification1Title": "Przypomnienie",
+    "notification1Message": "Za 5 dni kończy się ubezpieczenie twojego samochodu.",
+    "notification2Title": "Przypomnienie",
+    "notification2Message": "Za 5 dni kończy sie data ważności okresowego przęglądu twojego samochodu."
+
 }
