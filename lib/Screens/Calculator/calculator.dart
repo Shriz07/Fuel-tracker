@@ -191,9 +191,6 @@ class InputForm extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(inputName, style: TextStyle(fontSize: 17)),
-          SizedBox(
-            width: 15,
-          ),
           Spacer(),
           Container(
             width: 200,
