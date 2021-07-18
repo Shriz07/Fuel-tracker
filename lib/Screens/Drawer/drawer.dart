@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/About/about.dart';
-import 'package:fuel_tracker/Screens/Some_screen/testScreen.dart';
+import 'package:fuel_tracker/Screens/Car%20Notifications/carNotifications.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
@@ -29,6 +29,9 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
+            CustomListTile(Icons.notifications, 'Przypomnienia', () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => CarNotifications()));
+            }),
             CustomListTile(Icons.settings, t.drawerSettings, () {}),
             CustomListTile(Icons.info, t.drawerAbout, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => AboutScreen()));
