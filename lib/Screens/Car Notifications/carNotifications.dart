@@ -28,6 +28,7 @@ class _CarNotificationsState extends State<CarNotifications> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
           title: Text('Porzypomnienia'),
         ),
@@ -38,7 +39,6 @@ class _CarNotificationsState extends State<CarNotifications> {
                 padding: const EdgeInsets.all(15.0),
                 child: Column(
                   children: <Widget>[
-                    SizedBox(height: 30),
                     Center(
                         child: Tooltip(
                       textStyle: TextStyle(fontSize: 15, color: Theme.of(context).errorColor),
@@ -48,10 +48,6 @@ class _CarNotificationsState extends State<CarNotifications> {
                           borderRadius: BorderRadius.circular(25),
                           gradient: LinearGradient(
                               begin: Alignment(0.0, 2), end: Alignment.topCenter, colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
-                      child: Text(
-                        'Ustaw przypomnienia',
-                        style: TextStyle(fontSize: 17),
-                      ),
                     )),
                     SizedBox(height: 30),
                     notificationDate(context, 'Koniec ubezpieczenia', insuranceDate, 'insurance'),
