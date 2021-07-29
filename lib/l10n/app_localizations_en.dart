@@ -1,6 +1,3 @@
-
-
-
 import 'app_localizations.dart';
 
 /// The translations for English (`en`).
@@ -143,7 +140,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notificationsTitle => 'Reminders';
 
   @override
-  String get notificationsHint => 'Set reminders for events such as insurance or periodic technical inspection and you will receive a notification 5 days vefore the shceduled date.';
+  String get notificationsHint =>
+      'Set reminders for events such as insurance or periodic technical inspection and you will receive a notification 5 days vefore the shceduled date.';
 
   @override
   String get notificationsHeader => 'Hold for more information.';
@@ -158,13 +156,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notificationsApplyButton => 'Set reminder';
 
   @override
-  String get notification1Title => 'Reminder';
+  String get notification1Title => 'Insurance';
 
   @override
   String get notification1Message => 'Insurance for your car ends in 5 days.';
 
   @override
-  String get notification2Title => 'Reminder';
+  String get notification2Title => 'Inspection';
 
   @override
   String get notification2Message => 'Technical inspection for your car will expire in 5 days.';

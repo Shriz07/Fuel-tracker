@@ -1,6 +1,3 @@
-
-
-
 import 'app_localizations.dart';
 
 /// The translations for Polish (`pl`).
@@ -158,13 +155,13 @@ class AppLocalizationsPl extends AppLocalizations {
   String get notificationsApplyButton => 'Ustaw Porzypomnienie';
 
   @override
-  String get notification1Title => 'Przypomnienie';
+  String get notification1Title => 'Ubezpieczenie';
 
   @override
   String get notification1Message => 'Za 5 dni kończy się ubezpieczenie twojego samochodu.';
 
   @override
-  String get notification2Title => 'Przypomnienie';
+  String get notification2Title => 'Przegląd';
 
   @override
   String get notification2Message => 'Za 5 dni kończy sie data ważności okresowego przęglądu twojego samochodu.';
