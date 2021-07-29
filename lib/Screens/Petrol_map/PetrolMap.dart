@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
 import 'package:fuel_tracker/Screens/Petrol_map/locations.dart';
+import 'package:fuel_tracker/Widgets/popupDialog.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
@@ -289,6 +290,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
   }
 
   void updatePrices(Station station) {
+    var t = AppLocalizations.of(context);
     final user = auth.currentUser;
     final uid = user!.uid;
     var dataChanged = false;
@@ -317,7 +319,8 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
       _db.addStation(station);
       Navigator.of(context).pop();
     } else {
-      showDialog(context: context, builder: (BuildContext context) => PopupDialog());
+      showDialog(
+          context: context, builder: (BuildContext context) => PopupDialog(title: t!.petrolMapWarningTitle, message: t.petrolMapWarningMessage, close: t.petrolMapWarningClose));
     }
     _petrol95Controller.text = '';
     _petrol98Controller.text = '';
@@ -383,33 +386,6 @@ class PetrolInputField extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class PopupDialog extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var t = AppLocalizations.of(context);
-    return AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-      title: Text(t!.petrolMapWarningTitle),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(t.petrolMapWarningMessage),
-        ],
-      ),
-      actions: <Widget>[
-        MaterialButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          textColor: Theme.of(context).primaryColor,
-          child: Text(t.petrolMapWarningClose),
-        ),
-      ],
     );
   }
 }
