@@ -8,7 +8,7 @@ class Styles {
       primaryColor: isDarkTheme ? Colors.blue : Colors.lightGreen,
       inputDecorationTheme: InputDecorationTheme(
         hintStyle: isDarkTheme ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
-        fillColor: isDarkTheme ? Colors.grey[900] : Colors.amber,
+        fillColor: isDarkTheme ? Colors.grey[900] : Colors.amberAccent,
         labelStyle: isDarkTheme ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
