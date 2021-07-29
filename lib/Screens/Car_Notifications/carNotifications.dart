@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fuel_tracker/Screens/Car_Notifications/carNotification.dart';
+import 'package:fuel_tracker/Widgets/popupDialog.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/main.dart';
 import 'package:fuel_tracker/services/firestore_services/firestoreDB.dart';
@@ -138,6 +139,13 @@ class _CarNotificationsState extends State<CarNotifications> {
                   ),
                 ),
               ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.cancel_outlined,
+                  color: Colors.red,
+                ),
+              ),
             ],
           ),
         ),
@@ -159,6 +167,13 @@ class _CarNotificationsState extends State<CarNotifications> {
           for (final n in carNotifications) {
             await _db.addNotification(n);
           }
+          await showDialog(
+              context: context,
+              builder: (BuildContext context) => PopupDialog(
+                    title: t!.petrolMapWarningTitle,
+                    message: 'Powiadomienie zostało dodane',
+                    close: t.petrolMapWarningClose,
+                  ));
         },
         height: 50,
         color: Theme.of(context).primaryColor,
