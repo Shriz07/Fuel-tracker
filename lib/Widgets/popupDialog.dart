@@ -15,7 +15,9 @@ class PopupDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(message),
+          Text(
+            message,
+          ),
         ],
       ),
       actions: <Widget>[
@@ -24,7 +26,10 @@ class PopupDialog extends StatelessWidget {
             Navigator.of(context).pop();
           },
           textColor: Theme.of(context).primaryColor,
-          child: Text(close),
+          child: Text(
+            close,
+            style: TextStyle(fontSize: 17),
+          ),
         ),
       ],
     );
