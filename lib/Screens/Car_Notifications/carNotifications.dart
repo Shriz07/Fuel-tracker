@@ -23,6 +23,7 @@ class _CarNotificationsState extends State<CarNotifications> {
     if (picked != null && picked != notification.date) {
       setState(() {
         notification.date = picked;
+        notification.isSet = true;
       });
     }
   }
@@ -32,9 +33,11 @@ class _CarNotificationsState extends State<CarNotifications> {
       var t = AppLocalizations.of(context);
       carNotifications = await _db.getNotifications(auth.currentUser!.uid);
       if (carNotifications.isEmpty) {
-        var insuranceNotification = CarNotification(title: t!.notification1Title, description: t.notification1Message, date: DateTime.now(), userID: auth.currentUser!.uid);
+        var insuranceNotification =
+            CarNotification(id: 0, title: t!.notification1Title, description: t.notification1Message, date: DateTime.now(), userID: auth.currentUser!.uid, isSet: false);
         carNotifications.add(insuranceNotification);
-        var technicalNotification = CarNotification(title: t.notification2Title, description: t.notification2Message, date: DateTime.now(), userID: auth.currentUser!.uid);
+        var technicalNotification =
+            CarNotification(id: 1, title: t.notification2Title, description: t.notification2Message, date: DateTime.now(), userID: auth.currentUser!.uid, isSet: false);
         carNotifications.add(technicalNotification);
       }
       loaded = true;
@@ -102,6 +105,7 @@ class _CarNotificationsState extends State<CarNotifications> {
   }
 
   Widget notificationDate(BuildContext context) {
+    var t = AppLocalizations.of(context);
     List<Widget> notificationWidgets = [];
 
     for (final notification in carNotifications) {
@@ -131,16 +135,35 @@ class _CarNotificationsState extends State<CarNotifications> {
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        '${notification.date.toLocal()}'.split(' ')[0],
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
+                      child: notification.isSet
+                          ? Text(
+                              '${notification.date.toLocal()}'.split(' ')[0],
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                            )
+                          : Text('Wybierz datę'),
                     ),
                   ),
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    notification.isSet = false;
+                    _db.addNotification(notification).then(
+                          (value) => {
+                            cancelNotification(notification.id),
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) => PopupDialog(
+                                title: t!.petrolMapWarningTitle,
+                                message: 'Powiadomienie z tytułem \'' + notification.title + '\' zostało usunięte.',
+                                close: t.petrolMapWarningClose,
+                              ),
+                            ),
+                          },
+                        );
+                  });
+                },
                 icon: Icon(
                   Icons.cancel_outlined,
                   color: Colors.red,
@@ -163,17 +186,32 @@ class _CarNotificationsState extends State<CarNotifications> {
     return Center(
       child: MaterialButton(
         onPressed: () async {
-          scheduleAlarm(notification.date, notification.title, notification.description);
-          for (final n in carNotifications) {
-            await _db.addNotification(n);
-          }
-          await showDialog(
+          if (notification.isSet == false) {
+            setState(() {
+              notification.isSet = true;
+              scheduleAlarm(notification.date, notification.title, notification.description, notification.id);
+              for (final n in carNotifications) {
+                _db.addNotification(n);
+              }
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => PopupDialog(
+                  title: t!.petrolMapWarningTitle,
+                  message: 'Powiadomienie z tytułem \'' + notification.title + '\' zostało dodane.',
+                  close: t.petrolMapWarningClose,
+                ),
+              );
+            });
+          } else {
+            await showDialog(
               context: context,
               builder: (BuildContext context) => PopupDialog(
-                    title: t!.petrolMapWarningTitle,
-                    message: 'Powiadomienie zostało dodane',
-                    close: t.petrolMapWarningClose,
-                  ));
+                title: t!.petrolMapWarningTitle,
+                message: 'To powiadomienie jest już ustawione. Jeżeli chcesz zmienić datę, najpierw usuń stare powiadomienie.',
+                close: t.petrolMapWarningClose,
+              ),
+            );
+          }
         },
         height: 50,
         color: Theme.of(context).primaryColor,
@@ -189,7 +227,7 @@ class _CarNotificationsState extends State<CarNotifications> {
     );
   }
 
-  void scheduleAlarm(DateTime date, String notificationTitle, String notificationMessage) async {
+  void scheduleAlarm(DateTime date, String notificationTitle, String notificationMessage, int id) async {
     date = date.subtract(Duration(days: 5));
     date = date.add(Duration(hours: 9));
 
@@ -202,6 +240,10 @@ class _CarNotificationsState extends State<CarNotifications> {
     );
     var iOSPlatformChannelSpecificts = IOSNotificationDetails(presentAlert: true, presentBadge: true, presentSound: false);
     var platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecificts);
-    await flutterLocalNotificationsPlugin.schedule(0, notificationTitle, notificationMessage, date, platformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.schedule(id, notificationTitle, notificationMessage, date, platformChannelSpecifics);
+  }
+
+  void cancelNotification(int id) async {
+    await flutterLocalNotificationsPlugin.cancel(id);
   }
 }
