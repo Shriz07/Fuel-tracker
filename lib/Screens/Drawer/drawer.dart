@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/About/about.dart';
-import 'package:fuel_tracker/Screens/Car%20Notifications/carNotifications.dart';
+import 'package:fuel_tracker/Screens/Car_Notifications/carNotifications.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
