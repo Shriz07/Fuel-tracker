@@ -1,3 +1,6 @@
+
+
+
 import 'app_localizations.dart';
 
 /// The translations for Polish (`pl`).
@@ -165,4 +168,22 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get notification2Message => 'Za 5 dni kończy sie data ważności okresowego przęglądu twojego samochodu.';
+
+  @override
+  String get dateSelectTitle => 'Wybierz datę';
+
+  @override
+  String get notificationDeleteTitle1 => 'Powiadomienie o nazwie \'';
+
+  @override
+  String get notificationDeleteTitle2 => '\' zostało usunięte.';
+
+  @override
+  String get notificationAddTitle1 => 'Powiadomienie o nazwie \'';
+
+  @override
+  String get notificationAddTitle2 => '\' zostało dodane.';
+
+  @override
+  String get notificationAlreadySetMessage => 'To powiadomienie jest już ustawione. Jeżeli chcesz zmienić datę, najpierw usuń stare powiadomienie.';
 }

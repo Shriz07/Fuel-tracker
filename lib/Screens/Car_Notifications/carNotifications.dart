@@ -140,7 +140,7 @@ class _CarNotificationsState extends State<CarNotifications> {
                               '${notification.date.toLocal()}'.split(' ')[0],
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                             )
-                          : Text('Wybierz datę'),
+                          : Text(t!.dateSelectTitle), //Date select text
                     ),
                   ),
                 ),
@@ -156,7 +156,7 @@ class _CarNotificationsState extends State<CarNotifications> {
                               context: context,
                               builder: (BuildContext context) => PopupDialog(
                                 title: t!.petrolMapWarningTitle,
-                                message: 'Powiadomienie z tytułem \'' + notification.title + '\' zostało usunięte.',
+                                message: t.notificationDeleteTitle1 + notification.title + t.notificationDeleteTitle2, //Message about notification deletation
                                 close: t.petrolMapWarningClose,
                               ),
                             ),
@@ -197,7 +197,7 @@ class _CarNotificationsState extends State<CarNotifications> {
                 context: context,
                 builder: (BuildContext context) => PopupDialog(
                   title: t!.petrolMapWarningTitle,
-                  message: 'Powiadomienie z tytułem \'' + notification.title + '\' zostało dodane.',
+                  message: t.notificationAddTitle1 + notification.title + t.notificationAddTitle2, //Message about notification addition
                   close: t.petrolMapWarningClose,
                 ),
               );
@@ -207,7 +207,7 @@ class _CarNotificationsState extends State<CarNotifications> {
               context: context,
               builder: (BuildContext context) => PopupDialog(
                 title: t!.petrolMapWarningTitle,
-                message: 'To powiadomienie jest już ustawione. Jeżeli chcesz zmienić datę, najpierw usuń stare powiadomienie.',
+                message: t.notificationAlreadySetMessage, //Message informing that notification was already set
                 close: t.petrolMapWarningClose,
               ),
             );

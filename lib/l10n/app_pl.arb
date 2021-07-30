@@ -57,9 +57,16 @@
     "notification1Name": "Koniec ubezpieczenia",
     "notification2Name": "Przegląd okresowy",
     "notificationsApplyButton": "Ustaw Porzypomnienie",
-    "notification1Title": "Przypomnienie",
+    "notification1Title": "Ubezpieczenie",
     "notification1Message": "Za 5 dni kończy się ubezpieczenie twojego samochodu.",
-    "notification2Title": "Przypomnienie",
-    "notification2Message": "Za 5 dni kończy sie data ważności okresowego przęglądu twojego samochodu."
+    "notification2Title": "Przegląd",
+    "notification2Message": "Za 5 dni kończy sie data ważności okresowego przęglądu twojego samochodu.",
 
+    "dateSelectTitle": "Wybierz datę",
+
+    "notificationDeleteTitle1": "Powiadomienie o nazwie '",
+    "notificationDeleteTitle2": "' zostało usunięte.",
+    "notificationAddTitle1": "Powiadomienie o nazwie '",
+    "notificationAddTitle2": "' zostało dodane.",
+    "notificationAlreadySetMessage": "To powiadomienie jest już ustawione. Jeżeli chcesz zmienić datę, najpierw usuń stare powiadomienie."
 }

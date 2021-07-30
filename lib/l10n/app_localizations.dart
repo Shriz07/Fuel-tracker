@@ -397,7 +397,7 @@ abstract class AppLocalizations {
   /// No description provided for @notification1Title.
   ///
   /// In en, this message translates to:
-  /// **'Reminder'**
+  /// **'Insurance'**
   String get notification1Title;
 
   /// No description provided for @notification1Message.
@@ -409,7 +409,7 @@ abstract class AppLocalizations {
   /// No description provided for @notification2Title.
   ///
   /// In en, this message translates to:
-  /// **'Reminder'**
+  /// **'Technical inspection'**
   String get notification2Title;
 
   /// No description provided for @notification2Message.
@@ -417,6 +417,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Technical inspection for your car will expire in 5 days.'**
   String get notification2Message;
+
+  /// No description provided for @dateSelectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select date'**
+  String get dateSelectTitle;
+
+  /// No description provided for @notificationDeleteTitle1.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification with name \''**
+  String get notificationDeleteTitle1;
+
+  /// No description provided for @notificationDeleteTitle2.
+  ///
+  /// In en, this message translates to:
+  /// **'\' was deleted.'**
+  String get notificationDeleteTitle2;
+
+  /// No description provided for @notificationAddTitle1.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification with name \''**
+  String get notificationAddTitle1;
+
+  /// No description provided for @notificationAddTitle2.
+  ///
+  /// In en, this message translates to:
+  /// **'\' was added.'**
+  String get notificationAddTitle2;
+
+  /// No description provided for @notificationAlreadySetMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This notification was already set. If you want to change date, first delete old notification.'**
+  String get notificationAlreadySetMessage;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

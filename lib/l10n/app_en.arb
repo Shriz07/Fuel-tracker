@@ -57,8 +57,16 @@
     "notification1Name": "End of insurance",
     "notification2Name": "Technical inspection",
     "notificationsApplyButton": "Set reminder",
-    "notification1Title": "Reminder",
+    "notification1Title": "Insurance",
     "notification1Message": "Insurance for your car ends in 5 days.",
-    "notification2Title": "Reminder",
-    "notification2Message": "Technical inspection for your car will expire in 5 days."
+    "notification2Title": "Technical inspection",
+    "notification2Message": "Technical inspection for your car will expire in 5 days.",
+
+    "dateSelectTitle": "Select date",
+
+    "notificationDeleteTitle1": "Notification with name '",
+    "notificationDeleteTitle2": "' was deleted.",
+    "notificationAddTitle1": "Notification with name '",
+    "notificationAddTitle2": "' was added.",
+    "notificationAlreadySetMessage": "This notification was already set. If you want to change date, first delete old notification."
 }
