@@ -17,13 +17,17 @@ class _CarNotificationsState extends State<CarNotifications> {
   final auth = FirebaseAuth.instance;
   late List<CarNotification> carNotifications;
   bool loaded = false;
+  bool statusWasChanged = false;
 
   Future<void> _selectDate(BuildContext context, CarNotification notification) async {
     final picked = await showDatePicker(context: context, initialDate: notification.date, firstDate: DateTime(2015, 8), lastDate: DateTime(2101));
     if (picked != null && picked != notification.date) {
       setState(() {
         notification.date = picked;
-        notification.isSet = true;
+        if (notification.isSet == false) {
+          notification.isSet = true;
+          statusWasChanged = true;
+        }
       });
     }
   }
@@ -186,8 +190,9 @@ class _CarNotificationsState extends State<CarNotifications> {
     return Center(
       child: MaterialButton(
         onPressed: () async {
-          if (notification.isSet == false) {
+          if (notification.isSet == false || statusWasChanged == true) {
             setState(() {
+              statusWasChanged = false;
               notification.isSet = true;
               scheduleAlarm(notification.date, notification.title, notification.description, notification.id);
               for (final n in carNotifications) {
