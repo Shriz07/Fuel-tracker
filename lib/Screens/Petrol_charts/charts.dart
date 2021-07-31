@@ -108,29 +108,41 @@ class _ChartsState extends State<Charts> {
         length: 3,
         child: Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
-          appBar: AppBar(
-            title: Text(t!.chartsNavbarTitle),
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                  gradient:
-                      LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
-            ),
-            bottom: TabBar(
-              indicatorColor: Theme.of(context).errorColor,
-              tabs: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Tab(icon: Image.asset('assets/petrol95.png')),
-                ),
-                Tab(icon: Image.asset('assets/petrolON.png')),
-                Tab(icon: Image.asset('assets/petrolLPG.png')),
-              ],
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(100.0),
+            child: AppBar(
+              title: Text(t!.chartsNavbarTitle),
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
+              ),
+              bottom: TabBar(
+                indicatorColor: Theme.of(context).errorColor,
+                tabs: [
+                  Tab(
+                      icon: Image.asset(
+                    'assets/petrol95.png',
+                    height: 35,
+                  )),
+                  Tab(
+                      icon: Image.asset(
+                    'assets/petrolON.png',
+                    height: 35,
+                  )),
+                  Tab(
+                      icon: Image.asset(
+                    'assets/petrolLPG.png',
+                    height: 35,
+                  )),
+                ],
+              ),
             ),
           ),
           body: TabBarView(
             children: [
-              priceHistoryChart(t.charts95Title, _series95Price, 3, 7),
-              priceHistoryChart(t.chartsONTitle, _seriesONPrice, 3, 7),
+              priceHistoryChart(t.charts95Title, _series95Price, 4, 7),
+              priceHistoryChart(t.chartsONTitle, _seriesONPrice, 4, 7),
               priceHistoryChart(t.chartsLPGTitle, _seriesLPGPrice, 1, 4),
             ],
           ),
