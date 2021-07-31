@@ -30,10 +30,10 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            CustomListTile(Icons.notifications, 'Przypomnienia', () {
+            CustomListTile(Icons.notifications, t.drawerNotifications, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => CarNotifications()));
             }),
-            CustomListTile(Icons.bar_chart, 'Wykresy', () {
+            CustomListTile(Icons.bar_chart, t.drawerCharts, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => Charts()));
             }),
             CustomListTile(Icons.settings, t.drawerSettings, () {}),

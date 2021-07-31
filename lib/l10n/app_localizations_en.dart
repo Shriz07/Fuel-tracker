@@ -125,6 +125,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get drawerTitle => 'Additional functions';
 
   @override
+  String get drawerNotifications => 'Notifications';
+
+  @override
+  String get drawerCharts => 'Charts';
+
+  @override
   String get drawerSettings => 'Settings';
 
   @override

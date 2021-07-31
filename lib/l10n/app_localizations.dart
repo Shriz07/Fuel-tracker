@@ -328,6 +328,18 @@ abstract class AppLocalizations {
   /// **'Additional functions'**
   String get drawerTitle;
 
+  /// No description provided for @drawerNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get drawerNotifications;
+
+  /// No description provided for @drawerCharts.
+  ///
+  /// In en, this message translates to:
+  /// **'Charts'**
+  String get drawerCharts;
+
   /// No description provided for @drawerSettings.
   ///
   /// In en, this message translates to:

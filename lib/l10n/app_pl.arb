@@ -44,6 +44,8 @@
     "navbar3Item": "Kalkulator",
 
     "drawerTitle": "Dodatkowe funkcje",
+    "drawerNotifications": "Przypomnienia",
+    "drawerCharts": "Wykresy",
     "drawerSettings": "Ustawienia",
     "drawerAbout": "O aplikacji",
     "drawerLogout": "Wyloguj",

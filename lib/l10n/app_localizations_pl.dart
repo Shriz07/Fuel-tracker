@@ -125,6 +125,12 @@ class AppLocalizationsPl extends AppLocalizations {
   String get drawerTitle => 'Dodatkowe funkcje';
 
   @override
+  String get drawerNotifications => 'Przypomnienia';
+
+  @override
+  String get drawerCharts => 'Wykresy';
+
+  @override
   String get drawerSettings => 'Ustawienia';
 
   @override
