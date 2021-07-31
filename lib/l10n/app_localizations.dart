@@ -453,6 +453,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This notification was already set. If you want to change date, first delete old notification.'**
   String get notificationAlreadySetMessage;
+
+  /// No description provided for @chartsNavbarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Price history'**
+  String get chartsNavbarTitle;
+
+  /// No description provided for @charts95Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Gasoline price in last 3 months'**
+  String get charts95Title;
+
+  /// No description provided for @chartsONTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Diesel price in last 3 months'**
+  String get chartsONTitle;
+
+  /// No description provided for @chartsLPGTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Gas price in last 3 months'**
+  String get chartsLPGTitle;
+
+  /// No description provided for @chartsYLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Price (zł/l)'**
+  String get chartsYLabel;
+
+  /// No description provided for @chartsXLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get chartsXLabel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

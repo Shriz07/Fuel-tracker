@@ -186,4 +186,22 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get notificationAlreadySetMessage => 'To powiadomienie jest już ustawione. Jeżeli chcesz zmienić datę, najpierw usuń stare powiadomienie.';
+
+  @override
+  String get chartsNavbarTitle => 'Historia cen';
+
+  @override
+  String get charts95Title => 'Cena benzyny w ostatnich 3 miesiącach';
+
+  @override
+  String get chartsONTitle => 'Cena oleju napędowego w ostatnich 3 miesiącach';
+
+  @override
+  String get chartsLPGTitle => 'Cena gazu w ostatnich 3 miesiącach';
+
+  @override
+  String get chartsYLabel => 'Cena (zł/l)';
+
+  @override
+  String get chartsXLabel => 'Data';
 }

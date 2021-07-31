@@ -68,5 +68,12 @@
     "notificationDeleteTitle2": "' was deleted.",
     "notificationAddTitle1": "Notification with name '",
     "notificationAddTitle2": "' was added.",
-    "notificationAlreadySetMessage": "This notification was already set. If you want to change date, first delete old notification."
+    "notificationAlreadySetMessage": "This notification was already set. If you want to change date, first delete old notification.",
+
+    "chartsNavbarTitle": "Price history",
+    "charts95Title": "Gasoline price in last 3 months",
+    "chartsONTitle": "Diesel price in last 3 months",
+    "chartsLPGTitle": "Gas price in last 3 months",
+    "chartsYLabel": "Price (zł/l)",
+    "chartsXLabel": "Date"
 }

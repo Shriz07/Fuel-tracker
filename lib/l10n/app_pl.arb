@@ -68,5 +68,12 @@
     "notificationDeleteTitle2": "' zostało usunięte.",
     "notificationAddTitle1": "Powiadomienie o nazwie '",
     "notificationAddTitle2": "' zostało dodane.",
-    "notificationAlreadySetMessage": "To powiadomienie jest już ustawione. Jeżeli chcesz zmienić datę, najpierw usuń stare powiadomienie."
+    "notificationAlreadySetMessage": "To powiadomienie jest już ustawione. Jeżeli chcesz zmienić datę, najpierw usuń stare powiadomienie.",
+
+    "chartsNavbarTitle": "Historia cen",
+    "charts95Title": "Cena benzyny w ostatnich 3 miesiącach",
+    "chartsONTitle": "Cena oleju napędowego w ostatnich 3 miesiącach",
+    "chartsLPGTitle": "Cena gazu w ostatnich 3 miesiącach",
+    "chartsYLabel": "Cena (zł/l)",
+    "chartsXLabel": "Data"
 }

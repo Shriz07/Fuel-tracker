@@ -186,4 +186,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notificationAlreadySetMessage => 'This notification was already set. If you want to change date, first delete old notification.';
+
+  @override
+  String get chartsNavbarTitle => 'Price history';
+
+  @override
+  String get charts95Title => 'Gasoline price in last 3 months';
+
+  @override
+  String get chartsONTitle => 'Diesel price in last 3 months';
+
+  @override
+  String get chartsLPGTitle => 'Gas price in last 3 months';
+
+  @override
+  String get chartsYLabel => 'Price (zł/l)';
+
+  @override
+  String get chartsXLabel => 'Date';
 }

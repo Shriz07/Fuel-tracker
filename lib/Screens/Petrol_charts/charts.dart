@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/Petrol_charts/chartData.dart';
+import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
 import 'package:fuel_tracker/services/datetime_factory/localizedTimeFactory.dart';
 import 'package:html/parser.dart';
@@ -101,14 +102,14 @@ class _ChartsState extends State<Charts> {
   }
 
   Widget displayChart() {
-    final themeChange = Provider.of<DarkThemeProvider>(context);
+    var t = AppLocalizations.of(context);
     return Scaffold(
       body: DefaultTabController(
         length: 3,
         child: Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           appBar: AppBar(
-            title: Text('Historia cen'),
+            title: Text(t!.chartsNavbarTitle),
             flexibleSpace: Container(
               decoration: BoxDecoration(
                   gradient:
@@ -128,9 +129,9 @@ class _ChartsState extends State<Charts> {
           ),
           body: TabBarView(
             children: [
-              priceHistoryChart('Cena benzyny w ostatnich 3 miesiącach', _series95Price, 3, 7),
-              priceHistoryChart('Cena oleju napędowego w ostatnich 3 miesiącach', _seriesONPrice, 3, 7),
-              priceHistoryChart('Cena gazu w ostatnich 3 miesiącach', _seriesLPGPrice, 1, 4),
+              priceHistoryChart(t.charts95Title, _series95Price, 3, 7),
+              priceHistoryChart(t.chartsONTitle, _seriesONPrice, 3, 7),
+              priceHistoryChart(t.chartsLPGTitle, _seriesLPGPrice, 1, 4),
             ],
           ),
         ),
@@ -139,6 +140,7 @@ class _ChartsState extends State<Charts> {
   }
 
   Widget priceHistoryChart(String title, var dataSeries, int rangeStart, int rangeEnd) {
+    var t = AppLocalizations.of(context);
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: Container(
@@ -158,7 +160,7 @@ class _ChartsState extends State<Charts> {
                   animationDuration: Duration(seconds: 1),
                   behaviors: [
                     charts.ChartTitle(
-                      'Data',
+                      t!.chartsXLabel,
                       behaviorPosition: charts.BehaviorPosition.bottom,
                       titleOutsideJustification: charts.OutsideJustification.middleDrawArea,
                       titleStyleSpec: charts.TextStyleSpec(
@@ -166,7 +168,7 @@ class _ChartsState extends State<Charts> {
                       ),
                     ),
                     charts.ChartTitle(
-                      'Cena (zł/l)',
+                      t.chartsYLabel,
                       behaviorPosition: charts.BehaviorPosition.start,
                       titleOutsideJustification: charts.OutsideJustification.middleDrawArea,
                       titleStyleSpec: charts.TextStyleSpec(
