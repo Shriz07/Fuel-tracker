@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/Petrol_charts/chartData.dart';
 import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
+import 'package:fuel_tracker/services/datetime_factory/localizedTimeFactory.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -101,26 +102,20 @@ class _ChartsState extends State<Charts> {
 
   Widget displayChart() {
     final themeChange = Provider.of<DarkThemeProvider>(context);
-    return MaterialApp(
-      home: DefaultTabController(
+    return Scaffold(
+      body: DefaultTabController(
         length: 3,
         child: Scaffold(
+          backgroundColor: Theme.of(context).backgroundColor,
           appBar: AppBar(
             title: Text('Historia cen'),
-            /*actions: [
-              IconButton(
-                  onPressed: () {
-                    themeChange.darkTheme = !themeChange.darkTheme;
-                  },
-                  icon: Icon(Icons.dark_mode_outlined)),
-            ],*/
             flexibleSpace: Container(
               decoration: BoxDecoration(
                   gradient:
                       LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
             ),
             bottom: TabBar(
-              indicatorColor: Theme.of(context).secondaryHeaderColor,
+              indicatorColor: Theme.of(context).errorColor,
               tabs: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -133,75 +128,82 @@ class _ChartsState extends State<Charts> {
           ),
           body: TabBarView(
             children: [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Container(
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        Expanded(
-                          child: charts.TimeSeriesChart(
-                            _series95Price,
-                            defaultRenderer: charts.LineRendererConfig(includeArea: true, stacked: true),
-                            animate: true,
-                            animationDuration: Duration(seconds: 1),
-                            behaviors: [
-                              charts.ChartTitle('Date', behaviorPosition: charts.BehaviorPosition.bottom, titleOutsideJustification: charts.OutsideJustification.middleDrawArea),
-                              charts.ChartTitle('Cena', behaviorPosition: charts.BehaviorPosition.start, titleOutsideJustification: charts.OutsideJustification.middleDrawArea),
-                            ],
-                          ),
-                        )
-                      ],
+              priceHistoryChart('Cena benzyny w ostatnich 3 miesiącach', _series95Price, 3, 7),
+              priceHistoryChart('Cena oleju napędowego w ostatnich 3 miesiącach', _seriesONPrice, 3, 7),
+              priceHistoryChart('Cena gazu w ostatnich 3 miesiącach', _seriesLPGPrice, 1, 4),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget priceHistoryChart(String title, var dataSeries, int rangeStart, int rangeEnd) {
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Container(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Text(
+                title,
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Theme.of(context).errorColor),
+                textAlign: TextAlign.center,
+              ),
+              Expanded(
+                child: charts.TimeSeriesChart(
+                  dataSeries,
+                  defaultRenderer: charts.LineRendererConfig(includeArea: true, stacked: true),
+                  animate: true,
+                  animationDuration: Duration(seconds: 1),
+                  behaviors: [
+                    charts.ChartTitle(
+                      'Data',
+                      behaviorPosition: charts.BehaviorPosition.bottom,
+                      titleOutsideJustification: charts.OutsideJustification.middleDrawArea,
+                      titleStyleSpec: charts.TextStyleSpec(
+                        color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
+                      ),
+                    ),
+                    charts.ChartTitle(
+                      'Cena (zł/l)',
+                      behaviorPosition: charts.BehaviorPosition.start,
+                      titleOutsideJustification: charts.OutsideJustification.middleDrawArea,
+                      titleStyleSpec: charts.TextStyleSpec(
+                        color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
+                      ),
+                    ),
+                    charts.PanAndZoomBehavior(),
+                  ],
+                  dateTimeFactory: LocalizedTimeFactory(Localizations.localeOf(context)),
+                  domainAxis: charts.DateTimeAxisSpec(
+                    tickFormatterSpec: charts.AutoDateTimeTickFormatterSpec(
+                      month: charts.TimeFormatterSpec(format: 'mm', transitionFormat: 'mm'),
+                    ),
+                    renderSpec: charts.SmallTickRendererSpec(
+                      labelStyle: charts.TextStyleSpec(
+                        color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
+                        fontSize: 15,
+                      ),
+                      lineStyle: charts.LineStyleSpec(
+                        color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
+                      ),
+                    ),
+                  ),
+                  primaryMeasureAxis: charts.NumericAxisSpec(
+                    viewport: charts.NumericExtents(rangeStart, rangeEnd),
+                    renderSpec: charts.GridlineRendererSpec(
+                      labelStyle: charts.TextStyleSpec(
+                        color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
+                        fontSize: 15,
+                      ),
+                      lineStyle: charts.LineStyleSpec(
+                        color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Container(
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        Expanded(
-                          child: charts.TimeSeriesChart(
-                            _seriesONPrice,
-                            defaultRenderer: charts.LineRendererConfig(includeArea: true, stacked: true),
-                            animate: true,
-                            animationDuration: Duration(seconds: 1),
-                            behaviors: [
-                              charts.ChartTitle('Date', behaviorPosition: charts.BehaviorPosition.bottom, titleOutsideJustification: charts.OutsideJustification.middleDrawArea),
-                              charts.ChartTitle('Cena', behaviorPosition: charts.BehaviorPosition.start, titleOutsideJustification: charts.OutsideJustification.middleDrawArea),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Container(
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        Expanded(
-                          child: charts.TimeSeriesChart(
-                            _seriesLPGPrice,
-                            defaultRenderer: charts.LineRendererConfig(includeArea: true, stacked: true),
-                            animate: true,
-                            animationDuration: Duration(seconds: 1),
-                            behaviors: [
-                              charts.ChartTitle('Date', behaviorPosition: charts.BehaviorPosition.bottom, titleOutsideJustification: charts.OutsideJustification.middleDrawArea),
-                              charts.ChartTitle('Cena', behaviorPosition: charts.BehaviorPosition.start, titleOutsideJustification: charts.OutsideJustification.middleDrawArea),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              )
             ],
           ),
         ),
