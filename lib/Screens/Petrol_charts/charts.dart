@@ -189,6 +189,13 @@ class _ChartsState extends State<Charts> {
                     ),
                     charts.PanAndZoomBehavior(),
                   ],
+                  selectionModels: [
+                    charts.SelectionModelConfig(changedListener: (charts.SelectionModel model) {
+                      if (model.hasDatumSelection) {
+                        print(model.selectedSeries[0].measureFn(model.selectedDatum[0].index));
+                      }
+                    })
+                  ],
                   dateTimeFactory: LocalizedTimeFactory(Localizations.localeOf(context)),
                   domainAxis: charts.DateTimeAxisSpec(
                     tickFormatterSpec: charts.AutoDateTimeTickFormatterSpec(
