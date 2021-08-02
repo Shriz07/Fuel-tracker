@@ -148,6 +148,12 @@ abstract class AppLocalizations {
   /// **'Close'**
   String get petrolMapWarningClose;
 
+  /// No description provided for @petrolMapWarningNoInternet.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection. Data could not be downloaded.'**
+  String get petrolMapWarningNoInternet;
+
   /// No description provided for @calculatorTitle.
   ///
   /// In en, this message translates to:

@@ -10,6 +10,8 @@
     "petrolMapWarningMessage": "Niepoprawny zakres ceny. Ceny powinny być w realnym zakresie",
     "petrolMapWarningClose": "Zamknij",
 
+    "petrolMapWarningNoInternet": "Brak połączenia z internetem. Dane nie mogą zostać pobrane.",
+
     "calculatorTitle": "Kalkulator kosztów",
     "calculatorInput1Title": "Odległość",
     "calculatorInput1Hint": "(km)",

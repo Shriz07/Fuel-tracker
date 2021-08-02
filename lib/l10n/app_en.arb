@@ -10,6 +10,8 @@
     "petrolMapWarningMessage": "Invalid price range. Please provide real data.",
     "petrolMapWarningClose": "Close",
 
+    "petrolMapWarningNoInternet": "No internet connection. Data could not be downloaded.",
+
     "calculatorTitle": "Trip calculator",
     "calculatorInput1Title": "Distance",
     "calculatorInput1Hint": "(km)",

@@ -35,6 +35,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get petrolMapWarningClose => 'Zamknij';
 
   @override
+  String get petrolMapWarningNoInternet => 'Brak połączenia z internetem. Dane nie mogą zostać pobrane.';
+
+  @override
   String get calculatorTitle => 'Kalkulator kosztów';
 
   @override

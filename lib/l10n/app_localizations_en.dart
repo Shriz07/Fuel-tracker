@@ -35,6 +35,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get petrolMapWarningClose => 'Close';
 
   @override
+  String get petrolMapWarningNoInternet => 'No internet connection. Data could not be downloaded.';
+
+  @override
   String get calculatorTitle => 'Trip calculator';
 
   @override
