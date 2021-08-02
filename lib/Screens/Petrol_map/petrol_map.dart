@@ -80,7 +80,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     _lightMapStyle = await rootBundle.loadString('assets/map_styles/map_light.json');
   }
 
-  Future<bool> _onMapCreated(GoogleMapController controller) async {
+  Future<void> _onMapCreated(GoogleMapController controller) async {
     _controller.complete(controller);
     await _setMapStyle();
     var position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
@@ -95,7 +95,16 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     try {
       petrolStations = await locations.getPetrolStations(position.latitude, position.longitude);
     } catch (e) {
-      return false;
+      var t = AppLocalizations.of(context);
+      await showDialog(
+        context: context,
+        builder: (BuildContext context) => PopupDialog(
+          title: t!.petrolMapWarningTitle,
+          message: t.petrolMapWarningNoInternet, //Message informing that user has no internet connection
+          close: t.petrolMapWarningClose,
+        ),
+      );
+      return;
     }
     setState(() {
       _markers.clear();
@@ -114,7 +123,6 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
         _markers[station.name] = marker;
       }
     });
-    return true;
   }
 
   @override
@@ -158,51 +166,64 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
   }
 
   void _showDialog(Station station) async {
-    await _db.getStation(station);
-    await showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Container(
-            child: SafeArea(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Form(
-                    key: _formkey,
-                    child: Column(
-                      children: <Widget>[
-                        displayTitle(station.name, context),
-                        SizedBox(height: 10),
-                        displayStationAddress(station.vicinity),
-                        SizedBox(height: 10),
-                        ratingBarIndicator(station.rating),
-                        SizedBox(height: 10),
-                        lastUpdateText(station),
-                        SizedBox(height: 10),
-                        PetrolInputField('assets/petrol95.png', station.price95, _petrol95Controller),
-                        SizedBox(height: 15),
-                        PetrolInputField('assets/petrol98.png', station.price98, _petrol98Controller),
-                        SizedBox(height: 15),
-                        PetrolInputField('assets/petrolON.png', station.priceON, _petrolONController),
-                        SizedBox(height: 15),
-                        PetrolInputField('assets/petrolLPG.png', station.priceLPG, _petrolLPGController),
-                        SizedBox(height: 30),
-                        saveButton(station, context),
-                      ],
+    var t = AppLocalizations.of(context);
+    var check = await _db.getStation(station);
+
+    if (check == false) {
+      await showDialog(
+        context: context,
+        builder: (BuildContext context) => PopupDialog(
+          title: t!.petrolMapWarningTitle,
+          message: t.petrolMapWarningNoInternet, //Message informing that user has no internet connection
+          close: t.petrolMapWarningClose,
+        ),
+      );
+    } else {
+      await showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Container(
+              child: SafeArea(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Form(
+                      key: _formkey,
+                      child: Column(
+                        children: <Widget>[
+                          displayTitle(station.name, context),
+                          SizedBox(height: 10),
+                          displayStationAddress(station.vicinity),
+                          SizedBox(height: 10),
+                          ratingBarIndicator(station.rating),
+                          SizedBox(height: 10),
+                          lastUpdateText(station),
+                          SizedBox(height: 10),
+                          PetrolInputField('assets/petrol95.png', station.price95, _petrol95Controller),
+                          SizedBox(height: 15),
+                          PetrolInputField('assets/petrol98.png', station.price98, _petrol98Controller),
+                          SizedBox(height: 15),
+                          PetrolInputField('assets/petrolON.png', station.priceON, _petrolONController),
+                          SizedBox(height: 15),
+                          PetrolInputField('assets/petrolLPG.png', station.priceLPG, _petrolLPGController),
+                          SizedBox(height: 30),
+                          saveButton(station, context),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        );
-      },
-    );
+          );
+        },
+      );
+    }
   }
 
   Widget displayTitle(String title, BuildContext currContext) {

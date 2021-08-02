@@ -21,10 +21,10 @@ class FirestoreDB extends ChangeNotifier {
   Future getStation(Station station) async {
     try {
       await _stationsCollectionReference.doc(station.place_id).get().then((snapshot) => station.setData(snapshot));
+      return true;
     } catch (e) {
-      print(e.toString());
-      if (e is PlatformException) return e.message;
-      return e.toString();
+      if (e is StateError) return true;
+      return false;
     }
   }
 
@@ -43,9 +43,7 @@ class FirestoreDB extends ChangeNotifier {
     try {
       return notif.docs.map((snapshot) => CarNotification.fromMap(snapshot.data())).toList();
     } catch (e) {
-      print(e.toString());
-      if (e is PlatformException) return e.message;
-      return e.toString();
+      return false;
     }
   }
 }
