@@ -111,7 +111,18 @@ class _ChartsState extends State<Charts> {
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(100.0),
             child: AppBar(
-              title: Text(t!.chartsNavbarTitle),
+              leading: Builder(
+                builder: (context) => IconButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    )),
+              ),
+              title: Text(
+                t!.chartsNavbarTitle,
+                style: TextStyle(color: Colors.white),
+              ),
               flexibleSpace: Container(
                 decoration: BoxDecoration(
                     gradient: LinearGradient(

@@ -55,7 +55,18 @@ class _CarNotificationsState extends State<CarNotifications> {
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
-          title: Text(t!.notificationsTitle),
+          leading: Builder(
+            builder: (context) => IconButton(
+                onPressed: () => Navigator.of(context).pop(),
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                )),
+          ),
+          title: Text(
+            t!.notificationsTitle,
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         body: FutureBuilder<List>(
           future: getNotifications(),
