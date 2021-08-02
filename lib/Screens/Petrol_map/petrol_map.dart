@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
 import 'package:fuel_tracker/Screens/Petrol_map/locations.dart';
+import 'package:fuel_tracker/Widgets/app_bar.dart';
 import 'package:fuel_tracker/Widgets/popup_dialog.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
@@ -132,25 +133,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     final loginProvider = Provider.of<AuthServices>(context);
     isDark = themeChange.darkTheme;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t!.petrolMapTitle),
-        actions: [
-          IconButton(
-              onPressed: () {
-                setState(() {
-                  themeChange.darkTheme = !themeChange.darkTheme;
-                  isDark = themeChange.darkTheme;
-                  _setMapStyle();
-                });
-              },
-              icon: Icon(Icons.dark_mode_outlined)),
-        ],
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              gradient:
-                  LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
-        ),
-      ),
+      appBar: MyAppBar(context, t!.petrolMapTitle),
       drawer: MyDrawer(loginProvider),
       body: GoogleMap(
         myLocationButtonEnabled: true,

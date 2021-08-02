@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/Avg_Prices/Region.dart';
 import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
+import 'package:fuel_tracker/Widgets/app_bar.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
@@ -73,21 +74,7 @@ class _MyAppState extends State<AvgPrices> {
     final loginProvider = Provider.of<AuthServices>(context);
     var t = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(t!.avgPricesTitle),
-        actions: [
-          IconButton(
-              onPressed: () {
-                themeChange.darkTheme = !themeChange.darkTheme;
-              },
-              icon: Icon(Icons.dark_mode_outlined)),
-        ],
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              gradient:
-                  LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
-        ),
-      ),
+      appBar: MyAppBar(context, t!.avgPricesTitle),
       drawer: MyDrawer(loginProvider),
       body: FutureBuilder<List>(
           future: getPrices(),
