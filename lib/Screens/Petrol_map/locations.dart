@@ -111,9 +111,10 @@ Future<Locations> getPetrolStations(double lat, double lng) async {
 
   final response = await http.get(Uri.parse(petrolLocationsURL));
   if (response.statusCode == 200) {
-    //debugPrint(response.body);
+    print('true1');
     return Locations.fromJson(json.decode(response.body));
   } else {
+    print('true2');
     throw HttpException(
         'Unexpected status code ${response.statusCode}:'
         ' ${response.reasonPhrase}',

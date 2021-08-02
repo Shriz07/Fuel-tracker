@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/About/about.dart';
-import 'package:fuel_tracker/Screens/Car_Notifications/carNotifications.dart';
+import 'package:fuel_tracker/Screens/Car_Notifications/car_notifications_screen.dart';
 import 'package:fuel_tracker/Screens/Petrol_charts/charts.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
-import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
+import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class MyDrawer extends StatelessWidget {

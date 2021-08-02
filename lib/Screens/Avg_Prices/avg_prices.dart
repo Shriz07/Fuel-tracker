@@ -3,7 +3,7 @@ import 'package:fuel_tracker/Screens/Avg_Prices/Region.dart';
 import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
-import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
+import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
 import 'package:provider/provider.dart';

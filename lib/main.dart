@@ -5,8 +5,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fuel_tracker/Screens/wrapper.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
-import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
-import 'package:fuel_tracker/services/dark_mode/themeData.dart';
+import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
+import 'package:fuel_tracker/services/dark_mode/theme_data.dart';
 import 'package:provider/provider.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();

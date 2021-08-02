@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:fuel_tracker/services/dark_mode/darkThemePreference.dart';
+import 'package:fuel_tracker/services/dark_mode/dark_theme_preference.dart';
 
 class DarkThemeProvider with ChangeNotifier {
   DarkThemePreference darkThemePreference = DarkThemePreference();

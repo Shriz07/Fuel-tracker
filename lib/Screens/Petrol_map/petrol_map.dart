@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,11 +8,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
 import 'package:fuel_tracker/Screens/Petrol_map/locations.dart';
-import 'package:fuel_tracker/Widgets/popupDialog.dart';
+import 'package:fuel_tracker/Widgets/popup_dialog.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
-import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
-import 'package:fuel_tracker/services/firestore_services/firestoreDB.dart';
+import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
+import 'package:fuel_tracker/services/firestore_services/firestore_db.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
@@ -79,7 +80,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     _lightMapStyle = await rootBundle.loadString('assets/map_styles/map_light.json');
   }
 
-  Future<void> _onMapCreated(GoogleMapController controller) async {
+  Future<bool> _onMapCreated(GoogleMapController controller) async {
     _controller.complete(controller);
     await _setMapStyle();
     var position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
@@ -90,8 +91,12 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
 
     await controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
-    final petrolStations = await locations.getPetrolStations(position.latitude, position.longitude);
-
+    final petrolStations;
+    try {
+      petrolStations = await locations.getPetrolStations(position.latitude, position.longitude);
+    } catch (e) {
+      return false;
+    }
     setState(() {
       _markers.clear();
       for (final station in petrolStations.stations) {
@@ -109,6 +114,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
         _markers[station.name] = marker;
       }
     });
+    return true;
   }
 
   @override

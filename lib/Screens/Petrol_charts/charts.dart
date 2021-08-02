@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fuel_tracker/Screens/Petrol_charts/chartData.dart';
+import 'package:fuel_tracker/Screens/Petrol_charts/chart_data.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
-import 'package:fuel_tracker/services/dark_mode/darkThemeProvider.dart';
-import 'package:fuel_tracker/services/datetime_factory/localizedTimeFactory.dart';
+import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
+import 'package:fuel_tracker/services/datetime_factory/localized_time_factory.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';

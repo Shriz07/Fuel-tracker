@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:fuel_tracker/Screens/Car_Notifications/carNotification.dart';
-import 'package:fuel_tracker/Widgets/popupDialog.dart';
+import 'package:fuel_tracker/Screens/Car_Notifications/car_notification.dart';
+import 'package:fuel_tracker/Widgets/popup_dialog.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/main.dart';
-import 'package:fuel_tracker/services/firestore_services/firestoreDB.dart';
+import 'package:fuel_tracker/services/firestore_services/firestore_db.dart';
 
 class CarNotifications extends StatefulWidget {
   @override
