@@ -6,6 +6,33 @@ import 'package:fuel_tracker/services/authentication_services/auth_services.dart
 import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 
+List<String> distances = [
+  '50',
+  '100',
+  '200',
+  '300',
+  '500',
+  '1000',
+];
+
+List<String> consumptions = [
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '10',
+];
+
+List<String> prices = [
+  '5.30',
+  '5.40',
+  '5.50',
+  '5.60',
+  '5.70',
+  '5.80',
+];
+
 class Calculator extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -186,12 +213,32 @@ class InputForm extends StatelessWidget {
               controller: inputController,
               validator: (val) => val!.isNotEmpty ? null : t!.calculatorValidatorMessage,
               decoration: InputDecoration(
-                errorStyle: TextStyle(color: Colors.lightGreen, fontSize: 15),
-                filled: true,
-                labelText: labelText,
-                prefixIcon: icon,
-                border: const OutlineInputBorder(),
-              ),
+                  errorStyle: TextStyle(color: Colors.lightGreen, fontSize: 15),
+                  filled: true,
+                  labelText: labelText,
+                  prefixIcon: icon,
+                  border: const OutlineInputBorder(),
+                  suffixIcon: PopupMenuButton<String>(
+                    icon: const Icon(Icons.arrow_drop_down),
+                    onSelected: (String value) {
+                      inputController.text = value;
+                    },
+                    itemBuilder: (BuildContext context) {
+                      if (inputName == t!.calculatorInput1Title) {
+                        return distances.map<PopupMenuItem<String>>((String value) {
+                          return PopupMenuItem(value: value, child: Text(value));
+                        }).toList();
+                      } else if (inputName == t.calculatorInput2Title) {
+                        return prices.map<PopupMenuItem<String>>((String value) {
+                          return PopupMenuItem(value: value, child: Text(value));
+                        }).toList();
+                      } else {
+                        return consumptions.map<PopupMenuItem<String>>((String value) {
+                          return PopupMenuItem(value: value, child: Text(value));
+                        }).toList();
+                      }
+                    },
+                  )),
             ),
           ),
         ],
