@@ -152,9 +152,9 @@ class _ChartsState extends State<Charts> {
           ),
           body: TabBarView(
             children: [
-              priceHistoryChart(t.charts95Title, _series95Price, 4, 7),
-              priceHistoryChart(t.chartsONTitle, _seriesONPrice, 4, 7),
-              priceHistoryChart(t.chartsLPGTitle, _seriesLPGPrice, 1, 4),
+              priceHistoryChart(t.charts95Title, _series95Price, 4, 6.5),
+              priceHistoryChart(t.chartsONTitle, _seriesONPrice, 4, 6.5),
+              priceHistoryChart(t.chartsLPGTitle, _seriesLPGPrice, 2, 3.5),
             ],
           ),
         ),
@@ -162,7 +162,7 @@ class _ChartsState extends State<Charts> {
     );
   }
 
-  Widget priceHistoryChart(String title, var dataSeries, int rangeStart, int rangeEnd) {
+  Widget priceHistoryChart(String title, var dataSeries, double rangeStart, double rangeEnd) {
     var t = AppLocalizations.of(context);
     return Padding(
       padding: EdgeInsets.all(8.0),
@@ -223,6 +223,25 @@ class _ChartsState extends State<Charts> {
                     ),
                   ),
                   primaryMeasureAxis: charts.NumericAxisSpec(
+                    tickProviderSpec: charts.StaticNumericTickProviderSpec([
+                      charts.TickSpec(1.0),
+                      charts.TickSpec(1.5),
+                      charts.TickSpec(2.0),
+                      charts.TickSpec(2.5),
+                      charts.TickSpec(3.0),
+                      charts.TickSpec(3.5),
+                      charts.TickSpec(4.0),
+                      charts.TickSpec(4.5),
+                      charts.TickSpec(5.0),
+                      charts.TickSpec(5.5),
+                      charts.TickSpec(6.0),
+                      charts.TickSpec(6.5),
+                      charts.TickSpec(7.0),
+                      charts.TickSpec(7.5),
+                      charts.TickSpec(8.0),
+                      charts.TickSpec(8.5),
+                      charts.TickSpec(9.0),
+                    ]),
                     viewport: charts.NumericExtents(rangeStart, rangeEnd),
                     renderSpec: charts.GridlineRendererSpec(
                       labelStyle: charts.TextStyleSpec(
