@@ -91,6 +91,7 @@ class _LoginState extends State<Register> {
                     TextFormField(
                       controller: _passwordController,
                       validator: (val) => val!.length < 6 ? t.registerPasswordValidatorMessage : null,
+                      obscureText: true,
                       decoration: InputDecoration(
                         filled: true,
                         hintText: t.registerPasswordHint,

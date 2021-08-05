@@ -74,6 +74,7 @@ class _LoginState extends State<Login> {
                     TextFormField(
                       controller: _passwordController,
                       validator: (val) => val!.length < 6 ? t.loginPasswordValidatorMessage : null,
+                      obscureText: true,
                       decoration: InputDecoration(
                         errorStyle: TextStyle(color: Colors.yellow, fontSize: 15),
                         filled: true,
