@@ -210,7 +210,7 @@ class _ChartsState extends State<Charts> {
                   dateTimeFactory: LocalizedTimeFactory(Localizations.localeOf(context)),
                   domainAxis: charts.DateTimeAxisSpec(
                     tickFormatterSpec: charts.AutoDateTimeTickFormatterSpec(
-                      month: charts.TimeFormatterSpec(format: 'mm', transitionFormat: 'mm'),
+                      month: charts.TimeFormatterSpec(format: 'MMMd', transitionFormat: 'MMMd'),
                     ),
                     renderSpec: charts.SmallTickRendererSpec(
                       labelStyle: charts.TextStyleSpec(
