@@ -66,7 +66,6 @@ class _MyAppState extends State<Calculator> {
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<AuthServices>(context);
-    final themeChange = Provider.of<DarkThemeProvider>(context);
     var t = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -87,7 +86,17 @@ class _MyAppState extends State<Calculator> {
                     InputForm(t.calculatorInput2Title, _priceController, t.calculatorInput2Hint, Icon(Icons.attach_money)),
                     SizedBox(height: 15),
                     InputForm(
-                        t.calculatorInput3Title, _consumptionController, t.calculatorInput3Hint, Padding(padding: const EdgeInsets.all(14), child: Image.asset('assets/drop.png'))),
+                        t.calculatorInput3Title,
+                        _consumptionController,
+                        t.calculatorInput3Hint,
+                        Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset(
+                              'assets/drop.png',
+                              width: 30,
+                              height: 40,
+                              fit: BoxFit.fill,
+                            ))),
                     SizedBox(height: 30),
                     displayApplyButton(),
                     SizedBox(height: 40),
@@ -200,7 +209,7 @@ class InputForm extends StatelessWidget {
   Widget build(BuildContext context) {
     var t = AppLocalizations.of(context);
     return SizedBox(
-      height: 60,
+      height: 70,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

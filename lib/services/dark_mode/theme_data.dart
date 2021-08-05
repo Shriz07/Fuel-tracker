@@ -18,6 +18,10 @@ class Styles {
           borderRadius: BorderRadius.circular(15),
           borderSide: isDarkTheme ? const BorderSide(color: Colors.lightGreen, width: 3.0) : const BorderSide(color: Colors.lightBlue, width: 3.0),
         ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: isDarkTheme ? const BorderSide(color: Colors.blue, width: 3.0) : const BorderSide(color: Colors.lightGreen, width: 3.0),
+        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
           borderSide: isDarkTheme ? const BorderSide(color: Colors.blue, width: 3.0) : const BorderSide(color: Colors.lightGreen, width: 3.0),
