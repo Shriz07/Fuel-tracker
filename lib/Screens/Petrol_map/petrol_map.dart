@@ -28,7 +28,7 @@ class PetrolMap extends StatefulWidget {
 class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
   final Completer<GoogleMapController> _controller = Completer();
   final FirebaseAuth auth = FirebaseAuth.instance;
-  late BitmapDescriptor myIcon;
+  late BitmapDescriptor petrolMarker;
   late BitmapDescriptor dropIcon;
   var geolocator = Geolocator();
   final _formkey = GlobalKey<FormState>();
@@ -52,7 +52,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     _petrol98Controller = TextEditingController();
     _petrolONController = TextEditingController();
     _petrolLPGController = TextEditingController();
-    BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5), 'assets/petrol-marker.png').then((value) => myIcon = value);
+    BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5), 'assets/petrol-marker.png').then((value) => petrolMarker = value);
     BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5), 'assets/drop.png').then((value) => dropIcon = value);
   }
 
@@ -112,9 +112,10 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
       for (final station in petrolStations.stations) {
         final marker = Marker(
           onTap: () {
+            print(station.neverSet);
             _showDialog(station);
           },
-          icon: myIcon,
+          icon: petrolMarker,
           markerId: MarkerId(station.name),
           position: LatLng(station.geometry.location.lat, station.geometry.location.lng),
           infoWindow: InfoWindow(
@@ -133,7 +134,25 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     final loginProvider = Provider.of<AuthServices>(context);
     isDark = themeChange.darkTheme;
     return Scaffold(
-      appBar: MyAppBar(context, t!.petrolMapTitle),
+      appBar: AppBar(
+        title: Text(t!.petrolMapTitle),
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  themeChange.darkTheme = !themeChange.darkTheme;
+                  isDark = themeChange.darkTheme;
+                  _setMapStyle();
+                });
+              },
+              icon: Icon(Icons.dark_mode_outlined)),
+        ],
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient:
+                  LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
+        ),
+      ),
       drawer: MyDrawer(loginProvider),
       body: GoogleMap(
         myLocationButtonEnabled: true,
