@@ -7,6 +7,7 @@ import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:url_launcher/url_launcher.dart';
 
 class Charts extends StatefulWidget {
   @override
@@ -164,101 +165,116 @@ class _ChartsState extends State<Charts> {
 
   Widget priceHistoryChart(String title, var dataSeries, double rangeStart, double rangeEnd) {
     var t = AppLocalizations.of(context);
-    return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Container(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Text(
-                title,
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Theme.of(context).errorColor),
-                textAlign: TextAlign.center,
+    return Stack(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Container(
+            child: Center(
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    title,
+                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Theme.of(context).errorColor),
+                    textAlign: TextAlign.center,
+                  ),
+                  Expanded(
+                    child: charts.TimeSeriesChart(
+                      dataSeries,
+                      defaultRenderer: charts.LineRendererConfig(includeArea: true, stacked: true),
+                      animate: true,
+                      animationDuration: Duration(seconds: 1),
+                      behaviors: [
+                        charts.ChartTitle(
+                          t!.chartsXLabel,
+                          behaviorPosition: charts.BehaviorPosition.bottom,
+                          titleOutsideJustification: charts.OutsideJustification.middleDrawArea,
+                          titleStyleSpec: charts.TextStyleSpec(
+                            color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
+                          ),
+                        ),
+                        charts.ChartTitle(
+                          t.chartsYLabel,
+                          behaviorPosition: charts.BehaviorPosition.start,
+                          titleOutsideJustification: charts.OutsideJustification.middleDrawArea,
+                          titleStyleSpec: charts.TextStyleSpec(
+                            color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
+                          ),
+                        ),
+                        charts.PanAndZoomBehavior(),
+                      ],
+                      selectionModels: [
+                        charts.SelectionModelConfig(changedListener: (charts.SelectionModel model) {
+                          if (model.hasDatumSelection) {
+                            print(model.selectedSeries[0].measureFn(model.selectedDatum[0].index));
+                          }
+                        })
+                      ],
+                      dateTimeFactory: LocalizedTimeFactory(Localizations.localeOf(context)),
+                      domainAxis: charts.DateTimeAxisSpec(
+                        tickFormatterSpec: charts.AutoDateTimeTickFormatterSpec(
+                          month: charts.TimeFormatterSpec(format: 'MMMd', transitionFormat: 'MMMd'),
+                        ),
+                        renderSpec: charts.SmallTickRendererSpec(
+                          labelStyle: charts.TextStyleSpec(
+                            color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
+                            fontSize: 15,
+                          ),
+                          lineStyle: charts.LineStyleSpec(
+                            color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
+                          ),
+                        ),
+                      ),
+                      primaryMeasureAxis: charts.NumericAxisSpec(
+                        tickProviderSpec: charts.StaticNumericTickProviderSpec([
+                          charts.TickSpec(1.0),
+                          charts.TickSpec(1.5),
+                          charts.TickSpec(2.0),
+                          charts.TickSpec(2.5),
+                          charts.TickSpec(3.0),
+                          charts.TickSpec(3.5),
+                          charts.TickSpec(4.0),
+                          charts.TickSpec(4.5),
+                          charts.TickSpec(5.0),
+                          charts.TickSpec(5.5),
+                          charts.TickSpec(6.0),
+                          charts.TickSpec(6.5),
+                          charts.TickSpec(7.0),
+                          charts.TickSpec(7.5),
+                          charts.TickSpec(8.0),
+                          charts.TickSpec(8.5),
+                          charts.TickSpec(9.0),
+                        ]),
+                        viewport: charts.NumericExtents(rangeStart, rangeEnd),
+                        renderSpec: charts.GridlineRendererSpec(
+                          labelStyle: charts.TextStyleSpec(
+                            color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
+                            fontSize: 15,
+                          ),
+                          lineStyle: charts.LineStyleSpec(
+                            color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
               ),
-              Expanded(
-                child: charts.TimeSeriesChart(
-                  dataSeries,
-                  defaultRenderer: charts.LineRendererConfig(includeArea: true, stacked: true),
-                  animate: true,
-                  animationDuration: Duration(seconds: 1),
-                  behaviors: [
-                    charts.ChartTitle(
-                      t!.chartsXLabel,
-                      behaviorPosition: charts.BehaviorPosition.bottom,
-                      titleOutsideJustification: charts.OutsideJustification.middleDrawArea,
-                      titleStyleSpec: charts.TextStyleSpec(
-                        color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
-                      ),
-                    ),
-                    charts.ChartTitle(
-                      t.chartsYLabel,
-                      behaviorPosition: charts.BehaviorPosition.start,
-                      titleOutsideJustification: charts.OutsideJustification.middleDrawArea,
-                      titleStyleSpec: charts.TextStyleSpec(
-                        color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
-                      ),
-                    ),
-                    charts.PanAndZoomBehavior(),
-                  ],
-                  selectionModels: [
-                    charts.SelectionModelConfig(changedListener: (charts.SelectionModel model) {
-                      if (model.hasDatumSelection) {
-                        print(model.selectedSeries[0].measureFn(model.selectedDatum[0].index));
-                      }
-                    })
-                  ],
-                  dateTimeFactory: LocalizedTimeFactory(Localizations.localeOf(context)),
-                  domainAxis: charts.DateTimeAxisSpec(
-                    tickFormatterSpec: charts.AutoDateTimeTickFormatterSpec(
-                      month: charts.TimeFormatterSpec(format: 'MMMd', transitionFormat: 'MMMd'),
-                    ),
-                    renderSpec: charts.SmallTickRendererSpec(
-                      labelStyle: charts.TextStyleSpec(
-                        color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
-                        fontSize: 15,
-                      ),
-                      lineStyle: charts.LineStyleSpec(
-                        color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
-                      ),
-                    ),
-                  ),
-                  primaryMeasureAxis: charts.NumericAxisSpec(
-                    tickProviderSpec: charts.StaticNumericTickProviderSpec([
-                      charts.TickSpec(1.0),
-                      charts.TickSpec(1.5),
-                      charts.TickSpec(2.0),
-                      charts.TickSpec(2.5),
-                      charts.TickSpec(3.0),
-                      charts.TickSpec(3.5),
-                      charts.TickSpec(4.0),
-                      charts.TickSpec(4.5),
-                      charts.TickSpec(5.0),
-                      charts.TickSpec(5.5),
-                      charts.TickSpec(6.0),
-                      charts.TickSpec(6.5),
-                      charts.TickSpec(7.0),
-                      charts.TickSpec(7.5),
-                      charts.TickSpec(8.0),
-                      charts.TickSpec(8.5),
-                      charts.TickSpec(9.0),
-                    ]),
-                    viewport: charts.NumericExtents(rangeStart, rangeEnd),
-                    renderSpec: charts.GridlineRendererSpec(
-                      labelStyle: charts.TextStyleSpec(
-                        color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
-                        fontSize: 15,
-                      ),
-                      lineStyle: charts.LineStyleSpec(
-                        color: charts.ColorUtil.fromDartColor(Theme.of(context).errorColor),
-                      ),
-                    ),
-                  ),
-                ),
-              )
-            ],
+            ),
           ),
         ),
-      ),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Container(
+            padding: const EdgeInsets.all(3.0),
+            color: Theme.of(context).highlightColor,
+            child: InkWell(
+              onTap: () => launch('https://www.autocentrum.pl/paliwa/ceny-paliw/'),
+              child: Text('autocentrum.pl'),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

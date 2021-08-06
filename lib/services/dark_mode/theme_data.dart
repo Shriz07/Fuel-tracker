@@ -8,7 +8,7 @@ class Styles {
       primaryColor: isDarkTheme ? Colors.blue : Colors.lightGreen,
       inputDecorationTheme: InputDecorationTheme(
         hintStyle: isDarkTheme ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
-        fillColor: isDarkTheme ? Colors.grey[900] : Colors.amberAccent,
+        fillColor: isDarkTheme ? Colors.grey[950] : Colors.amberAccent,
         labelStyle: isDarkTheme ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
@@ -43,7 +43,7 @@ class Styles {
       buttonColor: isDarkTheme ? Color(0xff3B3B3B) : Color(0xffF1F5FB),
       hintColor: isDarkTheme ? Color(0xff280C0B) : Color(0xFF8C7622),
       errorColor: isDarkTheme ? Colors.white : Colors.black,
-      highlightColor: isDarkTheme ? Color(0xff372901) : Colors.purple,
+      highlightColor: isDarkTheme ? Colors.grey[900] : Colors.amberAccent,
       hoverColor: isDarkTheme ? Color(0xff3A3A3B) : Color(0xff4285F4),
       focusColor: isDarkTheme ? Color(0xff0B2512) : Colors.purple,
       disabledColor: Colors.grey,

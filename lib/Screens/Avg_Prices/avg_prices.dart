@@ -8,6 +8,7 @@ import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final List<String> fuel_types = [
   '95',
@@ -77,37 +78,53 @@ class _MyAppState extends State<AvgPrices> {
       appBar: MyAppBar(context, t!.avgPricesTitle),
       drawer: MyDrawer(loginProvider),
       body: FutureBuilder<List>(
-          future: getPrices(),
-          builder: (context, AsyncSnapshot<List> snapshot) {
-            if (snapshot.data != null) {
-              return getTableContent();
-            } else {
-              return Center(child: CircularProgressIndicator());
-            }
-          }),
+        future: getPrices(),
+        builder: (context, AsyncSnapshot<List> snapshot) {
+          if (snapshot.data != null) {
+            return getTableContent();
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
     );
   }
 
   Widget getTableContent() {
     return ConstrainedBox(
       constraints: BoxConstraints.expand(width: MediaQuery.of(context).size.width),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: DataTable(
-          sortAscending: _isAscending,
-          sortColumnIndex: _currentSortColumn,
-          columnSpacing: 0,
-          horizontalMargin: 15,
-          columns: <DataColumn>[
-            displayRegionNameHeader(),
-            displayPetrolHeader('assets/petrol95.png', '95'),
-            displayPetrolHeader('assets/petrol98.png', '98'),
-            displayPetrolHeader('assets/petrolON.png', 'ON'),
-            displayPetrolHeader('assets/petrolONplus.png', 'ONplus'),
-            displayPetrolHeader('assets/petrolLPG.png', 'LPG'),
-          ],
-          rows: getRowsWithPrices(),
-        ),
+      child: Stack(
+        children: <Widget>[
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: DataTable(
+              sortAscending: _isAscending,
+              sortColumnIndex: _currentSortColumn,
+              columnSpacing: 0,
+              horizontalMargin: 15,
+              columns: <DataColumn>[
+                displayRegionNameHeader(),
+                displayPetrolHeader('assets/petrol95.png', '95'),
+                displayPetrolHeader('assets/petrol98.png', '98'),
+                displayPetrolHeader('assets/petrolON.png', 'ON'),
+                displayPetrolHeader('assets/petrolONplus.png', 'ONplus'),
+                displayPetrolHeader('assets/petrolLPG.png', 'LPG'),
+              ],
+              rows: getRowsWithPrices(),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+              padding: const EdgeInsets.all(3.0),
+              color: Theme.of(context).highlightColor,
+              child: InkWell(
+                onTap: () => launch('https://www.autocentrum.pl/paliwa/ceny-paliw/'),
+                child: Text('autocentrum.pl'),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
