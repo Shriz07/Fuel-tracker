@@ -12,10 +12,7 @@ AppBar MyAppBar(BuildContext context, String appBarTitle) {
         onPressed: () => Scaffold.of(context).openDrawer(),
       ),
     ),
-    title: Text(
-      appBarTitle,
-      style: TextStyle(color: Colors.white),
-    ),
+    title: Text(appBarTitle, style: TextStyle(color: Colors.white)),
     actions: [
       IconButton(
           onPressed: () {

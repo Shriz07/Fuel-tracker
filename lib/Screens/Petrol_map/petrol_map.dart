@@ -135,7 +135,13 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     isDark = themeChange.darkTheme;
     return Scaffold(
       appBar: AppBar(
-        title: Text(t!.petrolMapTitle),
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: Icon(Icons.menu, color: Colors.white),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+        ),
+        title: Text(t!.petrolMapTitle, style: TextStyle(color: Colors.white)),
         actions: [
           IconButton(
               onPressed: () {
@@ -145,7 +151,8 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
                   _setMapStyle();
                 });
               },
-              icon: Icon(Icons.dark_mode_outlined)),
+              icon: Icon(Icons.dark_mode_outlined),
+              color: Colors.white),
         ],
         flexibleSpace: Container(
           decoration: BoxDecoration(
