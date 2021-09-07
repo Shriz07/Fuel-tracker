@@ -112,7 +112,6 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
       for (final station in petrolStations.stations) {
         final marker = Marker(
           onTap: () {
-            print(station.neverSet);
             _showDialog(station);
           },
           icon: petrolMarker,
