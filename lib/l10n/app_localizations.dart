@@ -94,6 +94,12 @@ abstract class AppLocalizations {
     Locale('pl')
   ];
 
+  /// No description provided for @appLocale.
+  ///
+  /// In en, this message translates to:
+  /// **'en'**
+  String get appLocale;
+
   /// No description provided for @avgPricesTitle.
   ///
   /// In en, this message translates to:

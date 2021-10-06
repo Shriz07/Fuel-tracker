@@ -1,11 +1,11 @@
-
-
-
 import 'app_localizations.dart';
 
 /// The translations for English (`en`).
 class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
+
+  @override
+  String get appLocale => 'en';
 
   @override
   String get avgPricesTitle => 'Avarage fuel prices';
@@ -152,7 +152,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notificationsTitle => 'Reminders';
 
   @override
-  String get notificationsHint => 'Set reminders for events such as insurance or periodic technical inspection and you will receive a notification 5 days vefore the shceduled date.';
+  String get notificationsHint =>
+      'Set reminders for events such as insurance or periodic technical inspection and you will receive a notification 5 days vefore the shceduled date.';
 
   @override
   String get notificationsHeader => 'Hold for more information.';

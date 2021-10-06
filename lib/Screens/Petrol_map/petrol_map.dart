@@ -298,7 +298,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
       child: differenceBetweenDates > 10000
           ? Text(t!.petrolMapLastUpdateNever)
           : Text(
-              t!.petrolMapLastUpdate + timeAgo.format(station.updateTimestamp.toDate(), locale: 'pl'),
+              t!.petrolMapLastUpdate + timeAgo.format(station.updateTimestamp.toDate(), locale: t.appLocale),
             ),
     );
   }

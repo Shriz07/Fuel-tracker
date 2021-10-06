@@ -8,6 +8,9 @@ class AppLocalizationsPl extends AppLocalizations {
   AppLocalizationsPl([String locale = 'pl']) : super(locale);
 
   @override
+  String get appLocale => 'pl';
+
+  @override
   String get avgPricesTitle => 'Średnie ceny paliw';
 
   @override
