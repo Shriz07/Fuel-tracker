@@ -83,7 +83,7 @@ class _MyAppState extends State<PricesAbroad> {
             child: DataTable(
               sortAscending: _isAscending,
               sortColumnIndex: _currentSortColumn,
-              columnSpacing: 0,
+              columnSpacing: 50.0,
               horizontalMargin: 15,
               columns: <DataColumn>[
                 displayCountryNameHeader(),
