@@ -31,7 +31,7 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            CustomListTile(Icons.notifications, 'Ceny paliw za granicą', () {
+            CustomListTile(Icons.price_change, 'Ceny paliw za granicą', () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => PricesAbroad()));
             }),
             CustomListTile(Icons.notifications, t.drawerNotifications, () {
