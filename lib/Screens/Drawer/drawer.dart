@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/About/about.dart';
 import 'package:fuel_tracker/Screens/Car_Notifications/car_notifications_screen.dart';
 import 'package:fuel_tracker/Screens/Petrol_charts/charts.dart';
+import 'package:fuel_tracker/Screens/Prices_abroad/prices_abroad_screen.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
@@ -30,6 +31,9 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
+            CustomListTile(Icons.notifications, 'Ceny paliw za granicą', () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => PricesAbroad()));
+            }),
             CustomListTile(Icons.notifications, t.drawerNotifications, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => CarNotifications()));
             }),
