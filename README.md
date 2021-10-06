@@ -1,16 +1,15 @@
-# fuel_tracker
+# Fuel tracker
 
-A new Flutter project.
+'Flutter' 'Dart' 'Firebase Authentication' 'Cloud Firestore' 'Google Maps API'
 
-## Getting Started
+Fuel tracker is a mobile app that allows users to track fuel prices and share actual price at the station they are.
 
-This project is a starting point for a Flutter application.
+## Functionallities
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- checking avarage petrol prices (PB95, PB98, ON, ON+, LPG) in regions across Poland
+- checking avarage petrol prices (PB95, ON) in selected countries
+- finding petrol stations located nearby with ability to check or update price
+- travel cost calculator
+- historical charts with petrol prices (PB95, ON, LPG) in last 3 months
+- notifications about the ending term of insurance or technical inspection of a car
+- light and dark mode
