@@ -81,5 +81,8 @@
     "chartsONTitle": "Cena oleju napędowego w ostatnich 3 miesiącach",
     "chartsLPGTitle": "Cena gazu w ostatnich 3 miesiącach",
     "chartsYLabel": "Cena (zł/l)",
-    "chartsXLabel": "Data"
+    "chartsXLabel": "Data",
+
+    "pricesAbroadTitle": "Ceny paliw za granicą",
+    "pricesAbroadTableTitle": "Kraj"
 }

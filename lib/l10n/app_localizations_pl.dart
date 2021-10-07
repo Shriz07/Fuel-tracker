@@ -216,4 +216,10 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get chartsXLabel => 'Data';
+
+  @override
+  String get pricesAbroadTitle => 'Ceny paliw za granicą';
+
+  @override
+  String get pricesAbroadTableTitle => 'Kraj';
 }

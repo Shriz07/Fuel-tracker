@@ -513,6 +513,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Date'**
   String get chartsXLabel;
+
+  /// No description provided for @pricesAbroadTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Petrol prices abroad'**
+  String get pricesAbroadTitle;
+
+  /// No description provided for @pricesAbroadTableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get pricesAbroadTableTitle;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

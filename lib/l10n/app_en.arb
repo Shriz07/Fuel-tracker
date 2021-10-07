@@ -81,5 +81,8 @@
     "chartsONTitle": "Diesel price in last 3 months",
     "chartsLPGTitle": "Gas price in last 3 months",
     "chartsYLabel": "Price (zł/l)",
-    "chartsXLabel": "Date"
+    "chartsXLabel": "Date",
+
+    "pricesAbroadTitle": "Petrol prices abroad",
+    "pricesAbroadTableTitle": "Country"
 }
