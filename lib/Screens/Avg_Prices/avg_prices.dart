@@ -169,7 +169,7 @@ class _MyAppState extends State<AvgPrices> {
     var t = AppLocalizations.of(context);
     return DataColumn(
         label: Text(
-          'Województwo',
+          t!.avgPricesTableTitle,
           style: TextStyle(fontStyle: FontStyle.italic),
         ),
         onSort: (columnIndex, _) {

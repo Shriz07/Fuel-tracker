@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
 import 'package:fuel_tracker/Widgets/app_bar.dart';
+import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:html/parser.dart';
 import 'package:provider/provider.dart';
@@ -54,9 +55,10 @@ class _MyAppState extends State<PricesAbroad> {
 
   @override
   Widget build(BuildContext context) {
+    var t = AppLocalizations.of(context);
     final loginProvider = Provider.of<AuthServices>(context);
     return Scaffold(
-        appBar: MyAppBar(context, 'Ceny paliw za granicą'),
+        appBar: MyAppBar(context, t!.pricesAbroadTitle),
         drawer: MyDrawer(loginProvider),
         body: FutureBuilder<List>(
           future: getPrices(),
@@ -110,9 +112,10 @@ class _MyAppState extends State<PricesAbroad> {
   }
 
   DataColumn displayCountryNameHeader() {
+    var t = AppLocalizations.of(context);
     return DataColumn(
         label: Text(
-          'Kraj',
+          t!.pricesAbroadTableTitle,
           style: TextStyle(fontStyle: FontStyle.italic),
         ),
         onSort: (columnIndex, _) {
