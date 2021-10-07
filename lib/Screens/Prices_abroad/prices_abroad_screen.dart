@@ -83,7 +83,7 @@ class _MyAppState extends State<PricesAbroad> {
             child: DataTable(
               sortAscending: _isAscending,
               sortColumnIndex: _currentSortColumn,
-              columnSpacing: 50.0,
+              columnSpacing: 30.0,
               horizontalMargin: 15,
               columns: <DataColumn>[
                 displayCountryNameHeader(),
@@ -183,10 +183,16 @@ class _MyAppState extends State<PricesAbroad> {
                 }),
                 cells: <DataCell>[
                   DataCell(
-                    Text(
-                      element.name,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minWidth: 140,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Image.asset('assets/flags/' + element.name + '.png'),
+                          Text(' ' + element.name),
+                        ],
+                      ),
                     ),
                   ),
                   DataCell(
