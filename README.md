@@ -1,6 +1,6 @@
 # Fuel tracker
 
-'Flutter' 'Dart' 'Firebase Authentication' 'Cloud Firestore' 'Google Maps API'
+`Flutter` `Dart` `Firebase Authentication` `Cloud Firestore` `Google Maps API`
 
 Fuel tracker is a mobile app that allows users to track fuel prices and share actual price at the station they are.
 
