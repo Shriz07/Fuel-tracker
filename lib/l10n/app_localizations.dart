@@ -370,6 +370,12 @@ abstract class AppLocalizations {
   /// **'Logout'**
   String get drawerLogout;
 
+  /// No description provided for @drawerPricesAbroad.
+  ///
+  /// In en, this message translates to:
+  /// **'Petrol prices abroad'**
+  String get drawerPricesAbroad;
+
   /// No description provided for @aboutVersion.
   ///
   /// In en, this message translates to:

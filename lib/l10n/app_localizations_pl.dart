@@ -146,6 +146,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get drawerLogout => 'Wyloguj';
 
   @override
+  String get drawerPricesAbroad => 'Ceny paliw za granicą';
+
+  @override
   String get aboutVersion => 'Wersja';
 
   @override
