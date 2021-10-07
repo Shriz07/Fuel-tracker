@@ -7,7 +7,18 @@ class AboutScreen extends StatelessWidget {
     var t = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('O aplikacji'),
+        leading: Builder(
+          builder: (context) => IconButton(
+              onPressed: () => Navigator.of(context).pop(),
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              )),
+        ),
+        title: Text(
+          t!.aboutTitle,
+          style: TextStyle(color: Colors.white),
+        ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient:
@@ -35,7 +46,7 @@ class AboutScreen extends StatelessWidget {
                     image: AssetImage('assets/logo.png'),
                   )),
                   SizedBox(height: 40),
-                  CustomTextBox(t!.aboutVersion, 'v0.5'),
+                  CustomTextBox(t.aboutVersion, 'v0.5'),
                   SizedBox(height: 20),
                   CustomTextBox(t.aboutAuthor, 'Adam Mąkiewicz'),
                 ],

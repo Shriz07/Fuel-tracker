@@ -376,6 +376,12 @@ abstract class AppLocalizations {
   /// **'Petrol prices abroad'**
   String get drawerPricesAbroad;
 
+  /// No description provided for @aboutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About app'**
+  String get aboutTitle;
+
   /// No description provided for @aboutVersion.
   ///
   /// In en, this message translates to:

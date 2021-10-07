@@ -149,6 +149,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get drawerPricesAbroad => 'Ceny paliw za granicą';
 
   @override
+  String get aboutTitle => 'O aplikacji';
+
+  @override
   String get aboutVersion => 'Wersja';
 
   @override

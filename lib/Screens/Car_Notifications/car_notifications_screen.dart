@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fuel_tracker/Screens/Car_Notifications/car_notification.dart';
+import 'package:fuel_tracker/Widgets/app_bar.dart';
 import 'package:fuel_tracker/Widgets/popup_dialog.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/main.dart';
@@ -66,6 +67,11 @@ class _CarNotificationsState extends State<CarNotifications> {
           title: Text(
             t!.notificationsTitle,
             style: TextStyle(color: Colors.white),
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient:
+                    LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
           ),
         ),
         body: FutureBuilder<List>(

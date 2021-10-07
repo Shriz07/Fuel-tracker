@@ -149,6 +149,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get drawerPricesAbroad => 'Petrol prices abroad';
 
   @override
+  String get aboutTitle => 'About app';
+
+  @override
   String get aboutVersion => 'Version';
 
   @override
