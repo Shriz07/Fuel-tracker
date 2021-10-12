@@ -268,6 +268,18 @@ abstract class AppLocalizations {
   /// **'Create here'**
   String get loginNoAccountButton;
 
+  /// No description provided for @loginPasswordResetMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot your password?'**
+  String get loginPasswordResetMessage;
+
+  /// No description provided for @loginPasswordResetButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get loginPasswordResetButton;
+
   /// No description provided for @registerTitle.
   ///
   /// In en, this message translates to:
@@ -315,6 +327,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login here'**
   String get registerAlreadyButton;
+
+  /// No description provided for @resetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password.'**
+  String get resetTitle;
+
+  /// No description provided for @resetEmailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get resetEmailHint;
+
+  /// No description provided for @resetEmailValidatorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter valid Email address'**
+  String get resetEmailValidatorMessage;
+
+  /// No description provided for @resetCorrectPopupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification'**
+  String get resetCorrectPopupTitle;
+
+  /// No description provided for @resetCorrectPopupMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'A link to change your password has been sent to your email.'**
+  String get resetCorrectPopupMessage;
+
+  /// No description provided for @resetCorrectPopupClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get resetCorrectPopupClose;
+
+  /// No description provided for @resetErrorPopupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Attention'**
+  String get resetErrorPopupTitle;
+
+  /// No description provided for @resetErrorPopupMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occured. Check that you have provided correct email address.'**
+  String get resetErrorPopupMessage;
+
+  /// No description provided for @resetErrorPopupClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get resetErrorPopupClose;
+
+  /// No description provided for @resetApplyButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get resetApplyButton;
 
   /// No description provided for @navbar1Item.
   ///
@@ -544,7 +616,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
 
   @override
   Future<AppLocalizations> load(Locale locale) {
-    return SynchronousFuture<AppLocalizations>(_lookupAppLocalizations(locale));
+    return SynchronousFuture<AppLocalizations>(lookupAppLocalizations(locale));
   }
 
   @override
@@ -554,16 +626,14 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
-AppLocalizations _lookupAppLocalizations(Locale locale) {
-  
+AppLocalizations lookupAppLocalizations(Locale locale) {
 
 
-// Lookup logic when only language code is specified.
-switch (locale.languageCode) {
-  case 'en': return AppLocalizationsEn();
+  // Lookup logic when only language code is specified.
+  switch (locale.languageCode) {
+    case 'en': return AppLocalizationsEn();
     case 'pl': return AppLocalizationsPl();
-}
-
+  }
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '

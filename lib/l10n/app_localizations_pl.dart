@@ -95,6 +95,12 @@ class AppLocalizationsPl extends AppLocalizations {
   String get loginNoAccountButton => 'Stwórz konto';
 
   @override
+  String get loginPasswordResetMessage => 'Nie pamiętasz hasła?';
+
+  @override
+  String get loginPasswordResetButton => 'Zresetuj hasło';
+
+  @override
   String get registerTitle => 'Stwórz konto aby kontynuować';
 
   @override
@@ -117,6 +123,36 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get registerAlreadyButton => 'Zaloguj';
+
+  @override
+  String get resetTitle => 'Zresetuj hasło.';
+
+  @override
+  String get resetEmailHint => 'Email';
+
+  @override
+  String get resetEmailValidatorMessage => 'Podaj poprawny adres Email';
+
+  @override
+  String get resetCorrectPopupTitle => 'Powiadomienie';
+
+  @override
+  String get resetCorrectPopupMessage => 'Na twoją skrzynkę mailową został wysłany link do zmiany hasła.';
+
+  @override
+  String get resetCorrectPopupClose => 'Zamknij';
+
+  @override
+  String get resetErrorPopupTitle => 'Uwaga';
+
+  @override
+  String get resetErrorPopupMessage => 'Wystąpił błąd. Sprawdź czy podałeś poprawny adres email.';
+
+  @override
+  String get resetErrorPopupClose => 'Zamknij';
+
+  @override
+  String get resetApplyButton => 'Resetuj';
 
   @override
   String get navbar1Item => 'Średnie ceny';

@@ -33,6 +33,8 @@
     "loginButtonApply": "Login",
     "loginNoAccountMessage": "Don't have an account?",
     "loginNoAccountButton": "Create here",
+    "loginPasswordResetMessage": "Forgot your password?",
+    "loginPasswordResetButton": "Reset password",
 
     "registerTitle": "Create an account to continue",
     "registerEmailValidatorMessage": "Enter valid Email address",
@@ -42,6 +44,17 @@
     "registerButtonApply": "Create account",
     "registerAlreadyMessage": "Already registered?",
     "registerAlreadyButton": "Login here",
+
+    "resetTitle": "Reset password.",
+    "resetEmailHint": "Email",
+    "resetEmailValidatorMessage": "Enter valid Email address",
+    "resetCorrectPopupTitle": "Notification",
+    "resetCorrectPopupMessage": "A link to change your password has been sent to your email.",
+    "resetCorrectPopupClose": "Close",
+    "resetErrorPopupTitle": "Attention",
+    "resetErrorPopupMessage": "An error occured. Check that you have provided correct email address.",
+    "resetErrorPopupClose": "Close",
+    "resetApplyButton": "Reset",
 
     "navbar1Item": "Avg prices",
     "navbar2Item": "Stations",

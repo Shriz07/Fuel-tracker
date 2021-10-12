@@ -95,6 +95,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loginNoAccountButton => 'Create here';
 
   @override
+  String get loginPasswordResetMessage => 'Forgot your password?';
+
+  @override
+  String get loginPasswordResetButton => 'Reset password';
+
+  @override
   String get registerTitle => 'Create an account to continue';
 
   @override
@@ -117,6 +123,36 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get registerAlreadyButton => 'Login here';
+
+  @override
+  String get resetTitle => 'Reset password.';
+
+  @override
+  String get resetEmailHint => 'Email';
+
+  @override
+  String get resetEmailValidatorMessage => 'Enter valid Email address';
+
+  @override
+  String get resetCorrectPopupTitle => 'Notification';
+
+  @override
+  String get resetCorrectPopupMessage => 'A link to change your password has been sent to your email.';
+
+  @override
+  String get resetCorrectPopupClose => 'Close';
+
+  @override
+  String get resetErrorPopupTitle => 'Attention';
+
+  @override
+  String get resetErrorPopupMessage => 'An error occured. Check that you have provided correct email address.';
+
+  @override
+  String get resetErrorPopupClose => 'Close';
+
+  @override
+  String get resetApplyButton => 'Reset';
 
   @override
   String get navbar1Item => 'Avg prices';

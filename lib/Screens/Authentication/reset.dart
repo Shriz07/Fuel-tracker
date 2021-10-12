@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Widgets/popup_dialog.dart';
+import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:provider/provider.dart';
 
@@ -28,7 +29,7 @@ class _ResetScreenState extends State<ResetScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool _isError = false;
+    var t = AppLocalizations.of(context);
 
     return Scaffold(
       body: Container(
@@ -64,7 +65,7 @@ class _ResetScreenState extends State<ResetScreen> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Text(
-                              'Zresetuj hasło',
+                              t!.resetTitle,
                               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
                             ),
                           ),
@@ -74,11 +75,11 @@ class _ResetScreenState extends State<ResetScreen> {
                     SizedBox(height: 40),
                     TextFormField(
                       controller: _emailController,
-                      validator: (val) => val!.isNotEmpty ? null : 'Podaj email',
+                      validator: (val) => val!.isNotEmpty ? null : t.resetEmailValidatorMessage,
                       decoration: InputDecoration(
                         errorStyle: TextStyle(color: Colors.yellow, fontSize: 15),
                         filled: true,
-                        hintText: 'Email',
+                        hintText: t.resetEmailHint,
                         prefixIcon: Icon(Icons.mail),
                         border: const OutlineInputBorder(),
                       ),
@@ -92,9 +93,9 @@ class _ResetScreenState extends State<ResetScreen> {
                             await showDialog(
                               context: context,
                               builder: (BuildContext context) => PopupDialog(
-                                title: 'Powiadomienie',
-                                message: 'Na twoją skrzynkę mailową został wysłany link do zmiany hasła.',
-                                close: 'Zamknij',
+                                title: t.resetCorrectPopupTitle,
+                                message: t.resetCorrectPopupMessage,
+                                close: t.resetCorrectPopupClose,
                               ),
                             );
                             Navigator.of(context).pop();
@@ -102,9 +103,9 @@ class _ResetScreenState extends State<ResetScreen> {
                             await showDialog(
                               context: context,
                               builder: (BuildContext context) => PopupDialog(
-                                title: 'Uwaga',
-                                message: 'Wystąpił błąd. Sprawdź czy podałeś poprawny email.',
-                                close: 'Zamknij',
+                                title: t.resetErrorPopupTitle,
+                                message: t.resetErrorPopupMessage,
+                                close: t.resetErrorPopupClose,
                               ),
                             );
                           }
@@ -117,7 +118,7 @@ class _ResetScreenState extends State<ResetScreen> {
                           borderRadius: BorderRadius.circular(30),
                         ),
                         child: Text(
-                          'Resetuj',
+                          t.resetApplyButton,
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -125,22 +126,6 @@ class _ResetScreenState extends State<ResetScreen> {
                         ),
                       ),
                     ),
-                    /*if (_isError == true)
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        color: Theme.of(context).indicatorColor,
-                        child: ListTile(
-                          title: Text(
-                            'Błąd',
-                            style: TextStyle(color: Theme.of(context).errorColor),
-                          ),
-                          leading: Icon(Icons.error),
-                          trailing: IconButton(
-                            icon: Icon(Icons.close),
-                            onPressed: () => _isError = false,
-                          ),
-                        ),
-                      )*/
                   ],
                 ),
               ),

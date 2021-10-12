@@ -89,8 +89,6 @@ class _LoginState extends State<Login> {
                       child: MaterialButton(
                         onPressed: () async {
                           if (_formkey.currentState!.validate()) {
-                            print(_emailController.text);
-                            print(_passwordController.text);
                             await loginProvider.login(
                               _emailController.text.trim(),
                               _passwordController.text.trim(),
@@ -149,14 +147,14 @@ class _LoginState extends State<Login> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Nie pamiętasz hasła?',
+                            t.loginPasswordResetMessage,
                             style: TextStyle(fontSize: 17, color: Colors.white),
                           ),
                           SizedBox(width: 5),
                           TextButton(
                             onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResetScreen())),
                             child: Text(
-                              'Zresetuj hasło',
+                              t.loginPasswordResetButton,
                               style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor),
                             ),
                           )

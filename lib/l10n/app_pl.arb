@@ -33,6 +33,8 @@
     "loginButtonApply": "Zaloguj",
     "loginNoAccountMessage": "Nie posiadasz konta?",
     "loginNoAccountButton": "Stwórz konto",
+    "loginPasswordResetMessage": "Nie pamiętasz hasła?",
+    "loginPasswordResetButton": "Zresetuj hasło",
 
     "registerTitle": "Stwórz konto aby kontynuować",
     "registerEmailValidatorMessage": "Podaj poprawny adres Email",
@@ -42,6 +44,17 @@
     "registerButtonApply": "Stwórz konto",
     "registerAlreadyMessage": "Posiadasz już konto?",
     "registerAlreadyButton": "Zaloguj",
+
+    "resetTitle": "Zresetuj hasło.",
+    "resetEmailHint": "Email",
+    "resetEmailValidatorMessage": "Podaj poprawny adres Email",
+    "resetCorrectPopupTitle": "Powiadomienie",
+    "resetCorrectPopupMessage": "Na twoją skrzynkę mailową został wysłany link do zmiany hasła.",
+    "resetCorrectPopupClose": "Zamknij",
+    "resetErrorPopupTitle": "Uwaga",
+    "resetErrorPopupMessage": "Wystąpił błąd. Sprawdź czy podałeś poprawny adres email.",
+    "resetErrorPopupClose": "Zamknij",
+    "resetApplyButton": "Resetuj",
 
     "navbar1Item": "Średnie ceny",
     "navbar2Item": "Stacje",
