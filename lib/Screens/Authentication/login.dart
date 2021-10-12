@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fuel_tracker/Screens/Authentication/reset.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:provider/provider.dart';
@@ -133,6 +134,29 @@ class _LoginState extends State<Login> {
                             onPressed: () => widget.toggleScreen!(),
                             child: Text(
                               t.loginNoAccountButton,
+                              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Material(
+                      color: Colors.grey.withOpacity(0.8),
+                      elevation: 10,
+                      shadowColor: Colors.grey,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Nie pamiętasz hasła?',
+                            style: TextStyle(fontSize: 17, color: Colors.white),
+                          ),
+                          SizedBox(width: 5),
+                          TextButton(
+                            onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResetScreen())),
+                            child: Text(
+                              'Zresetuj hasło',
                               style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor),
                             ),
                           )
