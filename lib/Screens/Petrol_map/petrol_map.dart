@@ -130,13 +130,13 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
             _showDialog(station);
           },
           icon: first == true ? petrolCheapestMarker : petrolMarker,
-          markerId: MarkerId(station.name),
+          markerId: MarkerId(station.place_id),
           position: LatLng(station.geometry.location.lat, station.geometry.location.lng),
           infoWindow: InfoWindow(
             title: station.name,
           ),
         );
-        _markers[station.name] = marker;
+        _markers[station.place_id] = marker;
         first = false;
       }
     });
