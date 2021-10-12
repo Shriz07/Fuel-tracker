@@ -29,6 +29,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
   final Completer<GoogleMapController> _controller = Completer();
   final FirebaseAuth auth = FirebaseAuth.instance;
   late BitmapDescriptor petrolMarker;
+  late BitmapDescriptor petrolCheapestMarker;
   late BitmapDescriptor dropIcon;
   var geolocator = Geolocator();
   final _formkey = GlobalKey<FormState>();
@@ -53,6 +54,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     _petrolONController = TextEditingController();
     _petrolLPGController = TextEditingController();
     BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5), 'assets/petrol-marker.png').then((value) => petrolMarker = value);
+    BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5), 'assets/petrol-cheapest-marker.png').then((value) => petrolCheapestMarker = value);
     BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5), 'assets/drop.png').then((value) => dropIcon = value);
   }
 
@@ -82,6 +84,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
   }
 
   Future<void> _onMapCreated(GoogleMapController controller) async {
+    var t = AppLocalizations.of(context);
     _controller.complete(controller);
     await _setMapStyle();
     var position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
@@ -96,7 +99,6 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     try {
       petrolStations = await locations.getPetrolStations(position.latitude, position.longitude);
     } catch (e) {
-      var t = AppLocalizations.of(context);
       await showDialog(
         context: context,
         builder: (BuildContext context) => PopupDialog(
@@ -107,14 +109,27 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
       );
       return;
     }
+
+    final List<Station> stations = petrolStations.stations;
+    for (final station in stations) {
+      await _db.getStation(station);
+      if (station.price95 == 'b.d.') station.price95 = '10';
+    }
+    stations.sort((a, b) => double.parse(a.price95).compareTo(double.parse(b.price95)));
+    for (final station in stations) {
+      await _db.getStation(station);
+      if (station.price95 == '10') station.price95 = 'b.d.';
+    }
+
     setState(() {
       _markers.clear();
-      for (final station in petrolStations.stations) {
+      var first = true;
+      for (final station in stations) {
         final marker = Marker(
           onTap: () {
             _showDialog(station);
           },
-          icon: petrolMarker,
+          icon: first == true ? petrolCheapestMarker : petrolMarker,
           markerId: MarkerId(station.name),
           position: LatLng(station.geometry.location.lat, station.geometry.location.lng),
           infoWindow: InfoWindow(
@@ -122,8 +137,10 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
           ),
         );
         _markers[station.name] = marker;
+        first = false;
       }
     });
+    print(_markers.length);
   }
 
   @override

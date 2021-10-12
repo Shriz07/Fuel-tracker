@@ -73,6 +73,7 @@ flutter:
     - assets/petrolONplus.png
     - assets/petrolLPG.png
     - assets/petrol-marker.png
+    - assets/petrol-cheapest-marker.png
     - assets/login-background.png
     - assets/drop.png
     - assets/logo.png
