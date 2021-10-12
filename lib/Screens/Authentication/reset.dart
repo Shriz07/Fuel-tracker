@@ -88,26 +88,28 @@ class _ResetScreenState extends State<ResetScreen> {
                     Center(
                       child: MaterialButton(
                         onPressed: () async {
-                          try {
-                            await auth.sendPasswordResetEmail(email: _emailController.text.trim());
-                            await showDialog(
-                              context: context,
-                              builder: (BuildContext context) => PopupDialog(
-                                title: t.resetCorrectPopupTitle,
-                                message: t.resetCorrectPopupMessage,
-                                close: t.resetCorrectPopupClose,
-                              ),
-                            );
-                            Navigator.of(context).pop();
-                          } on FirebaseAuthException catch (e) {
-                            await showDialog(
-                              context: context,
-                              builder: (BuildContext context) => PopupDialog(
-                                title: t.resetErrorPopupTitle,
-                                message: t.resetErrorPopupMessage,
-                                close: t.resetErrorPopupClose,
-                              ),
-                            );
+                          if (_formkey.currentState!.validate()) {
+                            try {
+                              await auth.sendPasswordResetEmail(email: _emailController.text.trim());
+                              await showDialog(
+                                context: context,
+                                builder: (BuildContext context) => PopupDialog(
+                                  title: t.resetCorrectPopupTitle,
+                                  message: t.resetCorrectPopupMessage,
+                                  close: t.resetCorrectPopupClose,
+                                ),
+                              );
+                              Navigator.of(context).pop();
+                            } on FirebaseAuthException catch (e) {
+                              await showDialog(
+                                context: context,
+                                builder: (BuildContext context) => PopupDialog(
+                                  title: t.resetErrorPopupTitle,
+                                  message: t.resetErrorPopupMessage,
+                                  close: t.resetErrorPopupClose,
+                                ),
+                              );
+                            }
                           }
                         },
                         height: 70,
