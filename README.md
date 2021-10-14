@@ -14,9 +14,15 @@ Fuel tracker is a mobile app that allows users to track fuel prices and share ac
 
 <img src="screenshots/map_whole.jpg" width="300" />
 
+## Avarage petrol prices in voivodships across Poland
+
+Fuel Tracker allows you to check avarage petrol prices (PB95, PB96, ON, ON+, LPG) in voivodships across Poland.
+
+<img src="screenshots/prices_poland.jpg" width="250" />
+
 ## Avarage petrol prices in selected countries
 
-App allows you to check avarage petrol prices (PB95, ON) in selected countries in Europe.
+App also allows you to check avarage petrol prices (PB95, ON) in selected countries in Europe.
 
 <img src="screenshots/prices_abroad.jpg" width="250" />
 
@@ -43,8 +49,3 @@ User can set reminder for insurance and technical inspection of his car. Notific
 Application has two color styles - light and dark.
 
 <img src="screenshots/light_dark.jpg" width="450" />
-
-
-
-
-- checking avarage petrol prices (PB95, PB98, ON, ON+, LPG) in regions across Poland
