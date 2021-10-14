@@ -140,7 +140,6 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
         first = false;
       }
     });
-    print(_markers.length);
   }
 
   @override
