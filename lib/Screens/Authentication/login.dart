@@ -89,6 +89,7 @@ class _LoginState extends State<Login> {
                       child: MaterialButton(
                         onPressed: () async {
                           if (_formkey.currentState!.validate()) {
+                            FocusScope.of(context).requestFocus(FocusNode());
                             await loginProvider.login(
                               _emailController.text.trim(),
                               _passwordController.text.trim(),
