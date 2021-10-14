@@ -77,28 +77,9 @@ class _LoginState extends State<Register> {
                       ),
                     ),
                     SizedBox(height: 30),
-                    TextFormField(
-                      controller: _emailController,
-                      validator: (val) => val!.isNotEmpty ? null : t.registerEmailValidatorMessage,
-                      decoration: InputDecoration(
-                        filled: true,
-                        hintText: t.registerEmailHint,
-                        prefixIcon: Icon(Icons.mail),
-                        border: const OutlineInputBorder(),
-                      ),
-                    ),
+                    registerFormField(_emailController, (val) => val!.isNotEmpty ? null : t.registerEmailValidatorMessage, t.registerEmailHint, Icon(Icons.mail), false),
                     SizedBox(height: 30),
-                    TextFormField(
-                      controller: _passwordController,
-                      validator: (val) => val!.length < 6 ? t.registerPasswordValidatorMessage : null,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        filled: true,
-                        hintText: t.registerPasswordHint,
-                        prefixIcon: Icon(Icons.vpn_key),
-                        border: const OutlineInputBorder(),
-                      ),
-                    ),
+                    registerFormField(_passwordController, (val) => val!.length < 6 ? t.registerPasswordValidatorMessage : null, t.registerPasswordHint, Icon(Icons.vpn_key), true),
                     SizedBox(height: 30),
                     Center(
                       child: MaterialButton(
@@ -176,6 +157,21 @@ class _LoginState extends State<Register> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget registerFormField(TextEditingController controller, FormFieldValidator<String> validator, String hintText, Icon icon, bool obscure) {
+    return TextFormField(
+      controller: controller,
+      validator: validator,
+      obscureText: obscure,
+      decoration: InputDecoration(
+        errorStyle: TextStyle(color: Colors.yellow, fontSize: 15),
+        filled: true,
+        hintText: hintText,
+        prefixIcon: icon,
+        border: const OutlineInputBorder(),
       ),
     );
   }

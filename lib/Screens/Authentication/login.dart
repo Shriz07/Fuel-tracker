@@ -60,30 +60,9 @@ class _LoginState extends State<Login> {
                       image: AssetImage('assets/logo.png'),
                     )),
                     SizedBox(height: 40),
-                    TextFormField(
-                      controller: _emailController,
-                      validator: (val) => val!.isNotEmpty ? null : t!.loginEmailValidatorMessage,
-                      decoration: InputDecoration(
-                        errorStyle: TextStyle(color: Colors.yellow, fontSize: 15),
-                        filled: true,
-                        hintText: t!.loginEmailHint,
-                        prefixIcon: Icon(Icons.mail),
-                        border: const OutlineInputBorder(),
-                      ),
-                    ),
+                    loginFormField(_emailController, (val) => val!.isNotEmpty ? null : t!.loginEmailValidatorMessage, t!.loginEmailHint, Icon(Icons.mail), false),
                     SizedBox(height: 30),
-                    TextFormField(
-                      controller: _passwordController,
-                      validator: (val) => val!.length < 6 ? t.loginPasswordValidatorMessage : null,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        errorStyle: TextStyle(color: Colors.yellow, fontSize: 15),
-                        filled: true,
-                        hintText: t.loginPasswordHint,
-                        prefixIcon: Icon(Icons.vpn_key),
-                        border: const OutlineInputBorder(),
-                      ),
-                    ),
+                    loginFormField(_passwordController, (val) => val!.length < 6 ? t.loginPasswordValidatorMessage : null, t.loginPasswordHint, Icon(Icons.vpn_key), true),
                     SizedBox(height: 30),
                     Center(
                       child: MaterialButton(
@@ -117,51 +96,9 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     SizedBox(height: 20),
-                    Material(
-                      color: Colors.grey.withOpacity(0.8),
-                      elevation: 10,
-                      shadowColor: Colors.grey,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            t.loginNoAccountMessage,
-                            style: TextStyle(fontSize: 17, color: Colors.white),
-                          ),
-                          SizedBox(width: 5),
-                          TextButton(
-                            onPressed: () => widget.toggleScreen!(),
-                            child: Text(
-                              t.loginNoAccountButton,
-                              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                    textLink(t.loginNoAccountMessage, t.loginNoAccountButton, () => widget.toggleScreen!()),
                     SizedBox(height: 20),
-                    Material(
-                      color: Colors.grey.withOpacity(0.8),
-                      elevation: 10,
-                      shadowColor: Colors.grey,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            t.loginPasswordResetMessage,
-                            style: TextStyle(fontSize: 17, color: Colors.white),
-                          ),
-                          SizedBox(width: 5),
-                          TextButton(
-                            onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResetScreen())),
-                            child: Text(
-                              t.loginPasswordResetButton,
-                              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                    textLink(t.loginPasswordResetMessage, t.loginPasswordResetButton, () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResetScreen()))),
                     SizedBox(height: 20),
                     if (loginProvider.errorMessage != '')
                       Container(
@@ -185,6 +122,46 @@ class _LoginState extends State<Login> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget loginFormField(TextEditingController controller, FormFieldValidator<String> validator, String hintText, Icon icon, bool obscure) {
+    return TextFormField(
+      controller: controller,
+      validator: validator,
+      obscureText: obscure,
+      decoration: InputDecoration(
+        errorStyle: TextStyle(color: Colors.yellow, fontSize: 15),
+        filled: true,
+        hintText: hintText,
+        prefixIcon: icon,
+        border: const OutlineInputBorder(),
+      ),
+    );
+  }
+
+  Widget textLink(String text, String referenceText, VoidCallback? navigateToScreen) {
+    return Material(
+      color: Colors.grey.withOpacity(0.8),
+      elevation: 10,
+      shadowColor: Colors.grey,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            text,
+            style: TextStyle(fontSize: 17, color: Colors.white),
+          ),
+          SizedBox(width: 5),
+          TextButton(
+            onPressed: navigateToScreen,
+            child: Text(
+              referenceText,
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor),
+            ),
+          )
+        ],
       ),
     );
   }
