@@ -264,4 +264,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pricesAbroadTableTitle => 'Country';
+
+  @override
+  String get settingsNavbarTitle => 'Settings';
+
+  @override
+  String get settingsDarkMode => 'Dark mode';
 }

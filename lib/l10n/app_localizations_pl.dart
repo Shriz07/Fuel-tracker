@@ -264,4 +264,10 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get pricesAbroadTableTitle => 'Kraj';
+
+  @override
+  String get settingsNavbarTitle => 'Ustawienia';
+
+  @override
+  String get settingsDarkMode => 'Tryb ciemny';
 }

@@ -99,5 +99,8 @@
     "chartsXLabel": "Data",
 
     "pricesAbroadTitle": "Ceny paliw za granicą",
-    "pricesAbroadTableTitle": "Kraj"
+    "pricesAbroadTableTitle": "Kraj",
+
+    "settingsNavbarTitle": "Ustawienia",
+    "settingsDarkMode": "Tryb ciemny"
 }

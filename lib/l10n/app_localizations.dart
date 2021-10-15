@@ -609,6 +609,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Country'**
   String get pricesAbroadTableTitle;
+
+  /// No description provided for @settingsNavbarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsNavbarTitle;
+
+  /// No description provided for @settingsDarkMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark mode'**
+  String get settingsDarkMode;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

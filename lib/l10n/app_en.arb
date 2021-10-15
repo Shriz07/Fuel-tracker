@@ -99,5 +99,8 @@
     "chartsXLabel": "Date",
 
     "pricesAbroadTitle": "Petrol prices abroad",
-    "pricesAbroadTableTitle": "Country"
+    "pricesAbroadTableTitle": "Country",
+
+    "settingsNavbarTitle": "Settings",
+    "settingsDarkMode": "Dark mode"
 }
