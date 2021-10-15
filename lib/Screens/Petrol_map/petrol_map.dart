@@ -157,18 +157,6 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
           ),
         ),
         title: Text(t!.petrolMapTitle, style: TextStyle(color: Colors.white)),
-        actions: [
-          IconButton(
-              onPressed: () {
-                setState(() {
-                  themeChange.darkTheme = !themeChange.darkTheme;
-                  isDark = themeChange.darkTheme;
-                  _setMapStyle();
-                });
-              },
-              icon: Icon(Icons.dark_mode_outlined),
-              color: Colors.white),
-        ],
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient:
