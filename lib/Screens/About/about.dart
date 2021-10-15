@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fuel_tracker/Widgets/app_bar.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 
 class AboutScreen extends StatelessWidget {
@@ -6,25 +7,7 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var t = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(
-        leading: Builder(
-          builder: (context) => IconButton(
-              onPressed: () => Navigator.of(context).pop(),
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-              )),
-        ),
-        title: Text(
-          t!.aboutTitle,
-          style: TextStyle(color: Colors.white),
-        ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              gradient:
-                  LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
-        ),
-      ),
+      appBar: MyAppBar(context, t!.aboutTitle, false),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(

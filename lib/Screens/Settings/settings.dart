@@ -20,7 +20,7 @@ class _MyAppState extends State<Settings> {
     var t = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: MyAppBar(context, t!.settingsNavbarTitle),
+      appBar: MyAppBar(context, t!.settingsNavbarTitle, false),
       drawer: MyDrawer(loginProvider),
       body: Container(
         alignment: Alignment.topCenter,

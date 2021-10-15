@@ -69,7 +69,7 @@ class _MyAppState extends State<Calculator> {
     var t = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: MyAppBar(context, t!.calculatorTitle),
+      appBar: MyAppBar(context, t!.calculatorTitle, true),
       drawer: MyDrawer(loginProvider),
       body: Container(
         child: SafeArea(

@@ -55,25 +55,7 @@ class _CarNotificationsState extends State<CarNotifications> {
     var t = AppLocalizations.of(context);
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
-        appBar: AppBar(
-          leading: Builder(
-            builder: (context) => IconButton(
-                onPressed: () => Navigator.of(context).pop(),
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                )),
-          ),
-          title: Text(
-            t!.notificationsTitle,
-            style: TextStyle(color: Colors.white),
-          ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient:
-                    LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
-          ),
-        ),
+        appBar: MyAppBar(context, t!.notificationsTitle, false),
         body: FutureBuilder<List>(
           future: getNotifications(),
           builder: (context, AsyncSnapshot<List> snapshot) {

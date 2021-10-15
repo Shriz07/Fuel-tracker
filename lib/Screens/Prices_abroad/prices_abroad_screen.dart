@@ -58,7 +58,7 @@ class _MyAppState extends State<PricesAbroad> {
     var t = AppLocalizations.of(context);
     final loginProvider = Provider.of<AuthServices>(context);
     return Scaffold(
-        appBar: MyAppBar(context, t!.pricesAbroadTitle),
+        appBar: MyAppBar(context, t!.pricesAbroadTitle, false),
         drawer: MyDrawer(loginProvider),
         body: FutureBuilder<List>(
           future: getPrices(),

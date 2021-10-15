@@ -149,20 +149,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     final loginProvider = Provider.of<AuthServices>(context);
     isDark = themeChange.darkTheme;
     return Scaffold(
-      appBar: AppBar(
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(Icons.menu, color: Colors.white),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
-        title: Text(t!.petrolMapTitle, style: TextStyle(color: Colors.white)),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              gradient:
-                  LinearGradient(begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
-        ),
-      ),
+      appBar: MyAppBar(context, t!.petrolMapTitle, true),
       drawer: MyDrawer(loginProvider),
       body: GoogleMap(
         myLocationButtonEnabled: true,
