@@ -31,9 +31,6 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            /*CustomListTile(Icons.home, 'Ekran główny', () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-            }),*/
             CustomListTile(Icons.price_change, t.drawerPricesAbroad, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => PricesAbroad()));
             }),
