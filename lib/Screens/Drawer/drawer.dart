@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/About/about.dart';
 import 'package:fuel_tracker/Screens/Car_Notifications/car_notifications_screen.dart';
+import 'package:fuel_tracker/Screens/Home_screen/home_screen.dart';
 import 'package:fuel_tracker/Screens/Petrol_charts/charts.dart';
 import 'package:fuel_tracker/Screens/Prices_abroad/prices_abroad_screen.dart';
 import 'package:fuel_tracker/Screens/Settings/settings.dart';
@@ -30,6 +31,9 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
+            CustomListTile(Icons.home, 'Ekran główny', () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+            }),
             CustomListTile(Icons.price_change, t.drawerPricesAbroad, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => PricesAbroad()));
             }),
