@@ -3,10 +3,9 @@ import 'package:fuel_tracker/Screens/About/about.dart';
 import 'package:fuel_tracker/Screens/Car_Notifications/car_notifications_screen.dart';
 import 'package:fuel_tracker/Screens/Petrol_charts/charts.dart';
 import 'package:fuel_tracker/Screens/Prices_abroad/prices_abroad_screen.dart';
+import 'package:fuel_tracker/Screens/Settings/settings.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
-import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
-import 'package:provider/provider.dart';
 
 class MyDrawer extends StatelessWidget {
   MyDrawer(this.loginProvider);
@@ -40,7 +39,9 @@ class MyDrawer extends StatelessWidget {
             CustomListTile(Icons.bar_chart, t.drawerCharts, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => Charts()));
             }),
-            CustomListTile(Icons.settings, t.drawerSettings, () {}),
+            CustomListTile(Icons.settings, t.drawerSettings, () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Settings()));
+            }),
             CustomListTile(Icons.info, t.drawerAbout, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => AboutScreen()));
             }),
