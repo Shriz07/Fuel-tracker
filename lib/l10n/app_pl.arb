@@ -14,6 +14,7 @@
     "petrolMapSaveSuccessTitle": "Powiadomienie",
     "petrolMapSaveSuccessMessage": "Ceny zostały zaaktualizowane.",
     "petrolMapSaveSuccessClose": "Zamknij",
+    "petrolMapDataLoadIndicator": "Szukam stacji w pobliżu...",
 
     "petrolMapWarningNoInternet": "Brak połączenia z internetem. Dane nie mogą zostać pobrane.",
 

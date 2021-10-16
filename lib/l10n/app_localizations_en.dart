@@ -47,6 +47,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get petrolMapSaveSuccessClose => 'Close';
 
   @override
+  String get petrolMapDataLoadIndicator => 'Finding nearby petrol stations...';
+
+  @override
   String get petrolMapWarningNoInternet => 'No internet connection. Data could not be downloaded.';
 
   @override

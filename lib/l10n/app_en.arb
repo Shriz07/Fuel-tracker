@@ -14,6 +14,7 @@
     "petrolMapSaveSuccessTitle": "Notification",
     "petrolMapSaveSuccessMessage": "Prices have been updated.",
     "petrolMapSaveSuccessClose": "Close",
+    "petrolMapDataLoadIndicator": "Finding nearby petrol stations...",
 
     "petrolMapWarningNoInternet": "No internet connection. Data could not be downloaded.",
 

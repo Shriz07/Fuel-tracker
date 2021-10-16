@@ -172,6 +172,12 @@ abstract class AppLocalizations {
   /// **'Close'**
   String get petrolMapSaveSuccessClose;
 
+  /// No description provided for @petrolMapDataLoadIndicator.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding nearby petrol stations...'**
+  String get petrolMapDataLoadIndicator;
+
   /// No description provided for @petrolMapWarningNoInternet.
   ///
   /// In en, this message translates to:
