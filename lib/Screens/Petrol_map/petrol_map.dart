@@ -344,6 +344,9 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
       station.updateUserID = uid;
       _db.addStation(station);
       Navigator.of(context).pop();
+      showDialog(
+          context: context,
+          builder: (BuildContext context) => PopupDialog(title: t!.petrolMapSaveSuccessTitle, message: t.petrolMapSaveSuccessMessage, close: t.petrolMapSaveSuccessClose));
     } else {
       showDialog(
           context: context, builder: (BuildContext context) => PopupDialog(title: t!.petrolMapWarningTitle, message: t.petrolMapWarningMessage, close: t.petrolMapWarningClose));
