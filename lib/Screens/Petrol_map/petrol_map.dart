@@ -41,6 +41,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
   String _darkMapStyle = '';
   String _lightMapStyle = '';
   bool isDark = false;
+  bool _dataWasLoaded = false;
 
   final Map<String, Marker> _markers = {};
 
@@ -140,6 +141,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
         first = false;
       }
     });
+    _dataWasLoaded = true;
   }
 
   @override
@@ -151,15 +153,51 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     return Scaffold(
       appBar: MyAppBar(context, t!.petrolMapTitle, true),
       drawer: MyDrawer(loginProvider),
-      body: GoogleMap(
-        myLocationButtonEnabled: true,
-        myLocationEnabled: true,
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: const LatLng(51.7592, 19.4560),
-          zoom: 4,
-        ),
-        markers: _markers.values.toSet(),
+      body: Stack(
+        children: <Widget>[
+          GoogleMap(
+            myLocationButtonEnabled: true,
+            myLocationEnabled: true,
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: CameraPosition(
+              target: const LatLng(51.7592, 19.4560),
+              zoom: 4,
+            ),
+            markers: _markers.values.toSet(),
+          ),
+          _dataWasLoaded == false
+              ? Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Center(
+                      child: Container(
+                        height: 100,
+                        width: 250,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          gradient: LinearGradient(
+                              begin: Alignment.topCenter, end: Alignment(0.0, 2), colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor]),
+                        ),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Column(
+                              children: <Widget>[
+                                Text(t.petrolMapDataLoadIndicator, style: TextStyle(fontSize: 17, color: Colors.white)),
+                                SizedBox(height: 10),
+                                CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : Container(),
+        ],
       ),
     );
   }
