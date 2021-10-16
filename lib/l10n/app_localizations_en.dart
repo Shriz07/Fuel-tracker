@@ -38,6 +38,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get petrolMapWarningClose => 'Close';
 
   @override
+  String get petrolMapSaveSuccessTitle => 'Notification';
+
+  @override
+  String get petrolMapSaveSuccessMessage => 'Prices have been updated.';
+
+  @override
+  String get petrolMapSaveSuccessClose => 'Close';
+
+  @override
   String get petrolMapWarningNoInternet => 'No internet connection. Data could not be downloaded.';
 
   @override

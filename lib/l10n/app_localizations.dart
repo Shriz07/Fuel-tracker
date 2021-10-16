@@ -154,6 +154,24 @@ abstract class AppLocalizations {
   /// **'Close'**
   String get petrolMapWarningClose;
 
+  /// No description provided for @petrolMapSaveSuccessTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification'**
+  String get petrolMapSaveSuccessTitle;
+
+  /// No description provided for @petrolMapSaveSuccessMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Prices have been updated.'**
+  String get petrolMapSaveSuccessMessage;
+
+  /// No description provided for @petrolMapSaveSuccessClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get petrolMapSaveSuccessClose;
+
   /// No description provided for @petrolMapWarningNoInternet.
   ///
   /// In en, this message translates to:

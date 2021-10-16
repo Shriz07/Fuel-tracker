@@ -11,6 +11,9 @@
     "petrolMapWarningTitle": "Ostrzeżenie",
     "petrolMapWarningMessage": "Niepoprawny zakres ceny. Ceny powinny być w realnym zakresie",
     "petrolMapWarningClose": "Zamknij",
+    "petrolMapSaveSuccessTitle": "Powiadomienie",
+    "petrolMapSaveSuccessMessage": "Ceny zostały zaaktualizowane.",
+    "petrolMapSaveSuccessClose": "Zamknij",
 
     "petrolMapWarningNoInternet": "Brak połączenia z internetem. Dane nie mogą zostać pobrane.",
 

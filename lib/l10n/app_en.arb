@@ -11,6 +11,9 @@
     "petrolMapWarningTitle": "Warning",
     "petrolMapWarningMessage": "Invalid price range. Please provide real data.",
     "petrolMapWarningClose": "Close",
+    "petrolMapSaveSuccessTitle": "Notification",
+    "petrolMapSaveSuccessMessage": "Prices have been updated.",
+    "petrolMapSaveSuccessClose": "Close",
 
     "petrolMapWarningNoInternet": "No internet connection. Data could not be downloaded.",
 
