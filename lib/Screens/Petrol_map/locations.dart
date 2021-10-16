@@ -107,7 +107,7 @@ Future<Locations> getPetrolStations(double lat, double lng) async {
       lat.toString() +
       ',' +
       lng.toString() +
-      '&opennow&radius=15000&type=gas_station&key=AIzaSyA9G5AZzH5uPhA-p5K1jU7J98bwveQe0XI';
+      '&opennow&radius=10000&type=gas_station&key=AIzaSyA9G5AZzH5uPhA-p5K1jU7J98bwveQe0XI';
 
   final response = await http.get(Uri.parse(petrolLocationsURL));
   if (response.statusCode == 200) {
