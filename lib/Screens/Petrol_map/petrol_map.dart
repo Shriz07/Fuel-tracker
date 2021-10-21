@@ -381,6 +381,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     if (dataChanged) {
       station.updateUserID = uid;
       _db.addStation(station);
+      _db.incrementUserStats(auth.currentUser!.uid);
       Navigator.of(context).pop();
       showDialog(
           context: context,
