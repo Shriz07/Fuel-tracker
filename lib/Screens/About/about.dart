@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Widgets/app_bar.dart';
+import 'package:fuel_tracker/Widgets/authentication_widgets.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
+import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var t = AppLocalizations.of(context);
+    final themeChange = Provider.of<DarkThemeProvider>(context);
+
     return Scaffold(
       appBar: MyAppBar(context, t!.aboutTitle, false),
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/login-background.png'),
-            fit: BoxFit.cover,
-          ),
+          image: CustomDecorationImage(themeChange.darkTheme),
         ),
         constraints: BoxConstraints.expand(),
         child: SafeArea(
@@ -29,9 +32,12 @@ class AboutScreen extends StatelessWidget {
                     image: AssetImage('assets/logo.png'),
                   )),
                   SizedBox(height: 40),
-                  CustomTextBox(t.aboutVersion, 'v0.5'),
+                  CustomTextBox(t.aboutVersion, 'v0.9'),
                   SizedBox(height: 20),
-                  CustomTextBox(t.aboutAuthor, 'Adam Mąkiewicz'),
+                  InkWell(
+                    child: CustomTextBox(t.aboutAuthor, 'Adam Mąkiewicz'),
+                    onTap: () => launch('https://github.com/Shriz07'),
+                  ),
                 ],
               ),
             ),
