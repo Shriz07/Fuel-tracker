@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Screens/Authentication/reset.dart';
+import 'package:fuel_tracker/Widgets/authentication_widgets.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
+import 'package:fuel_tracker/services/dark_mode/dark_theme_preference.dart';
+import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
@@ -36,13 +39,12 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<AuthServices>(context);
     var t = AppLocalizations.of(context);
+    final themeChange = Provider.of<DarkThemeProvider>(context);
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/login-background.png'),
-            fit: BoxFit.cover,
-          ),
+          image: CustomDecorationImage(themeChange.darkTheme),
         ),
         constraints: BoxConstraints.expand(),
         child: SafeArea(
@@ -60,9 +62,9 @@ class _LoginState extends State<Login> {
                       image: AssetImage('assets/logo.png'),
                     )),
                     SizedBox(height: 40),
-                    loginFormField(_emailController, (val) => val!.isNotEmpty ? null : t!.loginEmailValidatorMessage, t!.loginEmailHint, Icon(Icons.mail), false),
+                    authenticationFormField(_emailController, (val) => val!.isNotEmpty ? null : t!.loginEmailValidatorMessage, t!.loginEmailHint, Icon(Icons.mail), false),
                     SizedBox(height: 30),
-                    loginFormField(_passwordController, (val) => val!.length < 6 ? t.loginPasswordValidatorMessage : null, t.loginPasswordHint, Icon(Icons.vpn_key), true),
+                    authenticationFormField(_passwordController, (val) => val!.length < 6 ? t.loginPasswordValidatorMessage : null, t.loginPasswordHint, Icon(Icons.vpn_key), true),
                     SizedBox(height: 30),
                     Center(
                       child: MaterialButton(
@@ -122,46 +124,6 @@ class _LoginState extends State<Login> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget loginFormField(TextEditingController controller, FormFieldValidator<String> validator, String hintText, Icon icon, bool obscure) {
-    return TextFormField(
-      controller: controller,
-      validator: validator,
-      obscureText: obscure,
-      decoration: InputDecoration(
-        errorStyle: TextStyle(color: Colors.yellow, fontSize: 15),
-        filled: true,
-        hintText: hintText,
-        prefixIcon: icon,
-        border: const OutlineInputBorder(),
-      ),
-    );
-  }
-
-  Widget textLink(String text, String referenceText, VoidCallback? navigateToScreen) {
-    return Material(
-      color: Colors.grey.withOpacity(0.8),
-      elevation: 10,
-      shadowColor: Colors.grey,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            text,
-            style: TextStyle(fontSize: 17, color: Colors.white),
-          ),
-          SizedBox(width: 5),
-          TextButton(
-            onPressed: navigateToScreen,
-            child: Text(
-              referenceText,
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor),
-            ),
-          )
-        ],
       ),
     );
   }

@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fuel_tracker/Widgets/authentication_widgets.dart';
 import 'package:fuel_tracker/Widgets/popup_dialog.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
-import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
+import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class ResetScreen extends StatefulWidget {
@@ -30,14 +31,12 @@ class _ResetScreenState extends State<ResetScreen> {
   @override
   Widget build(BuildContext context) {
     var t = AppLocalizations.of(context);
+    final themeChange = Provider.of<DarkThemeProvider>(context);
 
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/login-background.png'),
-            fit: BoxFit.cover,
-          ),
+          image: CustomDecorationImage(themeChange.darkTheme),
         ),
         constraints: BoxConstraints.expand(),
         child: SafeArea(
@@ -73,17 +72,7 @@ class _ResetScreenState extends State<ResetScreen> {
                       ),
                     ),
                     SizedBox(height: 40),
-                    TextFormField(
-                      controller: _emailController,
-                      validator: (val) => val!.isNotEmpty ? null : t.resetEmailValidatorMessage,
-                      decoration: InputDecoration(
-                        errorStyle: TextStyle(color: Colors.yellow, fontSize: 15),
-                        filled: true,
-                        hintText: t.resetEmailHint,
-                        prefixIcon: Icon(Icons.mail),
-                        border: const OutlineInputBorder(),
-                      ),
-                    ),
+                    authenticationFormField(_emailController, (val) => val!.isNotEmpty ? null : t.resetEmailValidatorMessage, t.resetEmailHint, Icon(Icons.mail), false),
                     SizedBox(height: 30),
                     Center(
                       child: MaterialButton(

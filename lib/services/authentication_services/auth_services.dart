@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class AuthServices with ChangeNotifier {
   bool _isLoading = false;
@@ -14,8 +13,7 @@ class AuthServices with ChangeNotifier {
   Future register(String email, String password) async {
     setLoading(true);
     try {
-      var authResult = await firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      var authResult = await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
       var user = authResult.user;
       setLoading(false);
       return user;
@@ -39,8 +37,7 @@ class AuthServices with ChangeNotifier {
   Future login(String email, String password) async {
     setLoading(true);
     try {
-      var authResult = await firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
+      var authResult = await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
       var user = authResult.user;
       setLoading(false);
       return user;
@@ -78,6 +75,5 @@ class AuthServices with ChangeNotifier {
     notifyListeners();
   }
 
-  Stream<User?> get user =>
-      firebaseAuth.authStateChanges().map((event) => event);
+  Stream<User?> get user => firebaseAuth.authStateChanges().map((event) => event);
 }

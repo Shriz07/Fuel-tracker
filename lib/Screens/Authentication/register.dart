@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fuel_tracker/Widgets/authentication_widgets.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
+import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class Register extends StatefulWidget {
@@ -35,13 +37,12 @@ class _LoginState extends State<Register> {
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<AuthServices>(context);
     var t = AppLocalizations.of(context);
+    final themeChange = Provider.of<DarkThemeProvider>(context);
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/login-background.png'),
-            fit: BoxFit.cover,
-          ),
+          image: CustomDecorationImage(themeChange.darkTheme),
         ),
         constraints: BoxConstraints.expand(),
         child: SafeArea(
@@ -77,9 +78,10 @@ class _LoginState extends State<Register> {
                       ),
                     ),
                     SizedBox(height: 30),
-                    registerFormField(_emailController, (val) => val!.isNotEmpty ? null : t.registerEmailValidatorMessage, t.registerEmailHint, Icon(Icons.mail), false),
+                    authenticationFormField(_emailController, (val) => val!.isNotEmpty ? null : t.registerEmailValidatorMessage, t.registerEmailHint, Icon(Icons.mail), false),
                     SizedBox(height: 30),
-                    registerFormField(_passwordController, (val) => val!.length < 6 ? t.registerPasswordValidatorMessage : null, t.registerPasswordHint, Icon(Icons.vpn_key), true),
+                    authenticationFormField(
+                        _passwordController, (val) => val!.length < 6 ? t.registerPasswordValidatorMessage : null, t.registerPasswordHint, Icon(Icons.vpn_key), true),
                     SizedBox(height: 30),
                     Center(
                       child: MaterialButton(
@@ -128,7 +130,7 @@ class _LoginState extends State<Register> {
                             onPressed: () => widget.toggleScreen(),
                             child: Text(
                               t.registerAlreadyButton,
-                              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.lightGreen),
                             ),
                           )
                         ],
@@ -157,21 +159,6 @@ class _LoginState extends State<Register> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget registerFormField(TextEditingController controller, FormFieldValidator<String> validator, String hintText, Icon icon, bool obscure) {
-    return TextFormField(
-      controller: controller,
-      validator: validator,
-      obscureText: obscure,
-      decoration: InputDecoration(
-        errorStyle: TextStyle(color: Colors.yellow, fontSize: 15),
-        filled: true,
-        hintText: hintText,
-        prefixIcon: icon,
-        border: const OutlineInputBorder(),
       ),
     );
   }
