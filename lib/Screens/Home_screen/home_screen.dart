@@ -59,7 +59,7 @@ class _MyStatefulWidgetState extends State<HomeScreen> {
           },
           backgroundColor: Theme.of(context).backgroundColor,
           color: Theme.of(context).primaryColor,
-          height: 50.0,
+          height: 55.0,
         ),
       ),
     );
