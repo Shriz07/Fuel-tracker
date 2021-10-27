@@ -3,6 +3,7 @@ import 'package:fuel_tracker/Screens/Avg_Prices/avg_prices.dart';
 import 'package:fuel_tracker/Screens/Calculator/calculator.dart';
 import 'package:fuel_tracker/Screens/Petrol_map/petrol_map.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -35,24 +36,30 @@ class _MyStatefulWidgetState extends State<HomeScreen> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment(0.0, 2), end: Alignment.topCenter, colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
-        child: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.attach_money),
-              label: t!.navbar1Item,
+        child: CurvedNavigationBar(
+          items: <Widget>[
+            Icon(
+              Icons.attach_money,
+              color: Colors.white,
+              size: 30.0,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.map),
-              label: t.navbar2Item,
+            Icon(
+              Icons.map,
+              color: Colors.white,
+              size: 30.0,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.calculate),
-              label: t.navbar3Item,
+            Icon(
+              Icons.calculate,
+              color: Colors.white,
+              size: 30.0,
             ),
           ],
-          backgroundColor: Colors.transparent,
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
+          onTap: (index) {
+            _onItemTapped(index);
+          },
+          backgroundColor: Theme.of(context).backgroundColor,
+          color: Theme.of(context).primaryColor,
+          height: 50.0,
         ),
       ),
     );
