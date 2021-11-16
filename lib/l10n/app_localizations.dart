@@ -148,6 +148,12 @@ abstract class AppLocalizations {
   /// **'Invalid price range. Please provide real data.'**
   String get petrolMapWarningMessage;
 
+  /// No description provided for @petrolMapTooFastUpdateWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'You are trying to update prices too often. Please try again in a few minutes.'**
+  String get petrolMapTooFastUpdateWarning;
+
   /// No description provided for @petrolMapWarningClose.
   ///
   /// In en, this message translates to:

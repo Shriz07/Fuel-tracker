@@ -35,6 +35,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get petrolMapWarningMessage => 'Invalid price range. Please provide real data.';
 
   @override
+  String get petrolMapTooFastUpdateWarning => 'You are trying to update prices too often. Please try again in a few minutes.';
+
+  @override
   String get petrolMapWarningClose => 'Close';
 
   @override

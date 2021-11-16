@@ -10,6 +10,7 @@
     "petrolMapSave": "Save",
     "petrolMapWarningTitle": "Warning",
     "petrolMapWarningMessage": "Invalid price range. Please provide real data.",
+    "petrolMapTooFastUpdateWarning": "You are trying to update prices too often. Please try again in a few minutes.",
     "petrolMapWarningClose": "Close",
     "petrolMapSaveSuccessTitle": "Notification",
     "petrolMapSaveSuccessMessage": "Prices have been updated.",
