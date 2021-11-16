@@ -2,12 +2,14 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
 import 'package:fuel_tracker/Screens/Petrol_map/locations.dart';
+import 'package:fuel_tracker/Screens/Petrol_map/user_stats.dart';
 import 'package:fuel_tracker/Widgets/app_bar.dart';
 import 'package:fuel_tracker/Widgets/popup_dialog.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
@@ -328,6 +330,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
           ? Text(t!.petrolMapLastUpdateNever)
           : Text(
               t!.petrolMapLastUpdate + timeAgo.format(station.updateTimestamp.toDate(), locale: t.appLocale),
+              textAlign: TextAlign.center,
             ),
     );
   }
@@ -353,7 +356,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     );
   }
 
-  void updatePrices(Station station) {
+  void updatePrices(Station station) async {
     var t = AppLocalizations.of(context);
     final user = auth.currentUser;
     final uid = user!.uid;
@@ -379,15 +382,30 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
       dataChanged = true;
     }
     if (dataChanged) {
-      station.updateUserID = uid;
-      _db.addStation(station);
-      _db.incrementUserStats(auth.currentUser!.uid);
-      Navigator.of(context).pop();
-      showDialog(
-          context: context,
-          builder: (BuildContext context) => PopupDialog(title: t!.petrolMapSaveSuccessTitle, message: t.petrolMapSaveSuccessMessage, close: t.petrolMapSaveSuccessClose));
+      List<UserStats> userStats = await _db.getUserStats(uid);
+      var exists = userStats.isNotEmpty;
+      var today, date, differenceInMinutes;
+      differenceInMinutes = 60;
+      if (exists == true) {
+        today = DateTime.now();
+        date = DateTime.fromMillisecondsSinceEpoch(userStats.first.lastUpdate.seconds * 1000);
+        differenceInMinutes = today.difference(date).inMinutes;
+      }
+      if (differenceInMinutes > 15) {
+        station.updateUserID = uid;
+        await _db.addStation(station);
+        await _db.incrementUserStats(auth.currentUser!.uid);
+        Navigator.of(context).pop();
+        await showDialog(
+            context: context,
+            builder: (BuildContext context) => PopupDialog(title: t!.petrolMapSaveSuccessTitle, message: t.petrolMapSaveSuccessMessage, close: t.petrolMapSaveSuccessClose));
+      } else {
+        await showDialog(
+            context: context,
+            builder: (BuildContext context) => PopupDialog(title: t!.petrolMapWarningTitle, message: t.petrolMapTooFastUpdateWarning, close: t.petrolMapWarningClose));
+      }
     } else {
-      showDialog(
+      await showDialog(
           context: context, builder: (BuildContext context) => PopupDialog(title: t!.petrolMapWarningTitle, message: t.petrolMapWarningMessage, close: t.petrolMapWarningClose));
     }
     _petrol95Controller.text = '';
