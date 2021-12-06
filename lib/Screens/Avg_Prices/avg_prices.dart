@@ -27,7 +27,7 @@ class AvgPrices extends StatefulWidget {
 class _MyAppState extends State<AvgPrices> {
   List<Region> regions = [];
 
-  String removeSingsFromRregion(String text) {
+  String removeSingsFromRegion(String text) {
     text = text.replaceAll(' ', '');
     text = text.replaceAll('\n', '');
     return text;
@@ -50,7 +50,7 @@ class _MyAppState extends State<AvgPrices> {
       var tbody = table.first.getElementsByTagName('td');
 
       for (var i = 0; i < tbody.length;) {
-        var name = removeSingsFromRregion(tbody[i++].text);
+        var name = removeSingsFromRegion(tbody[i++].text);
 
         var price95 = removeSingsFromPrice(tbody[i++].text);
         var price98 = removeSingsFromPrice(tbody[i++].text);
