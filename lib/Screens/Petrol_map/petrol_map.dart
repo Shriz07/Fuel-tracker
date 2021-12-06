@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:fuel_tracker/Screens/Avg_Prices/Region.dart';
 import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
 import 'package:fuel_tracker/Screens/Petrol_map/locations.dart';
 import 'package:fuel_tracker/Screens/Petrol_map/user_stats.dart';
@@ -18,9 +19,11 @@ import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:fuel_tracker/services/firestore_services/firestore_db.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:html/parser.dart';
 import 'package:provider/provider.dart';
 import 'locations.dart' as locations;
 import 'package:time_ago_provider/time_ago_provider.dart' as timeAgo;
+import 'package:http/http.dart' as http;
 
 class PetrolMap extends StatefulWidget {
   @override
@@ -44,8 +47,38 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
   String _lightMapStyle = '';
   bool isDark = false;
   bool _dataWasLoaded = false;
+  late Region region;
 
   final Map<String, Marker> _markers = {};
+
+  String removeSingsFromPrice(String text) {
+    text = text.replaceAll(' ', '');
+    text = text.replaceAll('\n', '');
+    text = text.replaceAll('-', '');
+    text = text.replaceAll('zł', '');
+    text = text.replaceAll(',', '.');
+    return text;
+  }
+
+  Future<Region> getAvgPricesInPoland() async {
+    region = Region(name: 'data', price95: '', price98: '', priceON: '', priceONplus: '', priceLPG: '');
+    try {
+      var response = await http.Client().get(Uri.parse('https://www.autocentrum.pl/paliwa/ceny-paliw/'));
+
+      var document = parse(response.body);
+
+      var table = document.getElementsByClassName('fuels-wrapper choose-petrol');
+      var element = table.first.getElementsByTagName('div');
+      region.price95 = removeSingsFromPrice(element[0].text);
+      region.price98 = removeSingsFromPrice(element[1].text);
+      region.priceON = removeSingsFromPrice(element[2].text);
+      region.priceONplus = removeSingsFromPrice(element[3].text);
+      region.priceLPG = removeSingsFromPrice(element[4].text);
+    } on Exception catch (_) {
+      print('Service unavailable');
+    }
+    return region;
+  }
 
   @override
   void initState() {
@@ -88,6 +121,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
 
   Future<void> _onMapCreated(GoogleMapController controller) async {
     var t = AppLocalizations.of(context);
+    await getAvgPricesInPoland();
     _controller.complete(controller);
     await _setMapStyle();
     var position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
@@ -424,11 +458,37 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
       return false;
     }
 
-    if (fuelType == '95' || fuelType == '98' || fuelType == 'ON') {
-      if (doublePrice < 4 || doublePrice > 7) return false;
-    }
-    if (fuelType == 'LPG') {
-      if (doublePrice < 1 || doublePrice > 4) return false;
+    if (region.name == 'data') {
+      if (fuelType == '95') {
+        var avg95Price = double.parse(region.price95);
+        if (doublePrice > avg95Price + 0.5 || doublePrice < avg95Price - 0.5) {
+          return false;
+        }
+      } else if (fuelType == '98') {
+        var avg98Price = double.parse(region.price98);
+        if (doublePrice > avg98Price + 0.5 || doublePrice < avg98Price - 0.5) {
+          return false;
+        }
+      }
+      if (fuelType == 'ON') {
+        var avgONPrice = double.parse(region.priceON);
+        if (doublePrice > avgONPrice + 0.5 || doublePrice < avgONPrice - 0.5) {
+          return false;
+        }
+      }
+      if (fuelType == 'LPG') {
+        var avgLPGPrice = double.parse(region.priceLPG);
+        if (doublePrice > avgLPGPrice + 0.5 || doublePrice < avgLPGPrice - 0.5) {
+          return false;
+        }
+      }
+    } else {
+      if (fuelType == '95' || fuelType == '98' || fuelType == 'ON') {
+        if (doublePrice < 4 || doublePrice > 8) return false;
+      }
+      if (fuelType == 'LPG') {
+        if (doublePrice < 1 || doublePrice > 5) return false;
+      }
     }
 
     return true;
