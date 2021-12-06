@@ -34,8 +34,6 @@ class _MyStatefulWidgetState extends State<HomeScreen> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(begin: Alignment(0.0, 2), end: Alignment.topCenter, colors: <Color>[Theme.of(context).secondaryHeaderColor, Theme.of(context).primaryColor])),
         child: CurvedNavigationBar(
           items: <Widget>[
             Icon(
