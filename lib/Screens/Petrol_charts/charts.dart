@@ -153,9 +153,9 @@ class _ChartsState extends State<Charts> {
           ),
           body: TabBarView(
             children: [
-              priceHistoryChart(t.charts95Title, _series95Price, 4, 6.5),
-              priceHistoryChart(t.chartsONTitle, _seriesONPrice, 4, 6.5),
-              priceHistoryChart(t.chartsLPGTitle, _seriesLPGPrice, 2, 3.5),
+              priceHistoryChart(t.charts95Title, _series95Price, 4.5, 6.5),
+              priceHistoryChart(t.chartsONTitle, _seriesONPrice, 4.5, 6.5),
+              priceHistoryChart(t.chartsLPGTitle, _seriesLPGPrice, 2, 4),
             ],
           ),
         ),
