@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fuel_tracker/Screens/Avg_Prices/Region.dart';
+import 'package:fuel_tracker/Models/Region.dart';
 import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
 import 'package:fuel_tracker/Widgets/app_bar.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';

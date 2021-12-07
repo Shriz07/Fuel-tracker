@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
 
-part 'locations.g.dart';
+part '../Screens/Petrol_map/locations.g.dart';
 
 @JsonSerializable()
 class Locations {

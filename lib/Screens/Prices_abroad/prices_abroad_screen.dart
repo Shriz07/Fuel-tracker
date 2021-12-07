@@ -7,7 +7,7 @@ import 'package:html/parser.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-import 'Country.dart';
+import '../../Models/Country.dart';
 
 class PricesAbroad extends StatefulWidget {
   @override

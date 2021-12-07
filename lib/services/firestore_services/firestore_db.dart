@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:fuel_tracker/Screens/Car_Notifications/car_notification.dart';
-import 'package:fuel_tracker/Screens/Petrol_map/locations.dart';
-import 'package:fuel_tracker/Screens/Petrol_map/user_stats.dart';
+import 'package:fuel_tracker/Models/CarNotification.dart';
+import 'package:fuel_tracker/Models/Locations.dart';
+import 'package:fuel_tracker/Models/UserStats.dart';
 
 class FirestoreDB extends ChangeNotifier {
   final CollectionReference _stationsCollectionReference = FirebaseFirestore.instance.collection('stations');

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fuel_tracker/Screens/Petrol_charts/chart_data.dart';
+import 'package:fuel_tracker/Models/ChartData.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:fuel_tracker/services/datetime_factory/localized_time_factory.dart';
