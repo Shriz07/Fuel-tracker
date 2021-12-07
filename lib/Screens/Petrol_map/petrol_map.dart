@@ -61,7 +61,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
   }
 
   Future<Region> getAvgPricesInPoland() async {
-    region = Region(name: 'data', price95: '', price98: '', priceON: '', priceONplus: '', priceLPG: '');
+    region = Region(name: '', price95: '', price98: '', priceON: '', priceONplus: '', priceLPG: '');
     try {
       var response = await http.Client().get(Uri.parse('https://www.autocentrum.pl/paliwa/ceny-paliw/'));
 
@@ -74,6 +74,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
       region.priceON = removeSingsFromPrice(element[2].text);
       region.priceONplus = removeSingsFromPrice(element[3].text);
       region.priceLPG = removeSingsFromPrice(element[4].text);
+      region.name = 'data';
     } on Exception catch (_) {
       print('Service unavailable');
     }
