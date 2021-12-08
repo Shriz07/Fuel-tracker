@@ -340,6 +340,12 @@ abstract class AppLocalizations {
   /// **'Password'**
   String get registerPasswordHint;
 
+  /// No description provided for @registerSecondPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat password'**
+  String get registerSecondPasswordHint;
+
   /// No description provided for @registerButtonApply.
   ///
   /// In en, this message translates to:
@@ -357,6 +363,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login here'**
   String get registerAlreadyButton;
+
+  /// No description provided for @registerPasswordMatchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning'**
+  String get registerPasswordMatchTitle;
+
+  /// No description provided for @registerPasswordMatchMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords provided do not match.'**
+  String get registerPasswordMatchMessage;
+
+  /// No description provided for @registerPasswordMatchClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get registerPasswordMatchClose;
 
   /// No description provided for @resetTitle.
   ///

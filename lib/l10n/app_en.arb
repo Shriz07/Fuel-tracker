@@ -46,9 +46,13 @@
     "registerEmailHint": "Email",
     "registerPasswordValidatorMessage": "Enter at least 6 signs",
     "registerPasswordHint": "Password",
+    "registerSecondPasswordHint": "Repeat password",
     "registerButtonApply": "Create account",
     "registerAlreadyMessage": "Already registered?",
     "registerAlreadyButton": "Login here",
+    "registerPasswordMatchTitle": "Warning",
+    "registerPasswordMatchMessage": "Passwords provided do not match.",
+    "registerPasswordMatchClose": "Close",
 
     "resetTitle": "Reset password.",
     "resetEmailHint": "Email",

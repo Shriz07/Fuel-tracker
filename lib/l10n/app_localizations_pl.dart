@@ -131,6 +131,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get registerPasswordHint => 'Hasło';
 
   @override
+  String get registerSecondPasswordHint => 'Powtórz hasło';
+
+  @override
   String get registerButtonApply => 'Stwórz konto';
 
   @override
@@ -138,6 +141,15 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get registerAlreadyButton => 'Zaloguj';
+
+  @override
+  String get registerPasswordMatchTitle => 'Informacja';
+
+  @override
+  String get registerPasswordMatchMessage => 'Podane hasła nie są takie same.';
+
+  @override
+  String get registerPasswordMatchClose => 'Zamknij';
 
   @override
   String get resetTitle => 'Zresetuj hasło.';

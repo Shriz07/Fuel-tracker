@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_tracker/Widgets/authentication_widgets.dart';
+import 'package:fuel_tracker/Widgets/popup_dialog.dart';
 import 'package:fuel_tracker/l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
@@ -17,12 +18,14 @@ class Register extends StatefulWidget {
 class _LoginState extends State<Register> {
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
+  late TextEditingController _secondPasswordController;
   final _formkey = GlobalKey<FormState>();
 
   @override
   void initState() {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
+    _secondPasswordController = TextEditingController();
     super.initState();
   }
 
@@ -30,6 +33,7 @@ class _LoginState extends State<Register> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _secondPasswordController.dispose();
     super.dispose();
   }
 
@@ -83,14 +87,24 @@ class _LoginState extends State<Register> {
                     authenticationFormField(
                         _passwordController, (val) => val!.length < 6 ? t.registerPasswordValidatorMessage : null, t.registerPasswordHint, Icon(Icons.vpn_key), true),
                     SizedBox(height: 30),
+                    authenticationFormField(
+                        _secondPasswordController, (val) => val!.length < 6 ? t.registerPasswordValidatorMessage : null, t.registerSecondPasswordHint, Icon(Icons.vpn_key), true),
+                    SizedBox(height: 30),
                     Center(
                       child: MaterialButton(
                         onPressed: () async {
                           if (_formkey.currentState!.validate()) {
-                            await loginProvider.register(
-                              _emailController.text.trim(),
-                              _passwordController.text.trim(),
-                            );
+                            if (_passwordController.text == _secondPasswordController.text) {
+                              await loginProvider.register(
+                                _emailController.text.trim(),
+                                _passwordController.text.trim(),
+                              );
+                            } else {
+                              await showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      PopupDialog(title: t.registerPasswordMatchTitle, message: t.registerPasswordMatchMessage, close: t.registerPasswordMatchClose));
+                            }
                           }
                         },
                         height: 70,

@@ -46,9 +46,13 @@
     "registerEmailHint": "Email",
     "registerPasswordValidatorMessage": "Podaj przynajmniej 6 znaków",
     "registerPasswordHint": "Hasło",
+    "registerSecondPasswordHint": "Powtórz hasło",
     "registerButtonApply": "Stwórz konto",
     "registerAlreadyMessage": "Posiadasz już konto?",
     "registerAlreadyButton": "Zaloguj",
+    "registerPasswordMatchTitle": "Informacja",
+    "registerPasswordMatchMessage": "Podane hasła nie są takie same.",
+    "registerPasswordMatchClose": "Zamknij",
 
     "resetTitle": "Zresetuj hasło.",
     "resetEmailHint": "Email",

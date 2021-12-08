@@ -131,6 +131,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registerPasswordHint => 'Password';
 
   @override
+  String get registerSecondPasswordHint => 'Repeat password';
+
+  @override
   String get registerButtonApply => 'Create account';
 
   @override
@@ -138,6 +141,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get registerAlreadyButton => 'Login here';
+
+  @override
+  String get registerPasswordMatchTitle => 'Warning';
+
+  @override
+  String get registerPasswordMatchMessage => 'Passwords provided do not match.';
+
+  @override
+  String get registerPasswordMatchClose => 'Close';
 
   @override
   String get resetTitle => 'Reset password.';
