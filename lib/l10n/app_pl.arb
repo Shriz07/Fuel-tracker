@@ -9,7 +9,7 @@
     "petrolMapLastUpdate": "Ostatnia aktualizacja: ",
     "petrolMapSave": "Zapisz",
     "petrolMapWarningTitle": "Ostrzeżenie",
-    "petrolMapWarningMessage": "Niepoprawny zakres ceny. Ceny powinny być w realnym zakresie",
+    "petrolMapWarningMessage": "Niepoprawny zakres ceny. Ceny powinny być w realnym zakresie.",
     "petrolMapTooFastUpdateWarning": "Zbyt często próbujesz dokonać aktualizacji cen. Spróbuj za parę minut.",
     "petrolMapWarningClose": "Zamknij",
     "petrolMapSaveSuccessTitle": "Powiadomienie",

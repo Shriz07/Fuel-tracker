@@ -32,7 +32,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get petrolMapWarningTitle => 'Ostrzeżenie';
 
   @override
-  String get petrolMapWarningMessage => 'Niepoprawny zakres ceny. Ceny powinny być w realnym zakresie';
+  String get petrolMapWarningMessage => 'Niepoprawny zakres ceny. Ceny powinny być w realnym zakresie.';
 
   @override
   String get petrolMapTooFastUpdateWarning => 'Zbyt często próbujesz dokonać aktualizacji cen. Spróbuj za parę minut.';
