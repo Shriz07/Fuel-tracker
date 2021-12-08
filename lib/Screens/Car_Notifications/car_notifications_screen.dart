@@ -241,6 +241,9 @@ class _CarNotificationsState extends State<CarNotifications> {
       'Channel for Alarm notification',
       icon: 'ic_launcher',
       largeIcon: DrawableResourceAndroidBitmap('ic_launcher'),
+      styleInformation: BigTextStyleInformation(''),
+      importance: Importance.max,
+      priority: Priority.high,
     );
     var iOSPlatformChannelSpecificts = IOSNotificationDetails(presentAlert: true, presentBadge: true, presentSound: false);
     var platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecificts);
