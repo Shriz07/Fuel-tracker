@@ -68,13 +68,15 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
       var document = parse(response.body);
 
       var table = document.getElementsByClassName('fuels-wrapper choose-petrol');
-      var element = table.first.getElementsByTagName('div');
-      region.price95 = removeSingsFromPrice(element[0].text);
-      region.price98 = removeSingsFromPrice(element[1].text);
-      region.priceON = removeSingsFromPrice(element[2].text);
-      region.priceONplus = removeSingsFromPrice(element[3].text);
-      region.priceLPG = removeSingsFromPrice(element[4].text);
-      region.name = 'data';
+      if (table.isNotEmpty) {
+        var element = table.first.getElementsByTagName('div');
+        region.price95 = removeSingsFromPrice(element[0].text);
+        region.price98 = removeSingsFromPrice(element[1].text);
+        region.priceON = removeSingsFromPrice(element[2].text);
+        region.priceONplus = removeSingsFromPrice(element[3].text);
+        region.priceLPG = removeSingsFromPrice(element[4].text);
+        region.name = 'data';
+      }
     } on Exception catch (_) {
       print('Service unavailable');
     }
