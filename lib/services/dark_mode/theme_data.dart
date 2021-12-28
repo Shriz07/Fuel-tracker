@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class Styles {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
-      //primarySwatch: Colors.white,
+      backgroundColor: isDarkTheme ? Color.fromRGBO(31, 31, 31, 1.0) : Colors.white,
       primaryColor: isDarkTheme ? Colors.blue : Colors.lightGreen,
       inputDecorationTheme: InputDecorationTheme(
         hintStyle: isDarkTheme ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
@@ -38,7 +38,6 @@ class Styles {
       splashColor: isDarkTheme ? MaterialStateColor.resolveWith((states) => Color.fromRGBO(45, 45, 45, 1.0)) : Colors.white,
       primaryColorDark: isDarkTheme ? Colors.blueGrey : Color(0xFFD6D6D6),
       secondaryHeaderColor: isDarkTheme ? Colors.blue : Colors.green,
-      backgroundColor: isDarkTheme ? Color.fromRGBO(31, 31, 31, 1.0) : Colors.white, //Background
       indicatorColor: isDarkTheme ? Colors.blueAccent : Colors.amberAccent,
       buttonColor: isDarkTheme ? Color(0xff3B3B3B) : Color(0xffF1F5FB),
       hintColor: isDarkTheme ? Color(0xff280C0B) : Color(0xFF8C7622),
