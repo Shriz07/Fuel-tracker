@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fuel_tracker/Models/ChartData.dart';
-import 'package:fuel_tracker/l10n/app_localizations.dart';
+import 'package:fuel_tracker/models/chart_data.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:fuel_tracker/services/datetime_factory/localized_time_factory.dart';
 import 'package:html/parser.dart';
@@ -134,17 +134,17 @@ class _ChartsState extends State<Charts> {
                 tabs: [
                   Tab(
                       icon: Image.asset(
-                    'assets/petrol95.png',
+                    'assets/images/petrol95.png',
                     height: 35,
                   )),
                   Tab(
                       icon: Image.asset(
-                    'assets/petrolON.png',
+                    'assets/images/petrolON.png',
                     height: 35,
                   )),
                   Tab(
                       icon: Image.asset(
-                    'assets/petrolLPG.png',
+                    'assets/images/petrolLPG.png',
                     height: 35,
                   )),
                 ],

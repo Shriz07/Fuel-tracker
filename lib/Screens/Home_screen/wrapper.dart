@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fuel_tracker/Screens/Authentication/authentication.dart';
-import 'package:fuel_tracker/Screens/Home_screen/home_screen.dart';
+import 'package:fuel_tracker/screens/authentication/authentication.dart';
+import 'package:fuel_tracker/screens/home_screen/home_screen.dart';
 import 'package:provider/provider.dart';
 
 class Wrapper extends StatelessWidget {

@@ -69,16 +69,7 @@ dev_dependencies:
 flutter:
   generate: true
   assets:
-    - assets/petrol95.png
-    - assets/petrol98.png
-    - assets/petrolON.png
-    - assets/petrolONplus.png
-    - assets/petrolLPG.png
-    - assets/petrol-marker.png
-    - assets/petrol-cheapest-marker.png
-    - assets/login-background.png
-    - assets/drop.png
-    - assets/logo.png
+    - assets/images/
     - assets/map_styles/map_light.json
     - assets/map_styles/map_dark.json
     - assets/flags/

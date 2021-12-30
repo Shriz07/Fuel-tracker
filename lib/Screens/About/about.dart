@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fuel_tracker/Widgets/app_bar.dart';
-import 'package:fuel_tracker/Widgets/authentication_widgets.dart';
-import 'package:fuel_tracker/l10n/app_localizations.dart';
+import 'package:fuel_tracker/widgets/app_bar.dart';
+import 'package:fuel_tracker/widgets/authentication_widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -29,7 +29,7 @@ class AboutScreen extends StatelessWidget {
                   SizedBox(height: 30),
                   Center(
                       child: Image(
-                    image: AssetImage('assets/logo.png'),
+                    image: AssetImage('assets/images/logo.png'),
                   )),
                   SizedBox(height: 40),
                   CustomTextBox(t.aboutVersion, 'v0.9'),

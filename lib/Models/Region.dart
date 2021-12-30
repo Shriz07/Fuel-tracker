@@ -9,6 +9,7 @@ class Region {
   });
 
   String name;
+  //Data could be n.d so String
   String price95;
   String price98;
   String priceON;

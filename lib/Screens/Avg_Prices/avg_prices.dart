@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fuel_tracker/Models/Region.dart';
-import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
-import 'package:fuel_tracker/Widgets/app_bar.dart';
-import 'package:fuel_tracker/l10n/app_localizations.dart';
+import 'package:fuel_tracker/models/region.dart';
+import 'package:fuel_tracker/screens/drawer/drawer.dart';
+import 'package:fuel_tracker/widgets/app_bar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:http/http.dart' as http;
@@ -43,9 +43,7 @@ class _MyAppState extends State<AvgPrices> {
   Future<List> getPrices() async {
     if (regions.isEmpty) {
       var response = await http.Client().get(Uri.parse('https://www.autocentrum.pl/paliwa/ceny-paliw/'));
-
       var document = parse(response.body);
-
       var table = document.getElementsByClassName('petrols-table');
       var tbody = table.first.getElementsByTagName('td');
 
@@ -59,7 +57,6 @@ class _MyAppState extends State<AvgPrices> {
         var priceLPG = removeSingsFromPrice(tbody[i++].text);
 
         var petrol = Region(name: name, price95: price95, price98: price98, priceON: priceON, priceONplus: priceONplus, priceLPG: priceLPG);
-
         regions.add(petrol);
       }
     }
@@ -104,11 +101,11 @@ class _MyAppState extends State<AvgPrices> {
               horizontalMargin: 15,
               columns: <DataColumn>[
                 displayRegionNameHeader(),
-                displayPetrolHeader('assets/petrol95.png', '95'),
-                displayPetrolHeader('assets/petrol98.png', '98'),
-                displayPetrolHeader('assets/petrolON.png', 'ON'),
-                displayPetrolHeader('assets/petrolONplus.png', 'ONplus'),
-                displayPetrolHeader('assets/petrolLPG.png', 'LPG'),
+                displayPetrolHeader('assets/images/petrol95.png', '95'),
+                displayPetrolHeader('assets/images/petrol98.png', '98'),
+                displayPetrolHeader('assets/images/petrolON.png', 'ON'),
+                displayPetrolHeader('assets/images/petrolONplus.png', 'ONplus'),
+                displayPetrolHeader('assets/images/petrolLPG.png', 'LPG'),
               ],
               rows: getRowsWithPrices(),
             ),

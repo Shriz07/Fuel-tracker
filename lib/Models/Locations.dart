@@ -4,7 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
 
-part '../Screens/Petrol_map/locations.g.dart';
+part '../screens/petrol_map/locations.g.dart';
+
+final apiKey = 'AIzaSyA9G5AZzH5uPhA-p5K1jU7J98bwveQe0XI';
 
 @JsonSerializable()
 class Locations {
@@ -40,7 +42,6 @@ class Station {
 
   Geometry geometry;
   String name;
-  //String priceLevel;
   double rating;
   String vicinity;
   String place_id;
@@ -103,19 +104,16 @@ class Location {
 }
 
 Future<Locations> getPetrolStations(double lat, double lng) async {
-  var petrolLocationsURL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' +
-      lat.toString() +
-      ',' +
-      lng.toString() +
-      '&opennow&radius=10000&type=gas_station&key=AIzaSyA9G5AZzH5uPhA-p5K1jU7J98bwveQe0XI';
+  var nearbyStationsURL =
+      'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + lat.toString() + ',' + lng.toString() + '&radius=10000&type=gas_station&key=' + apiKey;
 
-  final response = await http.get(Uri.parse(petrolLocationsURL));
+  final response = await http.get(Uri.parse(nearbyStationsURL));
   if (response.statusCode == 200) {
     return Locations.fromJson(json.decode(response.body));
   } else {
     throw HttpException(
-        'Unexpected status code ${response.statusCode}:'
+        'HTTP error with status code ${response.statusCode}:'
         ' ${response.reasonPhrase}',
-        uri: Uri.parse(petrolLocationsURL));
+        uri: Uri.parse(nearbyStationsURL));
   }
 }

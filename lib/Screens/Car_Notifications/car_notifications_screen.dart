@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:fuel_tracker/Models/CarNotification.dart';
-import 'package:fuel_tracker/Widgets/app_bar.dart';
-import 'package:fuel_tracker/Widgets/popup_dialog.dart';
-import 'package:fuel_tracker/l10n/app_localizations.dart';
+import 'package:fuel_tracker/models/car_notification.dart';
+import 'package:fuel_tracker/widgets/app_bar.dart';
+import 'package:fuel_tracker/widgets/popup_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fuel_tracker/main.dart';
 import 'package:fuel_tracker/services/firestore_services/firestore_db.dart';
 

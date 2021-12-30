@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fuel_tracker/Screens/Authentication/reset.dart';
-import 'package:fuel_tracker/Widgets/authentication_widgets.dart';
-import 'package:fuel_tracker/l10n/app_localizations.dart';
+import 'package:fuel_tracker/screens/authentication/reset.dart';
+import 'package:fuel_tracker/widgets/authentication_widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/dark_theme_preference.dart';
 import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
@@ -59,7 +59,7 @@ class _LoginState extends State<Login> {
                     SizedBox(height: 30),
                     Center(
                         child: Image(
-                      image: AssetImage('assets/logo.png'),
+                      image: AssetImage('assets/images/logo.png'),
                     )),
                     SizedBox(height: 40),
                     authenticationFormField(_emailController, (val) => val!.isNotEmpty ? null : t!.loginEmailValidatorMessage, t!.loginEmailHint, Icon(Icons.mail), false),

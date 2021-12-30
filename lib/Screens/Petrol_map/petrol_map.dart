@@ -7,13 +7,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:fuel_tracker/Models/Region.dart';
-import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
-import 'package:fuel_tracker/Models/Locations.dart';
-import 'package:fuel_tracker/Models/UserStats.dart';
-import 'package:fuel_tracker/Widgets/app_bar.dart';
-import 'package:fuel_tracker/Widgets/popup_dialog.dart';
-import 'package:fuel_tracker/l10n/app_localizations.dart';
+import 'package:fuel_tracker/models/region.dart';
+import 'package:fuel_tracker/screens/Drawer/drawer.dart';
+import 'package:fuel_tracker/models/Locations.dart';
+import 'package:fuel_tracker/models/user_stats.dart';
+import 'package:fuel_tracker/widgets/app_bar.dart';
+import 'package:fuel_tracker/widgets/popup_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:fuel_tracker/services/firestore_services/firestore_db.dart';
@@ -21,7 +21,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:html/parser.dart';
 import 'package:provider/provider.dart';
-import '../../Models/Locations.dart' as locations;
+import '../../models/Locations.dart' as loc;
 import 'package:time_ago_provider/time_ago_provider.dart' as timeAgo;
 import 'package:http/http.dart' as http;
 
@@ -92,9 +92,9 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
     _petrol98Controller = TextEditingController();
     _petrolONController = TextEditingController();
     _petrolLPGController = TextEditingController();
-    BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5), 'assets/petrol-marker.png').then((value) => petrolMarker = value);
-    BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5), 'assets/petrol-cheapest-marker.png').then((value) => petrolCheapestMarker = value);
-    BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5), 'assets/drop.png').then((value) => dropIcon = value);
+    BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5), 'assets/images/petrol-marker.png').then((value) => petrolMarker = value);
+    BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5), 'assets/images/petrol-cheapest-marker.png').then((value) => petrolCheapestMarker = value);
+    BitmapDescriptor.fromAssetImage(ImageConfiguration(devicePixelRatio: 2.5), 'assets/images/drop.png').then((value) => dropIcon = value);
   }
 
   @override
@@ -137,7 +137,7 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
 
     final petrolStations;
     try {
-      petrolStations = await locations.getPetrolStations(position.latitude, position.longitude);
+      petrolStations = await loc.getPetrolStations(position.latitude, position.longitude);
     } catch (e) {
       await showDialog(
         context: context,
@@ -280,13 +280,13 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
                           SizedBox(height: 10),
                           lastUpdateText(station),
                           SizedBox(height: 10),
-                          PetrolInputField('assets/petrol95.png', station.price95, _petrol95Controller),
+                          PetrolInputField('assets/images/petrol95.png', station.price95, _petrol95Controller),
                           SizedBox(height: 15),
-                          PetrolInputField('assets/petrol98.png', station.price98, _petrol98Controller),
+                          PetrolInputField('assets/images/petrol98.png', station.price98, _petrol98Controller),
                           SizedBox(height: 15),
-                          PetrolInputField('assets/petrolON.png', station.priceON, _petrolONController),
+                          PetrolInputField('assets/images/petrolON.png', station.priceON, _petrolONController),
                           SizedBox(height: 15),
-                          PetrolInputField('assets/petrolLPG.png', station.priceLPG, _petrolLPGController),
+                          PetrolInputField('assets/images/petrolLPG.png', station.priceLPG, _petrolLPGController),
                           SizedBox(height: 30),
                           saveButton(station, context),
                         ],
@@ -528,7 +528,7 @@ class PetrolInputField extends StatelessWidget {
               decoration: InputDecoration(
                 filled: true,
                 hintText: price,
-                prefixIcon: Padding(padding: const EdgeInsets.all(8), child: Image.asset('assets/drop.png')),
+                prefixIcon: Padding(padding: const EdgeInsets.all(8), child: Image.asset('assets/images/drop.png')),
                 border: const OutlineInputBorder(),
               ),
             ),

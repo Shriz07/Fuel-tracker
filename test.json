@@ -1,0 +1,462 @@
+{
+    "html_attributions" : [],
+    "results" : [
+       {
+          "business_status" : "OPERATIONAL",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.75590860000001,
+                "lng" : 19.4702081
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.75722113029151,
+                   "lng" : 19.4715749302915
+                },
+                "southwest" : {
+                   "lat" : 51.75452316970851,
+                   "lng" : 19.4688769697085
+                }
+             }
+          },
+          "name" : "Shell",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "place_id" : "ChIJOSfYZs40GkcR7U9iwEEBy8s",
+          "plus_code" : {
+             "compound_code" : "QF4C+93 Łódź, Poland",
+             "global_code" : "9F3XQF4C+93"
+          },
+          "price_level" : 2,
+          "rating" : 3.8,
+          "reference" : "ChIJOSfYZs40GkcR7U9iwEEBy8s",
+          "scope" : "GOOGLE",
+          "types" : [
+             "gas_station",
+             "convenience_store",
+             "restaurant",
+             "food",
+             "point_of_interest",
+             "store",
+             "establishment"
+          ],
+          "user_ratings_total" : 65,
+          "vicinity" : "płk. Jana Kilińskiego 167, Łódź"
+       },
+       {
+          "business_status" : "OPERATIONAL",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.7503693,
+                "lng" : 19.4363158
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.75174138029149,
+                   "lng" : 19.4377480802915
+                },
+                "southwest" : {
+                   "lat" : 51.7490434197085,
+                   "lng" : 19.4350501197085
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/gas_station-71.png",
+          "name" : "bp",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 2268,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/113219112006127180359\"\u003eJar Nil\u003c/a\u003e"
+                ],
+                "photo_reference" : "Aap_uECwUoN_ZsafFAOWUZKatKQPP8LF3qB85aSlOfxoQ-rjsJxRj556bFoVLZ7MqZZSdiDOTqEVEfhLH0pmnGb64SKFhyshihreMosDk554kdJ47rSItYsL7eeHwGQGmVLLn54fqqcgSC3fMF2St-LbitURaxpkCM9Li0y2ITo8ik8SNdFo",
+                "width" : 4032
+             }
+          ],
+          "place_id" : "ChIJrXkY2iM1GkcROuwr-elvLY8",
+          "plus_code" : {
+             "compound_code" : "QC2P+4G Łódź, Poland",
+             "global_code" : "9F3XQC2P+4G"
+          },
+          "rating" : 3.9,
+          "reference" : "ChIJrXkY2iM1GkcROuwr-elvLY8",
+          "scope" : "GOOGLE",
+          "types" : [
+             "gas_station",
+             "car_wash",
+             "convenience_store",
+             "cafe",
+             "food",
+             "point_of_interest",
+             "store",
+             "establishment"
+          ],
+          "user_ratings_total" : 110,
+          "vicinity" : "Aleja Jana Pawła II 25-27, Łódź"
+       },
+       {
+          "business_status" : "OPERATIONAL",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.7577281,
+                "lng" : 19.450947
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.7590711302915,
+                   "lng" : 19.4522072802915
+                },
+                "southwest" : {
+                   "lat" : 51.7563731697085,
+                   "lng" : 19.4495093197085
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/gas_station-71.png",
+          "name" : "bp",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 1536,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/109641829145979676372\"\u003eArtek\u003c/a\u003e"
+                ],
+                "photo_reference" : "Aap_uEB0aeT1atCMOuinAtGLM2NFtIqeXEB9mU7gpnqhEtOXRNTTgRWd2HoGVu0WVE_D4c2yeplSd9wTz2XQ12uw-m5KX2s_lucEr-CyDP2qXSnZTv8n4QhUzjxv84-MhAzJpmbYdkywxd_jJ9Fs78ipe-n8lWMz1bXaJHmRbaIfqKyizV31",
+                "width" : 2048
+             }
+          ],
+          "place_id" : "ChIJl93zKtY0GkcRDMNK8J3abW8",
+          "plus_code" : {
+             "compound_code" : "QF52+39 Łódź, Poland",
+             "global_code" : "9F3XQF52+39"
+          },
+          "rating" : 4.2,
+          "reference" : "ChIJl93zKtY0GkcRDMNK8J3abW8",
+          "scope" : "GOOGLE",
+          "types" : [
+             "gas_station",
+             "atm",
+             "car_wash",
+             "convenience_store",
+             "finance",
+             "cafe",
+             "food",
+             "point_of_interest",
+             "store",
+             "establishment"
+          ],
+          "user_ratings_total" : 59,
+          "vicinity" : "aleja Adama Mickiewicza 7, Łódź"
+       },
+       {
+          "business_status" : "OPERATIONAL",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.7655048,
+                "lng" : 19.46003
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.76685773029149,
+                   "lng" : 19.4614129302915
+                },
+                "southwest" : {
+                   "lat" : 51.76415976970849,
+                   "lng" : 19.4587149697085
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/gas_station-71.png",
+          "name" : "Stacja Paliw ORLEN",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 1632,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/105940180795143877561\"\u003eStacja Paliw ORLEN\u003c/a\u003e"
+                ],
+                "photo_reference" : "Aap_uEDqyWCHkMapT7lVbLZ8QjBDFaBYcRsxj457uwSFKIuYe-Q1bjt0S6UVpjS3eANRq1e5YXfFOYYEsTCmnW9VFuONbC0YG_iFRqIMODeW6lxCqLm9vNaGdBdoIPG5paXuIsRMaL4eADDFogy9KOC6icJQgrB6ZOfRQ1eZeKPZxxGo1JWa",
+                "width" : 1512
+             }
+          ],
+          "place_id" : "ChIJp7lYwirLG0cRxjLWD4GmRfI",
+          "plus_code" : {
+             "compound_code" : "QF86+62 Łódź, Poland",
+             "global_code" : "9F3XQF86+62"
+          },
+          "rating" : 4.2,
+          "reference" : "ChIJp7lYwirLG0cRxjLWD4GmRfI",
+          "scope" : "GOOGLE",
+          "types" : [ "gas_station", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 822,
+          "vicinity" : "Juliana Tuwima 7, Łódź"
+       },
+       {
+          "business_status" : "OPERATIONAL",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.7591194,
+                "lng" : 19.450943
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.7604824802915,
+                   "lng" : 19.4524639802915
+                },
+                "southwest" : {
+                   "lat" : 51.7577845197085,
+                   "lng" : 19.4497660197085
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/gas_station-71.png",
+          "name" : "LOTOS",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 1040,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/109805373479166206534\"\u003eZbigniew Jasinski\u003c/a\u003e"
+                ],
+                "photo_reference" : "Aap_uEDOWOvMJyh9Zh5cWfSHCFIMQrHTr3m1dhZkpS6LpRP5Ipx-XFoyBFGSY3L0sl6QAylQq887Gl-r3E1iAYbhyWh-U5eFJy3nJ00cZndDCVi3OBObnmqSkD-RxhuHdySwqG5l70DNR19GZ49jLbT7FX3KYsHzWzwd9MBirwPmzFmj4MWb",
+                "width" : 2000
+             }
+          ],
+          "place_id" : "ChIJPzqywSk1GkcRkVHIVO8dnyE",
+          "plus_code" : {
+             "compound_code" : "QF52+J9 Łódź, Poland",
+             "global_code" : "9F3XQF52+J9"
+          },
+          "rating" : 4.3,
+          "reference" : "ChIJPzqywSk1GkcRkVHIVO8dnyE",
+          "scope" : "GOOGLE",
+          "types" : [ "gas_station", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 431,
+          "vicinity" : "Gdańska 131, Łódź"
+       },
+       {
+          "business_status" : "OPERATIONAL",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.7564792,
+                "lng" : 19.4371494
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.7576544302915,
+                   "lng" : 19.4384956802915
+                },
+                "southwest" : {
+                   "lat" : 51.7549564697085,
+                   "lng" : 19.4357977197085
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/gas_station-71.png",
+          "name" : "AMIC Energy",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 576,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/117421349528335652013\"\u003eStacja Paliw AMIC Energy\u003c/a\u003e"
+                ],
+                "photo_reference" : "Aap_uED3NZ4lZ949LuWmNxpwzT9vnJ1Ep2RHANRwliUp8HTXIoi_zLA5RbaLtxDr0owQE8ycvyKQLeHgoKlwl-H5CczXcSDvZA2gp1kaUAazU1a2OpWJXbXx5jtvXQW4CMDA5X0qgiYliRmwmj8K1Jwo9pUnnX79gsiEo-NorQD6CdgQlw-U",
+                "width" : 1024
+             }
+          ],
+          "place_id" : "ChIJ7cTiKS81GkcRYqJjlZ7TktY",
+          "plus_code" : {
+             "compound_code" : "QC4P+HV Łódź, Poland",
+             "global_code" : "9F3XQC4P+HV"
+          },
+          "rating" : 4.1,
+          "reference" : "ChIJ7cTiKS81GkcRYqJjlZ7TktY",
+          "scope" : "GOOGLE",
+          "types" : [ "gas_station", "food", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 569,
+          "vicinity" : "Łąkowa 23-25, Łódź"
+       },
+       {
+          "business_status" : "OPERATIONAL",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.74842589999999,
+                "lng" : 19.4389152
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.74972778029149,
+                   "lng" : 19.4401041802915
+                },
+                "southwest" : {
+                   "lat" : 51.74702981970849,
+                   "lng" : 19.4374062197085
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/gas_station-71.png",
+          "name" : "MOYA Stacja Paliw",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 1836,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/116915750105580839815\"\u003eJohnny Bravo\u003c/a\u003e"
+                ],
+                "photo_reference" : "Aap_uEDd0vWDl875Bx12epvkHU5vv1UWcWnDBmmoMeBIAlBAJNPlQoaNIzJN-6froaIhzabTmjjO9ZIeJxWJWGsfPKE1qx-nXNpS5IkWBZ0R-yaVYbtxF0AjGLobJK3au51pBGi1h3OqyKEfLXAjtTrusX61miRagPh7fL8xSYnehnJVIDs",
+                "width" : 3264
+             }
+          ],
+          "place_id" : "ChIJO3XySqY1GkcREc4KQZB9JNw",
+          "plus_code" : {
+             "compound_code" : "PCXQ+9H Łódź, Poland",
+             "global_code" : "9F3XPCXQ+9H"
+          },
+          "rating" : 4.5,
+          "reference" : "ChIJO3XySqY1GkcREc4KQZB9JNw",
+          "scope" : "GOOGLE",
+          "types" : [ "gas_station", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 63,
+          "vicinity" : "Aleja Jana Pawła II 36, Łódź"
+       },
+       {
+          "business_status" : "OPERATIONAL",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.77266969999999,
+                "lng" : 19.44259689999999
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.7739445802915,
+                   "lng" : 19.4440083302915
+                },
+                "southwest" : {
+                   "lat" : 51.7712466197085,
+                   "lng" : 19.44131036970849
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/gas_station-71.png",
+          "name" : "El Argar",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "place_id" : "ChIJSZgAFxTLG0cRYdZtCx5WCL0",
+          "plus_code" : {
+             "compound_code" : "QCFV+32 Łódź, Poland",
+             "global_code" : "9F3XQCFV+32"
+          },
+          "rating" : 1,
+          "reference" : "ChIJSZgAFxTLG0cRYdZtCx5WCL0",
+          "scope" : "GOOGLE",
+          "types" : [ "gas_station", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 1,
+          "vicinity" : "aleja 1 Maja 37, Łódź"
+       },
+       {
+          "business_status" : "OPERATIONAL",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.7701457,
+                "lng" : 19.475251
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.7714013802915,
+                   "lng" : 19.4766209802915
+                },
+                "southwest" : {
+                   "lat" : 51.7687034197085,
+                   "lng" : 19.4739230197085
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/gas_station-71.png",
+          "name" : "D & D. PPHU. Stacja LPG",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 2576,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/115947159481064878724\"\u003esteven lodz\u003c/a\u003e"
+                ],
+                "photo_reference" : "Aap_uEAPckRdUIVV4l7_fqoIMd-DvIFAVikwC9Q8VBhL_cmtTgNwX2NNsBmoxaNErHJy3pMtUjDY2BMuOC3iDGs7rOXW3dXe6dPcRWax3fj7H7L_2VRiN7MgE-EEUwwg5MkIweqbywAaRyNFpwjiNvpDIbKr-zfqTRKnYWf3Ft2qteRFYvhx",
+                "width" : 4592
+             }
+          ],
+          "place_id" : "ChIJhzqgyy_LG0cRZ8t5i_4teiY",
+          "plus_code" : {
+             "compound_code" : "QFCG+34 Łódź, Poland",
+             "global_code" : "9F3XQFCG+34"
+          },
+          "reference" : "ChIJhzqgyy_LG0cRZ8t5i_4teiY",
+          "scope" : "GOOGLE",
+          "types" : [ "gas_station", "point_of_interest", "establishment" ],
+          "vicinity" : "Tramwajowa 19, Łódź"
+       },
+       {
+          "business_status" : "OPERATIONAL",
+          "geometry" : {
+             "location" : {
+                "lat" : 51.7464126,
+                "lng" : 19.4763856
+             },
+             "viewport" : {
+                "northeast" : {
+                   "lat" : 51.7476923302915,
+                   "lng" : 19.4773758802915
+                },
+                "southwest" : {
+                   "lat" : 51.74499436970851,
+                   "lng" : 19.4746779197085
+                }
+             }
+          },
+          "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/gas_station-71.png",
+          "name" : "AMIC Energy",
+          "opening_hours" : {
+             "open_now" : true
+          },
+          "photos" : [
+             {
+                "height" : 1170,
+                "html_attributions" : [
+                   "\u003ca href=\"https://maps.google.com/maps/contrib/109684517976670998154\"\u003eStacja Paliw AMIC Energy\u003c/a\u003e"
+                ],
+                "photo_reference" : "Aap_uEANAebInOgJn_g9zyKiZaIuh8efBGeqOuwabVGYeKHn3w8mmmsAZBPVVwurQkjiTQ1bwEaTYWn-D3nUgXvcBLJG3EGGwwMPJywKX9xWJeEywuzNwrtIClN8rOghnK7IwAzGvugpOd3o_9qjKa9D_vEMczhaYEWef4FH-XRRGLrxEqVc",
+                "width" : 1560
+             }
+          ],
+          "place_id" : "ChIJ2xjYXcc0GkcROjaxfhGDZzo",
+          "plus_code" : {
+             "compound_code" : "PFWG+HH Łódź, Poland",
+             "global_code" : "9F3XPFWG+HH"
+          },
+          "rating" : 4.3,
+          "reference" : "ChIJ2xjYXcc0GkcROjaxfhGDZzo",
+          "scope" : "GOOGLE",
+          "types" : [ "gas_station", "food", "point_of_interest", "establishment" ],
+          "user_ratings_total" : 361,
+          "vicinity" : "płk. Jana Kilińskiego 208/212, Łódź"
+       }
+    ],
+    "status" : "OK"
+ }

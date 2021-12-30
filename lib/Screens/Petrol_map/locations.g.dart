@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../../Models/Locations.dart';
+part of 'package:fuel_tracker/models/Locations.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

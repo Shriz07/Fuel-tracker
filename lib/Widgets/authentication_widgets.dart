@@ -7,12 +7,12 @@ DecorationImage CustomDecorationImage(isDarkTheme) {
         Colors.black.withOpacity(0.5),
         BlendMode.dstATop,
       ),
-      image: AssetImage('assets/login-background.png'),
+      image: AssetImage('assets/images/login-background.png'),
       fit: BoxFit.cover,
     );
   } else {
     return DecorationImage(
-      image: AssetImage('assets/login-background.png'),
+      image: AssetImage('assets/images/login-background.png'),
       fit: BoxFit.cover,
     );
   }

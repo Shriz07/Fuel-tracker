@@ -1,21 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:fuel_tracker/Models/CarNotification.dart';
-import 'package:fuel_tracker/Models/Locations.dart';
-import 'package:fuel_tracker/Models/UserStats.dart';
+import 'package:fuel_tracker/models/car_notification.dart';
+import 'package:fuel_tracker/models/Locations.dart';
+import 'package:fuel_tracker/models/user_stats.dart';
+import 'package:fuel_tracker/services/firestore_services/custom_exception.dart';
 
 class FirestoreDB extends ChangeNotifier {
-  final CollectionReference _stationsCollectionReference = FirebaseFirestore.instance.collection('stations');
   final CollectionReference _usersCollectionReference = FirebaseFirestore.instance.collection('users');
+
+  final CollectionReference _stationsCollectionReference = FirebaseFirestore.instance.collection('stations');
 
   Future addStation(Station station) async {
     try {
       return await _stationsCollectionReference.doc(station.place_id).set(station.toMap());
     } catch (e) {
-      print(e.toString());
-      if (e is PlatformException) return e.message;
-      return e.toString();
+      throw FailedToAddDataException(e.toString());
     }
   }
 

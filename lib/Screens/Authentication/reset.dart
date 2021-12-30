@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fuel_tracker/Widgets/authentication_widgets.dart';
-import 'package:fuel_tracker/Widgets/popup_dialog.dart';
-import 'package:fuel_tracker/l10n/app_localizations.dart';
+import 'package:fuel_tracker/widgets/authentication_widgets.dart';
+import 'package:fuel_tracker/widgets/popup_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +51,7 @@ class _ResetScreenState extends State<ResetScreen> {
                     SizedBox(height: 30),
                     Center(
                         child: Image(
-                      image: AssetImage('assets/logo.png'),
+                      image: AssetImage('assets/images/logo.png'),
                     )),
                     SizedBox(height: 40),
                     Material(

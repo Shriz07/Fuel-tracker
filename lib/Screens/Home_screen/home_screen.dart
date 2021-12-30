@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fuel_tracker/Screens/Avg_Prices/avg_prices.dart';
-import 'package:fuel_tracker/Screens/Calculator/calculator.dart';
-import 'package:fuel_tracker/Screens/Petrol_map/petrol_map.dart';
-import 'package:fuel_tracker/l10n/app_localizations.dart';
+import 'package:fuel_tracker/screens/avg_prices/avg_prices.dart';
+import 'package:fuel_tracker/screens/calculator/calculator.dart';
+import 'package:fuel_tracker/screens/petrol_map/petrol_map.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class HomeScreen extends StatefulWidget {

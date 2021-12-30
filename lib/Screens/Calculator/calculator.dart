@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fuel_tracker/Screens/Drawer/drawer.dart';
-import 'package:fuel_tracker/Widgets/app_bar.dart';
-import 'package:fuel_tracker/l10n/app_localizations.dart';
+import 'package:fuel_tracker/screens/drawer/drawer.dart';
+import 'package:fuel_tracker/widgets/app_bar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fuel_tracker/services/authentication_services/auth_services.dart';
 import 'package:fuel_tracker/services/dark_mode/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -92,7 +92,7 @@ class _MyAppState extends State<Calculator> {
                         Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Image.asset(
-                              'assets/drop.png',
+                              'assets/images/drop.png',
                               width: 30,
                               height: 40,
                               fit: BoxFit.fill,

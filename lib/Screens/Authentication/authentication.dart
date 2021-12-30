@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fuel_tracker/Screens/Authentication/login.dart';
-import 'package:fuel_tracker/Screens/Authentication/register.dart';
+import 'package:fuel_tracker/screens/authentication/login.dart';
+import 'package:fuel_tracker/screens/authentication/register.dart';
 
 class Authentication extends StatefulWidget {
   @override
