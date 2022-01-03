@@ -24,6 +24,8 @@ class AuthServices with ChangeNotifier {
       setLoading(false);
       if (e.code == 'email-already-in-use') {
         setMessage('Konto z podanym adresem Email już istnieje');
+      } else if (e.code == 'network-request-failed') {
+        setMessage('Brak połaczenia z internetem.');
       } else {
         setMessage('Wystąpił błąd, sprawdź wprowadzone dane');
       }
@@ -51,6 +53,8 @@ class AuthServices with ChangeNotifier {
         setMessage('Niepoprawny adres Email');
       } else if (e.code == 'wrong-password') {
         setMessage('Niepoprawne hasło');
+      } else if (e.code == 'network-request-failed') {
+        setMessage('Brak połaczenia z internetem.');
       } else {
         setMessage('Wystąpił błąd, sprawdź wprowadzone dane');
       }
