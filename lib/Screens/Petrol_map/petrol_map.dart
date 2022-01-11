@@ -243,63 +243,61 @@ class _MyAppState extends State<PetrolMap> with WidgetsBindingObserver {
 
   void _showDialog(Station station) async {
     var t = AppLocalizations.of(context);
-    var check = await _db.getStation(station);
 
-    if (check == false) {
-      await showDialog(
-        context: context,
-        builder: (BuildContext context) => PopupDialog(
-          title: t!.petrolMapWarningTitle,
-          message: t.petrolMapWarningNoInternet, //Message informing that user has no internet connection
-          close: t.petrolMapWarningClose,
-        ),
-      );
-    } else {
-      await showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) {
-          return Dialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Container(
-              child: SafeArea(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Form(
-                      key: _formkey,
-                      child: Column(
-                        children: <Widget>[
-                          displayTitle(station.name, context),
-                          SizedBox(height: 10),
-                          displayStationAddress(station.vicinity),
-                          SizedBox(height: 10),
-                          ratingBarIndicator(station.rating),
-                          SizedBox(height: 10),
-                          lastUpdateText(station),
-                          SizedBox(height: 10),
-                          PetrolInputField('assets/images/petrol95.png', station.price95, _petrol95Controller),
-                          SizedBox(height: 15),
-                          PetrolInputField('assets/images/petrol98.png', station.price98, _petrol98Controller),
-                          SizedBox(height: 15),
-                          PetrolInputField('assets/images/petrolON.png', station.priceON, _petrolONController),
-                          SizedBox(height: 15),
-                          PetrolInputField('assets/images/petrolLPG.png', station.priceLPG, _petrolLPGController),
-                          SizedBox(height: 30),
-                          saveButton(station, context),
-                        ],
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return StreamBuilder(
+          stream: FirebaseFirestore.instance.collection('stations').doc(station.place_id).snapshots(),
+          builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+            if (snapshot.hasData) {
+              station.setData(snapshot.data);
+              return Dialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Container(
+                  child: SafeArea(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Form(
+                          key: _formkey,
+                          child: Column(
+                            children: <Widget>[
+                              displayTitle(station.name, context),
+                              SizedBox(height: 10),
+                              displayStationAddress(station.vicinity),
+                              SizedBox(height: 10),
+                              ratingBarIndicator(station.rating),
+                              SizedBox(height: 10),
+                              lastUpdateText(station),
+                              SizedBox(height: 10),
+                              PetrolInputField('assets/images/petrol95.png', station.price95, _petrol95Controller),
+                              SizedBox(height: 15),
+                              PetrolInputField('assets/images/petrol98.png', station.price98, _petrol98Controller),
+                              SizedBox(height: 15),
+                              PetrolInputField('assets/images/petrolON.png', station.priceON, _petrolONController),
+                              SizedBox(height: 15),
+                              PetrolInputField('assets/images/petrolLPG.png', station.priceLPG, _petrolLPGController),
+                              SizedBox(height: 30),
+                              saveButton(station, context),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          );
-        },
-      );
-    }
+              );
+            } else {
+              return CircularProgressIndicator();
+            }
+          },
+        );
+      },
+    );
   }
 
   Widget displayTitle(String title, BuildContext currContext) {

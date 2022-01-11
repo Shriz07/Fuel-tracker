@@ -67,13 +67,15 @@ class Station {
         'updateUserID': updateUserID,
       };
 
-  void setData(DocumentSnapshot<Object?> snapshot) {
-    price95 = snapshot['price95'];
-    price98 = snapshot['price98'];
-    priceON = snapshot['priceON'];
-    priceLPG = snapshot['priceLPG'];
-    updateTimestamp = snapshot['updateTimestamp'];
-    updateUserID = snapshot['updateUserID'];
+  void setData(DocumentSnapshot<Object?>? snapshot) {
+    if (snapshot?.exists == true) {
+      price95 = snapshot!.get('price95');
+      price98 = snapshot.get('price98');
+      priceON = snapshot.get('priceON');
+      priceLPG = snapshot.get('priceLPG');
+      updateTimestamp = snapshot.get('updateTimestamp');
+      updateUserID = snapshot.get('updateUserID');
+    }
   }
 }
 
