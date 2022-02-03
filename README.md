@@ -12,7 +12,7 @@ Fuel tracker is a mobile app that allows users to track fuel prices and share ac
 - after clicking at marker user can see petrol prices at that station
 - user can share actual petrol prices at selected station
 
-<img src="screenshots/map_whole.png" width="300" />
+<img src="screenshots/map_whole.png" width="350" />
 
 ## Avarage petrol prices in voivodships across Poland
 
